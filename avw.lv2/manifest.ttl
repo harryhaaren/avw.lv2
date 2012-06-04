@@ -1,0 +1,139 @@
+@prefix lv2: <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix uiext: <http://lv2plug.in/ns/extensions/ui#> .
+
+
+<http://avwlv2.sourceforge.net/plugins/avw/ad>
+	a lv2:Plugin ;
+	lv2:binary <ad.so>  ;
+	rdfs:seeAlso <ad.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/amp>
+	a lv2:Plugin ;
+	lv2:binary <amp.so>  ;
+	rdfs:seeAlso <amp.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/noise2>
+	a lv2:Plugin ;
+	lv2:binary <noise2.so>  ;
+	rdfs:seeAlso <noise2.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/lfo>
+	a lv2:Plugin ;
+	lv2:binary <lfo.so>  ;
+	rdfs:seeAlso <lfo.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/vco2>
+	a lv2:Plugin ;
+	lv2:binary <vco2.so>  ;
+	rdfs:seeAlso <vco2.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vcf>
+	a lv2:Plugin ;
+	lv2:binary <vcf.so>  ;
+	rdfs:seeAlso <vcf.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/hztovc>
+	a lv2:Plugin ;
+	lv2:binary <hztovc.so>  ;
+	rdfs:seeAlso <hztovc.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vctohz>
+	a lv2:Plugin ;
+	lv2:binary <vctohz.so>  ;
+	rdfs:seeAlso <vctohz.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/env>
+	a lv2:Plugin ;
+	lv2:binary <env.so>  ;
+	rdfs:seeAlso <env.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vcalin>
+	a lv2:Plugin ;
+	lv2:binary <vcalin.so>  ;
+	rdfs:seeAlso <vcalin.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vcaexp>
+	a lv2:Plugin ;
+	lv2:binary <vcaexp.so>  ;
+	rdfs:seeAlso <vcaexp.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/mixer>
+	a lv2:Plugin ;
+	lv2:binary <mixer.so>  ;
+	rdfs:seeAlso <mixer.ttl> .		
+	
+<http://avwlv2.sourceforge.net/plugins/avw/slew>
+	a lv2:Plugin ;
+	lv2:binary <slew.so>  ;
+	rdfs:seeAlso <slew.ttl> .	
+	
+<http://avwlv2.sourceforge.net/plugins/avw/advenv>
+	a lv2:Plugin ;
+	lv2:binary <advenv.so>  ;
+	rdfs:seeAlso <advenv.ttl> .	
+	
+<http://avwlv2.sourceforge.net/plugins/avw/cvs>
+	a lv2:Plugin ;
+	lv2:binary <cvs.so>  ;
+	rdfs:seeAlso <cvs.ttl> .	
+	
+<http://avwlv2.sourceforge.net/plugins/avw/delay>
+	a lv2:Plugin ;
+	lv2:binary <delay.so>  ;
+	rdfs:seeAlso <delay.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/dynamicwaves>
+	a lv2:Plugin ;
+	lv2:binary <dynamicwaves.so>  ;
+	rdfs:seeAlso <dynamicwaves.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/absolute>
+	a lv2:Plugin ;
+	lv2:binary <absolute.so>  ;
+	rdfs:seeAlso <absolute.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/inv>
+	a lv2:Plugin ;
+	lv2:binary <inv.so>  ;
+	rdfs:seeAlso <inv.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/jacklfo>
+	a lv2:Plugin ;
+	lv2:binary <jacklfo.so>  ;
+	rdfs:seeAlso <jacklfo.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/tranches>
+	a lv2:Plugin ;
+	lv2:binary <tranches.so>  ;
+	rdfs:seeAlso <tranches.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/ringmodulator>
+	a lv2:Plugin ;
+	lv2:binary <ringmodulator.so>  ;
+	rdfs:seeAlso <ringmodulator.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/percussiveenv>
+	a lv2:Plugin ;
+	lv2:binary <percussiveenv.so>  ;
+	rdfs:seeAlso <percussiveenv.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/samplehold>
+	a lv2:Plugin ;
+	lv2:binary <samplehold.so>  ;
+	rdfs:seeAlso <samplehold.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vcpanning>
+	a lv2:Plugin ;
+	lv2:binary <vcpanning.so>  ;
+	rdfs:seeAlso <vcpanning.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vcswitch>
+	a lv2:Plugin ;
+	lv2:binary <vcswitch.so>  ;
+	rdfs:seeAlso <vcswitch.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/mooglpf>
+	a lv2:Plugin ;
+	lv2:binary <mooglpf.so>  ;
+	rdfs:seeAlso <mooglpf.ttl> .

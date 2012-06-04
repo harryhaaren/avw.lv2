@@ -1,0 +1,1875 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atom: <http://lv2plug.in/ns/ext/atom#> .
+@prefix ctx: <http://lv2plug.in/ns/ext/contexts#> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix ingen: <http://drobilla.net/ns/ingen#> .
+@prefix lv2: <http://lv2plug.in/ns/lv2core#> .
+@prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
+@prefix midi: <http://lv2plug.in/ns/ext/midi#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<Note>
+	ingen:canvasX 114.90000153 ;
+	ingen:canvasY 230.19999695 ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 137.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 679.25 ;
+	lv2:port <Note/frequency> ,
+		<Note/gate> ,
+		<Note/input> ,
+		<Note/trigger> ,
+		<Note/velocity> ;
+	lv2:symbol "Note" ;
+	rdf:instanceOf <http://drobilla.net/ns/ingen-internals#Note> ;
+	a ingen:Node .
+
+<Note/frequency>
+	lv2:index 1 ;
+	lv2:name "Frequency" ;
+	lv2:symbol "frequency" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<Note/gate>
+	lv2:index 3 ;
+	lv2:name "Gate" ;
+	lv2:portProperty lv2:toggled ;
+	lv2:symbol "gate" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<Note/input>
+	lv2:index 0 ;
+	lv2:name "Input" ;
+	lv2:symbol "input" ;
+	a lv2ev:EventPort ,
+		lv2:InputPort .
+
+<Note/trigger>
+	lv2:index 4 ;
+	lv2:name "Trigger" ;
+	lv2:portProperty lv2:toggled ;
+	lv2:symbol "trigger" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<Note/velocity>
+	lv2:index 2 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:name "Velocity" ;
+	lv2:symbol "velocity" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<_1777>
+	ingen:canvasX 2516.80004883 ;
+	ingen:canvasY 827.5 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 2576.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 331.75 ;
+	lv2:port <_1777/port0> ,
+		<_1777/port1> ,
+		<_1777/port2> ,
+		<_1777/port3> ,
+		<_1777/port4> ,
+		<_1777/port5> ,
+		<_1777/port6> ,
+		<_1777/port7> ,
+		<_1777/port8> ;
+	lv2:symbol "_1777" ;
+	rdf:instanceOf <urn:ladspa:1777> ;
+	a ingen:Node .
+
+<_1777/port0>
+	lv2:index 0 ;
+	lv2:symbol "port0" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<_1777/port1>
+	ingen:value 8.52000046 ;
+	lv2:index 1 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "port1" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1777/port2>
+	ingen:value 1.0 ;
+	lv2:index 2 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.005 ;
+	lv2:symbol "port2" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1777/port3>
+	ingen:value 10.0 ;
+	lv2:index 3 ;
+	lv2:maximum 20.0 ;
+	lv2:minimum -20.0 ;
+	lv2:symbol "port3" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1777/port4>
+	ingen:value 15.0 ;
+	lv2:index 4 ;
+	lv2:maximum 20.0 ;
+	lv2:minimum -20.0 ;
+	lv2:symbol "port4" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1777/port5>
+	ingen:value 20.0 ;
+	lv2:index 5 ;
+	lv2:maximum 20.0 ;
+	lv2:minimum -20.0 ;
+	lv2:symbol "port5" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1777/port6>
+	ingen:value 20.0 ;
+	lv2:index 6 ;
+	lv2:maximum 20.0 ;
+	lv2:minimum -20.0 ;
+	lv2:symbol "port6" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1777/port7>
+	lv2:index 7 ;
+	lv2:symbol "port7" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<_1777/port8>
+	lv2:index 8 ;
+	lv2:portProperty lv2:reportsLatency ;
+	lv2:symbol "port8" ;
+	a lv2:ControlPort ,
+		lv2:OutputPort .
+
+<_1788>
+	ingen:canvasX 3126.39990234 ;
+	ingen:canvasY 540.40002441 ;
+	ingen:polyphonic false ;
+	ingen:selected 1 ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 3298.5 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 623.0 ;
+	lv2:port <_1788/port0> ,
+		<_1788/port1> ,
+		<_1788/port2> ,
+		<_1788/port3> ,
+		<_1788/port4> ,
+		<_1788/port5> ,
+		<_1788/port6> ;
+	lv2:symbol "_1788" ;
+	rdf:instanceOf <urn:ladspa:1788> ;
+	a ingen:Node .
+
+<_1788/port0>
+	lv2:index 0 ;
+	lv2:symbol "port0" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<_1788/port1>
+	lv2:index 1 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum -1.0 ;
+	lv2:symbol "port1" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1788/port2>
+	lv2:index 2 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "port2" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1788/port3>
+	ingen:value 40.0 ;
+	lv2:index 3 ;
+	lv2:maximum 40.0 ;
+	lv2:minimum 0.1 ;
+	lv2:symbol "port3" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1788/port4>
+	lv2:index 4 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:portProperty lv2:integer ,
+		lv2:toggled ;
+	lv2:symbol "port4" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1788/port5>
+	lv2:index 5 ;
+	lv2:symbol "port5" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<_1788/port6>
+	lv2:index 6 ;
+	lv2:symbol "port6" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<_1943>
+	ingen:canvasX 1394.80004883 ;
+	ingen:canvasY 1002.40002441 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 1452.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 149.25 ;
+	lv2:port <_1943/port0> ,
+		<_1943/port1> ,
+		<_1943/port10> ,
+		<_1943/port2> ,
+		<_1943/port3> ,
+		<_1943/port4> ,
+		<_1943/port5> ,
+		<_1943/port6> ,
+		<_1943/port7> ,
+		<_1943/port8> ,
+		<_1943/port9> ;
+	lv2:symbol "_1943" ;
+	rdf:instanceOf <urn:ladspa:1943> ;
+	a ingen:Node .
+
+<_1943/port0>
+	lv2:index 0 ;
+	lv2:symbol "port0" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<_1943/port1>
+	lv2:index 1 ;
+	lv2:symbol "port1" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<_1943/port10>
+	ingen:value 3.02999997 ;
+	lv2:index 10 ;
+	lv2:maximum 15.0 ;
+	lv2:minimum -15.0 ;
+	lv2:symbol "port10" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1943/port2>
+	lv2:index 2 ;
+	lv2:symbol "port2" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<_1943/port3>
+	lv2:index 3 ;
+	lv2:symbol "port3" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<_1943/port4>
+	lv2:index 4 ;
+	lv2:symbol "port4" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<_1943/port5>
+	ingen:value - ;
+	lv2:index 5 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum -60.0 ;
+	lv2:symbol "port5" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1943/port6>
+	ingen:value 2.9000001 ;
+	lv2:index 6 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum -6.0 ;
+	lv2:symbol "port6" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1943/port7>
+	ingen:value 5.86999989 ;
+	lv2:index 7 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "port7" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1943/port8>
+	ingen:value 0.90499997 ;
+	lv2:index 8 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "port8" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_1943/port9>
+	ingen:value 0.34599999 ;
+	lv2:index 9 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "port9" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_2587>
+	ingen:canvasX 2925.0 ;
+	ingen:canvasY 778.0 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 3048.75 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 426.75 ;
+	lv2:port <_2587/port0> ,
+		<_2587/port1> ,
+		<_2587/port2> ,
+		<_2587/port3> ,
+		<_2587/port4> ,
+		<_2587/port5> ,
+		<_2587/port6> ,
+		<_2587/port7> ;
+	lv2:symbol "_2587" ;
+	rdf:instanceOf <urn:ladspa:2587> ;
+	a ingen:Node .
+
+<_2587/port0>
+	lv2:index 0 ;
+	lv2:symbol "port0" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<_2587/port1>
+	ingen:value 0.903 ;
+	lv2:index 1 ;
+	lv2:maximum 3.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "port1" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_2587/port2>
+	lv2:index 2 ;
+	lv2:maximum 9.0 ;
+	lv2:minimum -9.0 ;
+	lv2:symbol "port2" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_2587/port3>
+	ingen:value 1.0 ;
+	lv2:index 3 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "port3" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_2587/port4>
+	ingen:value 1.0 ;
+	lv2:index 4 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0001 ;
+	lv2:symbol "port4" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_2587/port5>
+	ingen:value 150.0 ;
+	lv2:index 5 ;
+	lv2:maximum 150.0 ;
+	lv2:minimum 5.0 ;
+	lv2:symbol "port5" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<_2587/port6>
+	lv2:index 6 ;
+	lv2:symbol "port6" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<_2587/port7>
+	lv2:index 7 ;
+	lv2:portProperty lv2:reportsLatency ;
+	lv2:symbol "port7" ;
+	a lv2:ControlPort ,
+		lv2:OutputPort .
+
+<advenv>
+	ingen:canvasX 945.20001221 ;
+	ingen:canvasY 222.5 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 952.5 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 525.5 ;
+	lv2:port <advenv/attackLevel1> ,
+		<advenv/attackLevel2> ,
+		<advenv/attackLevel3> ,
+		<advenv/attackTime1> ,
+		<advenv/attackTime2> ,
+		<advenv/attackTime3> ,
+		<advenv/attackTime4> ,
+		<advenv/delay> ,
+		<advenv/gate> ,
+		<advenv/invOut> ,
+		<advenv/out> ,
+		<advenv/releaseLevel1> ,
+		<advenv/releaseLevel2> ,
+		<advenv/releaseTime1> ,
+		<advenv/releaseTime2> ,
+		<advenv/releaseTime3> ,
+		<advenv/retrigger> ,
+		<advenv/sustain> ,
+		<advenv/timeScale> ;
+	lv2:symbol "advenv" ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/advenv> ;
+	a ingen:Node .
+
+<advenv/attackLevel1>
+	ingen:value 0.5 ;
+	lv2:index 9 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "attackLevel1" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/attackLevel2>
+	ingen:value 1.0 ;
+	lv2:index 10 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "attackLevel2" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/attackLevel3>
+	ingen:value 0.329 ;
+	lv2:index 11 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "attackLevel3" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/attackTime1>
+	ingen:value 0.17399999 ;
+	lv2:index 5 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "attackTime1" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/attackTime2>
+	ingen:value 0.05 ;
+	lv2:index 6 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "attackTime2" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/attackTime3>
+	ingen:value 0.11 ;
+	lv2:index 7 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "attackTime3" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/attackTime4>
+	ingen:value 0.43200001 ;
+	lv2:index 8 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "attackTime4" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/delay>
+	ingen:value 0.31 ;
+	lv2:index 4 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "delay" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/gate>
+	lv2:index 0 ;
+	lv2:symbol "gate" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<advenv/invOut>
+	lv2:index 18 ;
+	lv2:symbol "invOut" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<advenv/out>
+	lv2:index 17 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<advenv/releaseLevel1>
+	ingen:value 0.43200001 ;
+	lv2:index 15 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "releaseLevel1" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/releaseLevel2>
+	ingen:value 0.28400001 ;
+	lv2:index 16 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "releaseLevel2" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/releaseTime1>
+	ingen:value 0.52899998 ;
+	lv2:index 12 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "releaseTime1" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/releaseTime2>
+	ingen:value 0.426 ;
+	lv2:index 13 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "releaseTime2" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/releaseTime3>
+	ingen:value 0.67699999 ;
+	lv2:index 14 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "releaseTime3" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/retrigger>
+	lv2:index 1 ;
+	lv2:symbol "retrigger" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<advenv/sustain>
+	ingen:value 0.67699999 ;
+	lv2:index 3 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "sustain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<advenv/timeScale>
+	ingen:value 0.53399998 ;
+	lv2:index 2 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.1 ;
+	lv2:symbol "timeScale" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<audio_out_1>
+	ingen:canvasX 3321.80004883 ;
+	ingen:canvasY 589.90002441 ;
+	ingen:polyphonic false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 3419.5 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 647.5 ;
+	lv2:index 2 ;
+	lv2:name "Audio Out 1" ;
+	lv2:symbol "audio_out_1" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<audio_out_2>
+	ingen:canvasX 3321.80004883 ;
+	ingen:canvasY 674.59997559 ;
+	ingen:polyphonic false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 3419.5 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 687.5 ;
+	lv2:index 3 ;
+	lv2:name "Audio Out 2" ;
+	lv2:symbol "audio_out_2" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<>
+	ingen:connection [
+		ingen:destination <_1943/port0> ;
+		ingen:source <vcf/out> ;
+	] , [
+		ingen:destination <mixer/in1> ;
+		ingen:source <vco2/out> ;
+	] , [
+		ingen:destination <_1788/port1> ;
+		ingen:source <advenv/out> ;
+	] , [
+		ingen:destination <_1788/port3> ;
+		ingen:source <advenv/out> ;
+	] , [
+		ingen:destination <vcalin/in1Data> ;
+		ingen:source <diode/output> ;
+	] , [
+		ingen:destination <vcalin/gain1Data> ;
+		ingen:source <env/out> ;
+	] , [
+		ingen:destination <slew/in> ;
+		ingen:source <hztovc/output> ;
+	] , [
+		ingen:destination <vcf/in> ;
+		ingen:source <mixer/out> ;
+	] , [
+		ingen:destination <vco2/freq> ;
+		ingen:source <slew/out> ;
+	] , [
+		ingen:destination <vco2_2/freq> ;
+		ingen:source <slew/out> ;
+	] , [
+		ingen:destination <vco2_3/freq> ;
+		ingen:source <slew/out> ;
+	] , [
+		ingen:destination <vco2_4/freq> ;
+		ingen:source <slew/out> ;
+	] , [
+		ingen:destination <mixer/in3> ;
+		ingen:source <vco2_2/out> ;
+	] , [
+		ingen:destination <_1943/port2> ;
+		ingen:source <slew/out> ;
+	] , [
+		ingen:destination <_1777/port0> ;
+		ingen:source <vcalin/out> ;
+	] , [
+		ingen:destination <audio_out_1> ;
+		ingen:source <_1788/port5> ;
+	] , [
+		ingen:destination <audio_out_2> ;
+		ingen:source <_1788/port6> ;
+	] , [
+		ingen:destination <diode/input> ;
+		ingen:source <_1943/port1> ;
+	] , [
+		ingen:destination <advenv/gate> ;
+		ingen:source <Note/gate> ;
+	] , [
+		ingen:destination <env/gate> ;
+		ingen:source <Note/gate> ;
+	] , [
+		ingen:destination <hztovc/input> ;
+		ingen:source <Note/frequency> ;
+	] , [
+		ingen:destination <advenv/retrigger> ;
+		ingen:source <Note/trigger> ;
+	] , [
+		ingen:destination <env/retrigger> ;
+		ingen:source <Note/trigger> ;
+	] , [
+		ingen:destination <mixer/in2> ;
+		ingen:source <vco2_3/out> ;
+	] , [
+		ingen:destination <mixer/in4> ;
+		ingen:source <vco2_4/out> ;
+	] , [
+		ingen:destination <Note/input> ;
+		ingen:source <control_in> ;
+	] , [
+		ingen:destination <_2587/port0> ;
+		ingen:source <_1777/port7> ;
+	] , [
+		ingen:destination <_1788/port0> ;
+		ingen:source <_2587/port6> ;
+	] , [
+		ingen:destination <vcf/freqPort> ;
+		ingen:source <advenv/out> ;
+	] , [
+		ingen:destination <vcf/expFM> ;
+		ingen:source <advenv/out> ;
+	] ;
+	ingen:node <Note> ,
+		<_1777> ,
+		<_1788> ,
+		<_1943> ,
+		<_2587> ,
+		<advenv> ,
+		<diode> ,
+		<env> ,
+		<hztovc> ,
+		<mixer> ,
+		<slew> ,
+		<vcalin> ,
+		<vcf> ,
+		<vco2> ,
+		<vco2_2> ,
+		<vco2_3> ,
+		<vco2_4> ;
+	ingen:polyphony 1 ;
+	lv2:extensionData <http://lv2plug.in/ns/ext/state#Interface> ;
+	lv2:port <audio_out_1> ,
+		<audio_out_2> ,
+		<control_in> ,
+		<control_out> ;
+	lv2:symbol "bass" ;
+	doap:name "bass" ;
+	a ingen:Patch ,
+		lv2:Plugin .
+
+<control_in>
+	ingen:canvasX 8.0 ;
+	ingen:canvasY 219.19999695 ;
+	ingen:polyphonic false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 34.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 716.25 ;
+	lv2:index 0 ;
+	lv2:name "Control" ;
+	lv2:portProperty lv2:connectionOptional ;
+	lv2:symbol "control_in" ;
+	a lv2ev:EventPort ,
+		lv2:InputPort .
+
+<control_out>
+	ingen:canvasX 8.0 ;
+	ingen:canvasY 77.30000305 ;
+	ingen:polyphonic false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 34.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 676.25 ;
+	lv2:index 1 ;
+	lv2:name "Control" ;
+	lv2:symbol "control_out" ;
+	a lv2ev:EventPort ,
+		lv2:OutputPort .
+
+<diode>
+	ingen:canvasX 1944.19995117 ;
+	ingen:canvasY 1002.40002441 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 1988.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 201.75 ;
+	lv2:port <diode/input> ,
+		<diode/mode> ,
+		<diode/output> ;
+	lv2:symbol "diode" ;
+	rdf:instanceOf <http://plugin.org.uk/swh-plugins/diode> ;
+	a ingen:Node .
+
+<diode/input>
+	lv2:index 1 ;
+	lv2:symbol "input" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<diode/mode>
+	ingen:value 2.0 ;
+	lv2:index 0 ;
+	lv2:maximum 3.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "mode" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<diode/output>
+	lv2:index 2 ;
+	lv2:symbol "output" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<env>
+	ingen:canvasX 241.3999939 ;
+	ingen:canvasY 386.3999939 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 274.25 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 498.0 ;
+	lv2:port <env/attack> ,
+		<env/decay> ,
+		<env/delay> ,
+		<env/gate> ,
+		<env/hold> ,
+		<env/invOut> ,
+		<env/out> ,
+		<env/release> ,
+		<env/retrigger> ,
+		<env/sustain> ,
+		<env/timeScale> ;
+	lv2:symbol "env" ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/env> ;
+	a ingen:Node .
+
+<env/attack>
+	ingen:value 0.001 ;
+	lv2:index 2 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "attack" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<env/decay>
+	ingen:value 0.058 ;
+	lv2:index 3 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "decay" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<env/delay>
+	lv2:index 6 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "delay" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<env/gate>
+	lv2:index 0 ;
+	lv2:symbol "gate" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<env/hold>
+	ingen:value 0.0193 ;
+	lv2:index 7 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "hold" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<env/invOut>
+	lv2:index 10 ;
+	lv2:symbol "invOut" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<env/out>
+	lv2:index 9 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<env/release>
+	ingen:value 0.20100001 ;
+	lv2:index 5 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "release" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<env/retrigger>
+	lv2:index 1 ;
+	lv2:symbol "retrigger" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<env/sustain>
+	ingen:value 0.49700001 ;
+	lv2:index 4 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "sustain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<env/timeScale>
+	ingen:value 1.13100004 ;
+	lv2:index 8 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "timeScale" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<hztovc>
+	ingen:canvasX 235.8999939 ;
+	ingen:canvasY 286.29998779 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 269.75 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 694.25 ;
+	lv2:port <hztovc/input> ,
+		<hztovc/octaveOffset> ,
+		<hztovc/output> ;
+	lv2:symbol "hztovc" ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/hztovc> ;
+	a ingen:Node .
+
+<hztovc/input>
+	lv2:index 1 ;
+	lv2:symbol "input" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<hztovc/octaveOffset>
+	ingen:value 1.0 ;
+	lv2:index 0 ;
+	lv2:maximum 3.0 ;
+	lv2:minimum -3.0 ;
+	lv2:symbol "octaveOffset" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<hztovc/output>
+	lv2:index 2 ;
+	lv2:symbol "output" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<mixer>
+	ingen:canvasX 975.70001221 ;
+	ingen:canvasY 621.79998779 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 983.0 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 351.75 ;
+	lv2:port <mixer/gain> ,
+		<mixer/in1> ,
+		<mixer/in2> ,
+		<mixer/in3> ,
+		<mixer/in4> ,
+		<mixer/out> ,
+		<mixer/volume1> ,
+		<mixer/volume2> ,
+		<mixer/volume3> ,
+		<mixer/volume4> ;
+	lv2:symbol "mixer" ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/mixer> ;
+	a ingen:Node .
+
+<mixer/gain>
+	ingen:value 1.0 ;
+	lv2:index 4 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "gain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<mixer/in1>
+	lv2:index 0 ;
+	lv2:symbol "in1" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<mixer/in2>
+	lv2:index 1 ;
+	lv2:symbol "in2" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<mixer/in3>
+	lv2:index 2 ;
+	lv2:symbol "in3" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<mixer/in4>
+	lv2:index 3 ;
+	lv2:symbol "in4" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<mixer/out>
+	lv2:index 9 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<mixer/volume1>
+	ingen:value 1.5 ;
+	lv2:index 5 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "volume1" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<mixer/volume2>
+	ingen:value 1.5 ;
+	lv2:index 6 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "volume2" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<mixer/volume3>
+	ingen:value 0.0613 ;
+	lv2:index 7 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "volume3" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<mixer/volume4>
+	ingen:value 1.01999998 ;
+	lv2:index 8 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "volume4" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<slew>
+	ingen:canvasX 390.5 ;
+	ingen:canvasY 439.20001221 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 462.75 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 404.25 ;
+	lv2:port <slew/in> ,
+		<slew/out> ,
+		<slew/timeDown> ,
+		<slew/timeUp> ;
+	lv2:symbol "slew" ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/slew> ;
+	a ingen:Node .
+
+<slew/in>
+	lv2:index 0 ;
+	lv2:symbol "in" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<slew/out>
+	lv2:index 3 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<slew/timeDown>
+	ingen:value 1.10000002 ;
+	lv2:index 2 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "timeDown" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<slew/timeUp>
+	ingen:value 0.491 ;
+	lv2:index 1 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "timeUp" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vcalin>
+	ingen:canvasX 2316.19995117 ;
+	ingen:canvasY 1039.80004883 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 2315.75 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 149.25 ;
+	lv2:port <vcalin/gain1> ,
+		<vcalin/gain1Data> ,
+		<vcalin/gain2> ,
+		<vcalin/gain2Data> ,
+		<vcalin/in1> ,
+		<vcalin/in1Data> ,
+		<vcalin/in2> ,
+		<vcalin/in2Data> ,
+		<vcalin/out> ,
+		<vcalin/outputLevel> ;
+	lv2:symbol "vcalin" ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/vcalin> ;
+	a ingen:Node .
+
+<vcalin/gain1>
+	lv2:index 4 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "gain1" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vcalin/gain1Data>
+	lv2:index 0 ;
+	lv2:symbol "gain1Data" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vcalin/gain2>
+	lv2:index 5 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "gain2" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vcalin/gain2Data>
+	lv2:index 1 ;
+	lv2:symbol "gain2Data" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vcalin/in1>
+	ingen:value 1.0 ;
+	lv2:index 6 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "in1" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vcalin/in1Data>
+	lv2:index 2 ;
+	lv2:symbol "in1Data" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vcalin/in2>
+	ingen:value 1.0 ;
+	lv2:index 7 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "in2" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vcalin/in2Data>
+	lv2:index 3 ;
+	lv2:symbol "in2Data" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vcalin/out>
+	lv2:index 9 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<vcalin/outputLevel>
+	ingen:value 1.0 ;
+	lv2:index 8 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "outputLevel" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vcf>
+	ingen:canvasX 1153.30004883 ;
+	ingen:canvasY 679.0 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 1174.25 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 378.0 ;
+	lv2:port <vcf/expFM> ,
+		<vcf/expFMGain> ,
+		<vcf/freq> ,
+		<vcf/freqPort> ,
+		<vcf/in> ,
+		<vcf/inputGain> ,
+		<vcf/linFM> ,
+		<vcf/linFMGain> ,
+		<vcf/out> ,
+		<vcf/resonance> ,
+		<vcf/resonanceGain> ,
+		<vcf/resonancePort> ,
+		<vcf/vcfType> ;
+	lv2:symbol "vcf" ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/vcf> ;
+	a ingen:Node .
+
+<vcf/expFM>
+	lv2:index 2 ;
+	lv2:symbol "expFM" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vcf/expFMGain>
+	ingen:value 6.44000006 ;
+	lv2:index 8 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "expFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vcf/freq>
+	ingen:value 2.75 ;
+	lv2:index 7 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "freq" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vcf/freqPort>
+	lv2:index 1 ;
+	lv2:symbol "freqPort" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vcf/in>
+	lv2:index 0 ;
+	lv2:symbol "in" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vcf/inputGain>
+	ingen:value 1.0 ;
+	lv2:index 6 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "inputGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vcf/linFM>
+	lv2:index 3 ;
+	lv2:symbol "linFM" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vcf/linFMGain>
+	lv2:index 9 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "linFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vcf/out>
+	lv2:index 12 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<vcf/resonance>
+	ingen:value 0.611 ;
+	lv2:index 10 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.80000001 ;
+	lv2:symbol "resonance" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vcf/resonanceGain>
+	lv2:index 11 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "resonanceGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vcf/resonancePort>
+	lv2:index 4 ;
+	lv2:symbol "resonancePort" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vcf/vcfType>
+	ingen:value 6.0 ;
+	lv2:index 5 ;
+	lv2:maximum 7.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "vcfType" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2>
+	ingen:canvasX 598.90002441 ;
+	ingen:canvasY 981.5 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 638.25 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 685.5 ;
+	lv2:port <vco2/expFM> ,
+		<vco2/expFMGain> ,
+		<vco2/freq> ,
+		<vco2/harmonic> ,
+		<vco2/linFM> ,
+		<vco2/linFMGain> ,
+		<vco2/octave> ,
+		<vco2/out> ,
+		<vco2/phi0> ,
+		<vco2/pw0> ,
+		<vco2/pwGain> ,
+		<vco2/pwPort> ,
+		<vco2/subharmonic> ,
+		<vco2/tune> ,
+		<vco2/waveForm> ;
+	lv2:symbol "vco2" ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/vco2> ;
+	a ingen:Node .
+
+<vco2/expFM>
+	lv2:index 1 ;
+	lv2:symbol "expFM" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2/expFMGain>
+	lv2:index 12 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "expFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/freq>
+	lv2:index 0 ;
+	lv2:symbol "freq" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2/harmonic>
+	ingen:value 1.0 ;
+	lv2:index 7 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "harmonic" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/linFM>
+	lv2:index 2 ;
+	lv2:symbol "linFM" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2/linFMGain>
+	lv2:index 13 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "linFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/octave>
+	ingen:value 2.0 ;
+	lv2:index 5 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "octave" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/out>
+	lv2:index 14 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<vco2/phi0>
+	lv2:index 11 ;
+	lv2:maximum 6.28299999 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "phi0" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/pw0>
+	ingen:value 0.5 ;
+	lv2:index 9 ;
+	lv2:maximum 0.89999998 ;
+	lv2:minimum 0.1 ;
+	lv2:symbol "pw0" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/pwGain>
+	lv2:index 10 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "pwGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/pwPort>
+	lv2:index 3 ;
+	lv2:symbol "pwPort" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2/subharmonic>
+	ingen:value 1.0 ;
+	lv2:index 8 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "subharmonic" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/tune>
+	lv2:index 6 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "tune" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/waveForm>
+	ingen:value 2.0 ;
+	lv2:index 4 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "waveForm" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2>
+	ingen:canvasX 598.90002441 ;
+	ingen:canvasY 8.0 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 638.25 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 0.0 ;
+	lv2:port <vco2_2/expFM> ,
+		<vco2_2/expFMGain> ,
+		<vco2_2/freq> ,
+		<vco2_2/harmonic> ,
+		<vco2_2/linFM> ,
+		<vco2_2/linFMGain> ,
+		<vco2_2/octave> ,
+		<vco2_2/out> ,
+		<vco2_2/phi0> ,
+		<vco2_2/pw0> ,
+		<vco2_2/pwGain> ,
+		<vco2_2/pwPort> ,
+		<vco2_2/subharmonic> ,
+		<vco2_2/tune> ,
+		<vco2_2/waveForm> ;
+	lv2:symbol "vco2_2" ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/vco2> ;
+	a ingen:Node .
+
+<vco2_2/expFM>
+	lv2:index 1 ;
+	lv2:symbol "expFM" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2_2/expFMGain>
+	lv2:index 12 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "expFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/freq>
+	lv2:index 0 ;
+	lv2:symbol "freq" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2_2/harmonic>
+	ingen:value 1.0 ;
+	lv2:index 7 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "harmonic" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/linFM>
+	lv2:index 2 ;
+	lv2:symbol "linFM" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2_2/linFMGain>
+	lv2:index 13 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "linFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/octave>
+	ingen:value 1.0 ;
+	lv2:index 5 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "octave" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/out>
+	lv2:index 14 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<vco2_2/phi0>
+	lv2:index 11 ;
+	lv2:maximum 6.28299999 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "phi0" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/pw0>
+	ingen:value 0.5 ;
+	lv2:index 9 ;
+	lv2:maximum 0.89999998 ;
+	lv2:minimum 0.1 ;
+	lv2:symbol "pw0" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/pwGain>
+	lv2:index 10 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "pwGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/pwPort>
+	lv2:index 3 ;
+	lv2:symbol "pwPort" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2_2/subharmonic>
+	ingen:value 1.0 ;
+	lv2:index 8 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "subharmonic" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/tune>
+	ingen:value 0.0387 ;
+	lv2:index 6 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "tune" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/waveForm>
+	ingen:value 3.0 ;
+	lv2:index 4 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "waveForm" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_3>
+	ingen:canvasX 598.90002441 ;
+	ingen:canvasY 332.5 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 638.25 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 190.5 ;
+	lv2:port <vco2_3/expFM> ,
+		<vco2_3/expFMGain> ,
+		<vco2_3/freq> ,
+		<vco2_3/harmonic> ,
+		<vco2_3/linFM> ,
+		<vco2_3/linFMGain> ,
+		<vco2_3/octave> ,
+		<vco2_3/out> ,
+		<vco2_3/phi0> ,
+		<vco2_3/pw0> ,
+		<vco2_3/pwGain> ,
+		<vco2_3/pwPort> ,
+		<vco2_3/subharmonic> ,
+		<vco2_3/tune> ,
+		<vco2_3/waveForm> ;
+	lv2:symbol "vco2_3" ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/vco2> ;
+	a ingen:Node .
+
+<vco2_3/expFM>
+	lv2:index 1 ;
+	lv2:symbol "expFM" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2_3/expFMGain>
+	lv2:index 12 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "expFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_3/freq>
+	lv2:index 0 ;
+	lv2:symbol "freq" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2_3/harmonic>
+	ingen:value 1.0 ;
+	lv2:index 7 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "harmonic" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_3/linFM>
+	lv2:index 2 ;
+	lv2:symbol "linFM" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2_3/linFMGain>
+	lv2:index 13 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "linFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_3/octave>
+	ingen:value 2.0 ;
+	lv2:index 5 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "octave" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_3/out>
+	lv2:index 14 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<vco2_3/phi0>
+	lv2:index 11 ;
+	lv2:maximum 6.28299999 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "phi0" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_3/pw0>
+	ingen:value 0.5 ;
+	lv2:index 9 ;
+	lv2:maximum 0.89999998 ;
+	lv2:minimum 0.1 ;
+	lv2:symbol "pw0" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_3/pwGain>
+	lv2:index 10 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "pwGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_3/pwPort>
+	lv2:index 3 ;
+	lv2:symbol "pwPort" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2_3/subharmonic>
+	ingen:value 1.0 ;
+	lv2:index 8 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "subharmonic" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_3/tune>
+	ingen:value 0.0258 ;
+	lv2:index 6 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "tune" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_3/waveForm>
+	ingen:value 2.0 ;
+	lv2:index 4 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "waveForm" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_4>
+	ingen:canvasX 598.90002441 ;
+	ingen:canvasY 657.0 ;
+	ingen:polyphonic false ;
+	ingen:selected false ;
+	<http://drobilla.net/ns/ingenuity#canvas-x> 638.25 ;
+	<http://drobilla.net/ns/ingenuity#canvas-y> 438.0 ;
+	lv2:port <vco2_4/expFM> ,
+		<vco2_4/expFMGain> ,
+		<vco2_4/freq> ,
+		<vco2_4/harmonic> ,
+		<vco2_4/linFM> ,
+		<vco2_4/linFMGain> ,
+		<vco2_4/octave> ,
+		<vco2_4/out> ,
+		<vco2_4/phi0> ,
+		<vco2_4/pw0> ,
+		<vco2_4/pwGain> ,
+		<vco2_4/pwPort> ,
+		<vco2_4/subharmonic> ,
+		<vco2_4/tune> ,
+		<vco2_4/waveForm> ;
+	lv2:symbol "vco2_4" ;
+	rdf:instanceOf <http://avwlv2.sourceforge.net/plugins/avw/vco2> ;
+	a ingen:Node .
+
+<vco2_4/expFM>
+	lv2:index 1 ;
+	lv2:symbol "expFM" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2_4/expFMGain>
+	lv2:index 12 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "expFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_4/freq>
+	lv2:index 0 ;
+	lv2:symbol "freq" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2_4/harmonic>
+	ingen:value 1.0 ;
+	lv2:index 7 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "harmonic" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_4/linFM>
+	lv2:index 2 ;
+	lv2:symbol "linFM" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2_4/linFMGain>
+	lv2:index 13 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "linFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_4/octave>
+	ingen:value 3.0 ;
+	lv2:index 5 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "octave" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_4/out>
+	lv2:index 14 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<vco2_4/phi0>
+	lv2:index 11 ;
+	lv2:maximum 6.28299999 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "phi0" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_4/pw0>
+	ingen:value 0.5 ;
+	lv2:index 9 ;
+	lv2:maximum 0.89999998 ;
+	lv2:minimum 0.1 ;
+	lv2:symbol "pw0" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_4/pwGain>
+	lv2:index 10 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "pwGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_4/pwPort>
+	lv2:index 3 ;
+	lv2:symbol "pwPort" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<vco2_4/subharmonic>
+	ingen:value 1.0 ;
+	lv2:index 8 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "subharmonic" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_4/tune>
+	ingen:value 0.0193 ;
+	lv2:index 6 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "tune" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_4/waveForm>
+	ingen:value 2.0 ;
+	lv2:index 4 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "waveForm" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .

@@ -1,0 +1,56 @@
+0.0.8:
+	* VCF GUI
+	* Ported from AMS:
+		- Ring Modulator
+		- Sample&Hold
+		- VC Panning (with GUI)
+		- VC Switch
+	* Percussive Env based on the AMS Env
+	* MoogLFP ported from LADSPA MCP Plugins
+
+0.0.7:
+	* License updated
+	* Ported from AMS:
+		- Absolute
+		- Inv
+	* Jack sync LFO based on the AMS one
+	* Ported from Tranches (http://hitmuri.net/tardigrade/index.php/En/News)
+		- Tranches
+	* URI modified to http://avwlv2.sourceforge.net
+
+0.0.6:
+	* Basic GUI for Analog Driver, Envelop and Advanced Envelop
+	* Ported:
+		- CV Source
+		- Delay
+		- Dynamic Waves (4 Osc)
+
+0.0.5:
+	* Bug correction in wscript
+
+0.0.4:
+	* GUI for VCO2
+
+0.0.3:
+	* Mixer ported (mixer 4->1)
+	* Slew Limiter
+	* Advanced Envelop
+	* A few test presets
+	
+0.0.2:
+	* VC to HZ module (ported from Conv in AMS)
+	* HZ to VC module (ported from Omins)
+	* Ported:
+		- Env
+		- VCA (two plugins: VCA Lin and VCA Exp)
+
+0.0.1:
+	* Initial version
+	* Ported:
+		- Analog Driver
+		- Amplifier
+		- LFO
+		- Noise2
+		- VCF
+		- VCO2
+		
