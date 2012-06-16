@@ -4,7 +4,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ll: <http://ll-plugins.nongnu.org/lv2/namespace#> .
-@prefix cv: <http://lv2plug.in/ns/ext/cv-port#> .
 @prefix guiext: <http://lv2plug.in/ns/extensions/ui#> .
 
 <http://avwlv2.sourceforge.net/plugins/avw/vcf/gui>

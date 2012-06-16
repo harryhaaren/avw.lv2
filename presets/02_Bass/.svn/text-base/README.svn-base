@@ -1,7 +1,0 @@
-A preset ported from one I created in AMS.
-To load it, you will need:
-* Naspro
-* LADSPA Caps
-* LADSPA MCP
-* LV2 SWH
-* Ingen and LV2 AVW :)
