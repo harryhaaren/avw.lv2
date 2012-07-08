@@ -7,6 +7,7 @@
 		- VC Switch
 	* Percussive Env based on the AMS Env
 	* MoogLFP ported from LADSPA MCP Plugins
+	* Use VC Port
 
 0.0.7:
 	* License updated

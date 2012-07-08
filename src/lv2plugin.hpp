@@ -63,7 +63,6 @@ namespace LV2
 			Plugin(uint32_t ports) :
 					m_ports(ports, 0), m_ok(true)
 			{
-				std::cout << "Plugin" << std::endl;
 				m_bundle_path = s_bundle_path;
 				s_bundle_path = 0;
 			}
@@ -87,8 +86,6 @@ namespace LV2
 
 			static unsigned register_class(const std::string& uri)
 			{
-				std::cout << "register_class" << std::endl;
-
 				LV2_Descriptor desc;
 				std::memset(&desc, 0, sizeof(LV2_Descriptor));
 				char* c_uri = new char[uri.size() + 1];
@@ -154,8 +151,6 @@ namespace LV2
 
 			static LV2_Handle _create_plugin_instance(const LV2_Descriptor* descriptor, double sample_rate, const char* bundle_path, const Feature* const * features)
 			{
-				std::cout << "_create_plugin_instance" << std::endl;
-
 				s_bundle_path = bundle_path;
 
 				Derived* t = new Derived(sample_rate);
