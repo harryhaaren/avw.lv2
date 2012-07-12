@@ -33,6 +33,8 @@ Lfo::Lfo(double rate)
 	state = 0;
 	dt = 4.0 / wave_period;
 
+	waveForm = SINUS;
+
 	tm = time(NULL) % 1000000;
 	srand(abs(tm - 10000 * (tm % 100)));
   }
@@ -55,10 +57,12 @@ void Lfo::run(uint32_t nframes)
 	len = nframes;
 	l2 = -1;
 	l2_out = 0;
-	do {
+	do
+	{
 		k = (len > 24) ? 16 : len;
 		l2 += k;
-		if (!trigger && (triggerData[l2] > 0.5)) {
+		if (!trigger && (triggerData[l2] > 0.5))
+		{
 			trigger = true;
 			t = 0;
 			state = 0;
@@ -66,25 +70,35 @@ void Lfo::run(uint32_t nframes)
 			r = -1;
 			si = 0;
 		}
-		if (trigger && (triggerData[l2] < 0.5)) {
+		if (trigger && (triggerData[l2] < 0.5))
+		{
 			trigger = false;
 		}
-		if (t >= 1.0) {
+
+		if (t >= 1.0)
+		{
 			state = 1;
 			dt = -dt0;
-		} else if (t <= -1.0) {
+		}
+		else if (t <= -1.0)
+		{
 			state = 3;
 			dt = dt0;
-		} else if ((state == 1) && (t < 0)) {
+		}
+		else if ((state == 1) && (t < 0))
+		{
 			state = 2;
 			r = 1;
 			sh = 2.0 * (double)rand() / (double)RAND_MAX - 1.0;
-		} else if ((state == 3) && (t > 0)) {
+		}
+		else if ((state == 3) && (t > 0))
+		{
 			state = 0;
 			r = -1;
 			sh = 2.0 * (double)rand() / (double)RAND_MAX - 1.0;
 			sa = -1;
 		}
+
 		si = (state < 2) ? t * (2.0 - t) : t * (2.0 + t);
 		sa += dsa;
 		t += dt;
@@ -94,18 +108,36 @@ void Lfo::run(uint32_t nframes)
 		ldsh = (sh - old_sh) / (double)k;
 		ldt = (t - old_t) / (double)k;
 		ldr = (r - old_r) / (double)k;
-		while (k--) {
+		while (k--)
+		{
 			old_si += ldsi;
 			old_sa += ldsa;
 			old_sh += ldsh;
 			old_t += ldt;
 			old_r += ldr;
-			p(p_sine)[l2_out] = old_si;			//	data[0][l1][l2_out] = old_si;
-			p(p_triangle)[l2_out] = old_t;		//	data[1][l1][l2_out] = old_t;
-			p(p_sawUp)[l2_out] = old_sa;		//	data[2][l1][l2_out] = old_sa;
-			p(p_sawDown)[l2_out] = -old_sa;		//	data[3][l1][l2_out] = -old_sa;
-			p(p_rectangle)[l2_out] = -old_r;		//	data[4][l1][l2_out] = old_r;
-			p(p_sampleAndHold)[l2_out] = old_sh;//	data[5][l1][l2_out] = old_sh;
+
+			switch (waveForm)
+			{
+				case SINUS:
+					p(p_output)[l2_out] = old_si;
+					break;
+				case TRIANGLE:
+					p(p_output)[l2_out] = old_t;
+					break;
+				case SAWTOOTHUP:
+					p(p_output)[l2_out] = old_sa;
+					break;
+				case SAWTOOTHDOWN:
+					p(p_output)[l2_out] = -old_sa;
+					break;
+				case RECTANGLE:
+					p(p_output)[l2_out] = -old_r;
+					break;
+				case SAMPLEANDHOLD:
+					p(p_output)[l2_out] = old_sh;
+					break;
+			}
+
 			l2_out++;
 		}
 	} while(len);

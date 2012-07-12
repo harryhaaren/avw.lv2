@@ -9,20 +9,21 @@ static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/lfo";
 
 enum p_port_enum
 {
-	p_reset, p_frequency, p_phi0, p_sine, p_triangle, p_sawUp, p_sawDown, p_rectangle, p_sampleAndHold, p_n_ports
+	p_reset, p_waveForm, p_frequency, p_phi0, p_output, p_n_ports
 };
 
 static const peg_data_t p_ports[] =
 {
 { -1, 1, 0, 0, 0, 0 },
+{ 0, 5, 0, 0, 0, 0 },
 { 0, 100, 5, 0, 0, 0 },
 { 0, 6.28, 0, 0, 0, 0 },
-{ -1, 1, 0, 0, 0, 0 },
-{ -1, 1, 0, 0, 0, 0 },
-{ -1, 1, 0, 0, 0, 0 },
-{ -1, 1, 0, 0, 0, 0 },
-{ -1, 1, 0, 0, 0, 0 },
 { -1, 1, 0, 0, 0, 0 }, };
+
+enum WaveFormType
+{
+	SINUS, TRIANGLE, SAWTOOTHUP, SAWTOOTHDOWN, RECTANGLE, SAMPLEANDHOLD
+};
 
 class Lfo: public Plugin<Lfo>
 {
@@ -36,7 +37,8 @@ class Lfo: public Plugin<Lfo>
 		int state;
 		double dt, wave_period;
 		bool trigger;
-		//Port *port_M_trigger, *port_sine, *port_tri, *port_sawup, *port_sawdown, *port_rect, *port_sh;
+
+		int waveForm;
 
 		double m_rate;
 

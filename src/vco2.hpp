@@ -68,11 +68,6 @@ class Vco2: public Plugin<Vco2>
 		SynthData *synthdata;
 
 	public:
-		//float *freqData;
-		//float *pwData;
-		//float *expFMData;
-		//float *linFMData;
-
 		Vco2(double rate);
 		void run(uint32_t nframes);
 };
