@@ -145,6 +145,7 @@ def build(bld):
 	ad_gui
 	vcf_gui
 	lfo_gui
+	jacklfo_gui
 	vcpanning_gui
     '''.split()
 

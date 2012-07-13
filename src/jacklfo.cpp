@@ -14,8 +14,8 @@
 using namespace LV2;
 
 JackLfo::JackLfo(double rate) :
-		Plugin<JackLfo>(p_n_ports)
-{
+				Plugin<JackLfo>(p_n_ports)
+				{
 	long tm;
 
 	freq = 5;
@@ -40,9 +40,9 @@ JackLfo::JackLfo(double rate) :
 	tm = time(NULL) % 1000000;
 	srand(abs(tm - 10000 * (tm % 100)));
 
-	char *uuid = NULL; // fill it from getopt or however you parse commandline.
+	char *uuid = NULL;
 	client = jack_client_open("myapp", JackSessionID, NULL, uuid);
-}
+				}
 
 void JackLfo::run(uint32_t nframes)
 {
@@ -53,7 +53,6 @@ void JackLfo::run(uint32_t nframes)
 	jack_transport_query(client, &pos);
 
 	freq = *p(p_frequency) * pos.beats_per_minute / 60;
-	//freq = *p(p_frequency);
 	phi0 = *p(p_phi0);
 
 	float *triggerData = p(p_reset);
@@ -122,12 +121,28 @@ void JackLfo::run(uint32_t nframes)
 			old_sh += ldsh;
 			old_t += ldt;
 			old_r += ldr;
-			p(p_sine)[l2_out] = old_si; //	data[0][l1][l2_out] = old_si;
-			p(p_triangle)[l2_out] = old_t; //	data[1][l1][l2_out] = old_t;
-			p(p_sawUp)[l2_out] = old_sa; //	data[2][l1][l2_out] = old_sa;
-			p(p_sawDown)[l2_out] = -old_sa; //	data[3][l1][l2_out] = -old_sa;
-			p(p_rectangle)[l2_out] = -old_r; //	data[4][l1][l2_out] = old_r;
-			p(p_sampleAndHold)[l2_out] = old_sh; //	data[5][l1][l2_out] = old_sh;
+			switch (waveForm)
+			{
+				case SINUS:
+					p(p_output)[l2_out] = old_si;
+					break;
+				case TRIANGLE:
+					p(p_output)[l2_out] = old_t;
+					break;
+				case SAWTOOTHUP:
+					p(p_output)[l2_out] = old_sa;
+					break;
+				case SAWTOOTHDOWN:
+					p(p_output)[l2_out] = -old_sa;
+					break;
+				case RECTANGLE:
+					p(p_output)[l2_out] = -old_r;
+					break;
+				case SAMPLEANDHOLD:
+					p(p_output)[l2_out] = old_sh;
+					break;
+			}
+
 			l2_out++;
 		}
 	} while (len);
