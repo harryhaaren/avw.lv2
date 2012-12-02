@@ -15,7 +15,7 @@ public:
 	void port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer);
 
 protected:
-	Gtk::ComboBox* m_comboWaveForm;
+	Gtk::ComboBoxText* m_comboWaveForm;
 	Gtk::HScale* m_scaleFrequency;
 	Gtk::HScale* m_scalePhi0;
 };

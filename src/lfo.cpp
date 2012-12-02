@@ -10,7 +10,7 @@
 using namespace lvtk;
 
 Lfo::Lfo(double rate)
-: Plugin<Lfo>(p_n_ports)
+: Plugin<Lfo, URID<true>>(p_n_ports)
   {
 	long tm;
 
@@ -46,6 +46,7 @@ void Lfo::run(uint32_t nframes)
 
 	freq = *p(p_frequency);
 	phi0 = *p(p_phi0);
+	waveForm = *p(p_waveForm);
 
 	float *triggerData = p(p_reset);
 

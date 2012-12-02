@@ -12,7 +12,7 @@ enum WaveFormType
 	SINUS, TRIANGLE, SAWTOOTHUP, SAWTOOTHDOWN, RECTANGLE, SAMPLEANDHOLD
 };
 
-class Lfo: public Plugin<Lfo>
+class Lfo: public Plugin<Lfo, URID<true>>
 {
 	private:
 		float freq, phi0;
