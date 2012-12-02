@@ -1,10 +1,12 @@
 #include <gtkmm-2.4/gtkmm.h>
 
+
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>
 
 #include "lfo_gui.hpp"
 #include "lfo.hpp"
+#include "g_dial.hpp"
 
 LfoGUI::LfoGUI(const std::string& URI)
 {
@@ -29,13 +31,11 @@ LfoGUI::LfoGUI(const std::string& URI)
 	Label *p_labelFrequency = manage (new Label("Frequency"));
 	p_mainWidget->pack_start(*p_labelFrequency);
 
-	Adjustment *p_freqAdj = manage (new Adjustment(5, 0, 100, 0, 5));
-	m_scaleFrequency = manage (new HScale(*p_freqAdj));
-
-	slot<void> p_slotFrequency = compose(bind<0> (mem_fun(*this, &LfoGUI::write_control), p_frequency), mem_fun(*m_scaleFrequency, &HScale::get_value));
-	m_scaleFrequency->signal_value_changed().connect(p_slotFrequency);
-
-	p_mainWidget->pack_start(*m_scaleFrequency);
+	slot<void> p_slotFrequency = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_frequency), mem_fun(*this,  &LfoGUI::get_freq));
+	m_dial = new Dial(p_slotFrequency, p_frequency, 0, 100, 1);
+	Alignment *p_alignment = manage (new Alignment(0.5, 0.5, 1, 1));
+	p_alignment->add(*m_dial);
+	p_mainWidget->pack_start(*p_alignment);
 
 	Label *p_labelPhi0 = manage (new Label("Phi0"));
 	p_mainWidget->pack_start(*p_labelPhi0);
@@ -47,9 +47,16 @@ LfoGUI::LfoGUI(const std::string& URI)
 	m_scalePhi0->signal_value_changed().connect(p_slotPhi0);
 
 	p_mainWidget->pack_start(*m_scalePhi0);
+	p_mainWidget->set_size_request(256, 320);
 
 	add(*p_mainWidget);
+
+	m_dial->Redraw();
+
+	Gtk::manage(p_mainWidget);
 }
+
+float LfoGUI::get_freq() { return m_dial->get_toggle_value(); }
 
 void LfoGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
 {
@@ -63,7 +70,7 @@ void LfoGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, co
 	}
 	else if (port == p_frequency)
 	{
-		m_scaleFrequency->set_value(*static_cast<const float*> (buffer));
+		m_dial->set_toggle_value(*static_cast<const float*> (buffer));
 	}
 	else if (port == p_phi0)
 	{

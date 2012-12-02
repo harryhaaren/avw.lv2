@@ -130,44 +130,54 @@ def build(bld):
 
 	for i in plugins:
 		build_plugin(bld, 'avw.lv2', i, ['src/%s.cpp' % i],
-                  ['-DPLUGIN_CLASS=%s' % i,
-		  '-std=c++11',
-                  '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
-                  '-DPLUGIN_URI_SUFFIX="%s"' % i,
-                  '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-		  ['LV2', 'LVTK_PLUGIN', 'JACK'])
+			['-DPLUGIN_CLASS=%s' % i,
+			'-std=c++11',
+            '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
+            '-DPLUGIN_URI_SUFFIX="%s"' % i,
+            '-DPLUGIN_HEADER="src/%s.hpp"' % i],
+		  	['LV2', 'LVTK_PLUGIN', 'JACK'])
 
 		  
 	plugins_gui = '''
 	vco2_gui
 	ad_gui
 	vcf_gui
-	lfo_gui
 	jacklfo_gui
 	vcpanning_gui
     '''.split()
 
 	for i in plugins_gui:
 		build_plugin_gui(bld, 'avw.lv2', i, ['src/%s.cpp' % i],
-                  ['-DPLUGIN_CLASS=%s' % i,
-		  '-std=c++11',
-                  '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
-                  '-DPLUGIN_URI_SUFFIX="%s"' % i,
-                  '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-		  ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI'], [])
+			['-DPLUGIN_CLASS=%s' % i,
+		  	'-std=c++11',
+            '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
+            '-DPLUGIN_URI_SUFFIX="%s"' % i,
+            '-DPLUGIN_HEADER="src/%s.hpp"' % i],
+		  	['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI'], [])
+
+	build_plugin_gui(bld, 'avw.lv2', 'lfo_gui', ['src/lfo_gui.cpp'],
+		['-DPLUGIN_CLASS=lfo_gui',
+		'-std=c++11',
+        '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
+        '-DPLUGIN_URI_SUFFIX="lfo_gui"',
+        '-DPLUGIN_HEADER="src/lfo_gui.hpp"'],
+		['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
+		['src/g_dial.cpp'])
 
 	build_plugin_gui(bld, 'avw.lv2', 'env_gui', ['src/env_gui.cpp'],
-                  ['-DPLUGIN_CLASS=env_gui',
-		  '-std=c++11',
-                  '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
-                  '-DPLUGIN_URI_SUFFIX="env_gui"',
-                  '-DPLUGIN_HEADER="src/env_gui.hpp"'],
-		  ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], ['src/env_gui_scope.cpp'])
+		['-DPLUGIN_CLASS=env_gui',
+		'-std=c++11',
+        '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
+        '-DPLUGIN_URI_SUFFIX="env_gui"',
+        '-DPLUGIN_HEADER="src/env_gui.hpp"'],
+		['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
+		['src/env_gui_scope.cpp'])
 				  
 	build_plugin_gui(bld, 'avw.lv2', 'advenv_gui', ['src/advenv_gui.cpp'],
-                  ['-DPLUGIN_CLASS=advenv_gui',
-		  '-std=c++11',
-                  '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
-                  '-DPLUGIN_URI_SUFFIX="advenv_gui"',
-                  '-DPLUGIN_HEADER="src/advenv_gui.hpp"'],
-		  ['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], ['src/advenv_gui_scope.cpp'])
+		['-DPLUGIN_CLASS=advenv_gui',
+		'-std=c++11',
+		'-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
+		'-DPLUGIN_URI_SUFFIX="advenv_gui"',
+		'-DPLUGIN_HEADER="src/advenv_gui.hpp"'],
+		['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
+		['src/advenv_gui_scope.cpp'])
