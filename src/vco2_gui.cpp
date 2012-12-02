@@ -1,11 +1,12 @@
 #include <gtkmm-2.4/gtkmm.h>
 
-#include "lv2plugin.hpp"
-#include "lv2gui.hpp"
+#include <lvtk-1/lvtk/plugin.hpp>
+#include <lvtk-1/lvtk/gtkui.hpp>
+
 #include "vco2_gui.hpp"
 #include "vco2.hpp"
 
-Vco2GUI::Vco2GUI(const std::string& URI)
+Vco2GUI::Vco2GUI(const char* plugin_uri)
 {
 	Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
 	builder->add_from_file(g_strdup_printf("%s/vco2_gui.xml", bundle_path()));

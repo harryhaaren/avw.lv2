@@ -1,0 +1,37 @@
+#ifndef ringmodulator_peg
+#define ringmodulator_peg
+
+
+#ifndef PEG_STRUCT
+#define PEG_STRUCT
+typedef struct {
+  float min;
+  float max;
+  float default_value;
+  char toggled;
+  char integer;
+  char logarithmic;
+} peg_data_t;
+#endif
+
+/* <http://avwlv2.sourceforge.net/plugins/avw/ringmodulator> */
+
+static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/ringmodulator";
+
+enum p_port_enum {
+  p_gain,
+  p_in1,
+  p_in2,
+  p_output,
+  p_n_ports
+};
+
+static const peg_data_t p_ports[] = {
+  { 0, 5, 0.5, 0, 0, 0 }, 
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+};
+
+
+#endif /* ringmodulator_peg */

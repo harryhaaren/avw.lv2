@@ -1,50 +1,12 @@
 #ifndef VCO2_H
 #define VCO2_H
 
+#include <lvtk-1/lvtk/plugin.hpp>
+
 #include "synthdata.hpp"
-#include "lv2plugin.hpp"
+#include "vco2.peg"
 
-using namespace LV2;
-
-static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/vco2";
-
-enum p_port_enum {
-  p_freq,
-  p_expFM,
-  p_linFM,
-  p_pwPort,
-  p_waveForm,
-  p_octave,
-  p_tune,
-  p_harmonic,
-  p_subharmonic,
-  p_pw0,
-  p_pwGain,
-  p_phi0,
-  p_expFMGain,
-  p_linFMGain,
-  p_out,
-  p_n_ports
-};
-
-static const peg_data_t p_ports[] = {
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
-  { 0, 6, 0, 0, 0, 0 },
-  { 0, 6, 3, 0, 0, 0 },
-  { 0, 1, 0, 0, 0, 0 },
-  { 1, 16, 1, 0, 0, 0 },
-  { 1, 16, 1, 0, 0, 0 },
-  { 0.1, 0.9, 0.5, 0, 0, 0 },
-  { 0, 1, 0, 0, 0, 0 },
-  { 0, 6.283, 0, 0, 0, 0 },
-  { 0, 10, 0, 0, 0, 0 },
-  { 0, 10, 0, 0, 0, 0 },
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
-};
-
+using namespace lvtk;
 
 enum WaveFormType
 {

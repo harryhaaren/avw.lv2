@@ -1,10 +1,10 @@
 #include <math.h>
+#include <lvtk-1/lvtk/plugin.hpp>
 
-#include "lv2plugin.hpp"
 #include "synthdata.hpp"
 #include "ad.hpp"
 
-using namespace LV2;
+using namespace lvtk;
 
 Ad::Ad(double rate) :
 	Plugin<Ad> (p_n_ports)

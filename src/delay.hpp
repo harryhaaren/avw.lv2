@@ -3,22 +3,11 @@
 
 #define MAX_DELAY_FRAMES                16384
 
-#include "lv2plugin.hpp"
+#include <lvtk-1/lvtk/plugin.hpp>
 
-static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/delay";
+#include "delay.peg"
 
-enum p_port_enum
-{
-	p_delay, p_input, p_output, p_n_ports
-};
-
-static const peg_data_t p_ports[] =
-{
-{ 0, 10, 0, 0, 0, 0 },
-{ -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
-{ -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, };
-
-using namespace LV2;
+using namespace lvtk;
 
 class Delay: public Plugin<Delay>
 {

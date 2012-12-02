@@ -2,24 +2,11 @@
 #define JACKLFO_H
 
 #include <jack/jack.h>
-#include "lv2plugin.hpp"
+#include <lvtk-1/lvtk/plugin.hpp>
 
-using namespace LV2;
+#include "jacklfo.peg"
 
-static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/jacklfo";
-
-enum p_port_enum
-{
-	p_reset, p_waveForm, p_frequency, p_phi0, p_output, p_n_ports
-};
-
-static const peg_data_t p_ports[] =
-{
-{ -1, 1, 0, 0, 0, 0 },
-{ 0, 5, 0, 0, 0, 0 },
-{ 0, 100, 1, 0, 0, 0 },
-{ 0, 6.28, 0, 0, 0, 0 },
-{ -1, 1, 0, 0, 0, 0 }, };
+using namespace lvtk;
 
 enum WaveFormType
 {

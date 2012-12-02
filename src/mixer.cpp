@@ -7,7 +7,7 @@
 #include "synthdata.hpp"
 #include "mixer.hpp"
 
-using namespace LV2;
+using namespace lvtk;
 
 Mixer::Mixer(double rate)
 : Plugin<Mixer>(p_n_ports)

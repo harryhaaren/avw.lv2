@@ -1,10 +1,14 @@
 #ifndef VCF_GUI_H
 #define VCF_GUI_H
 
+#include <lvtk-1/lvtk/plugin.hpp>
+#include <lvtk-1/lvtk/gtkui.hpp>
+
+using namespace lvtk;
 using namespace sigc;
 using namespace Gtk;
 
-class VcfGUI: public LV2::GUI<VcfGUI>
+class VcfGUI: public UI<VcfGUI, GtkUI<true>>
 {
 public:
 	VcfGUI(const std::string& URI);

@@ -3,11 +3,12 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lv2plugin.hpp"
+#include <lvtk-1/lvtk/plugin.hpp>
+
 #include "synthdata.hpp"
 #include "delay.hpp"
 
-using namespace LV2;
+using namespace lvtk;
 
 Delay::Delay(double rate) :
 	Plugin<Delay> (p_n_ports)

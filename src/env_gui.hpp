@@ -1,12 +1,16 @@
 #ifndef ENV_GUI_H
 #define ENV_GUI_H
 
+#include <lvtk-1/lvtk/plugin.hpp>
+#include <lvtk-1/lvtk/gtkui.hpp>
+
+using namespace lvtk;
 using namespace sigc;
 using namespace Gtk;
 
 #include "env_gui_scope.hpp"
 
-class EnvGUI: public LV2::GUI<EnvGUI>
+class EnvGUI: public UI<EnvGUI, GtkUI<true>>
 {
 public:
 	EnvGUI(const std::string& URI);

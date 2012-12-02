@@ -3,10 +3,11 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lv2plugin.hpp"
+#include <lvtk-1/lvtk/plugin.hpp>
+
 #include "mooglpf.hpp"
 
-using namespace LV2;
+using namespace lvtk;
 
 MoogLPF::MoogLPF(double rate) :
 		Plugin<MoogLPF>(p_n_ports)

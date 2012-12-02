@@ -1,0 +1,17 @@
+#ifndef manifest_peg
+#define manifest_peg
+
+
+#ifndef PEG_STRUCT
+#define PEG_STRUCT
+typedef struct {
+  float min;
+  float max;
+  float default_value;
+  char toggled;
+  char integer;
+  char logarithmic;
+} peg_data_t;
+#endif
+
+#endif /* manifest_peg */

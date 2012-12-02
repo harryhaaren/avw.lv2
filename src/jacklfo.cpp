@@ -11,7 +11,7 @@
 #include "synthdata.hpp"
 #include "jacklfo.hpp"
 
-using namespace LV2;
+using namespace lvtk;
 
 JackLfo::JackLfo(double rate) :
 				Plugin<JackLfo>(p_n_ports)

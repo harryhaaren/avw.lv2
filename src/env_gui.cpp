@@ -1,8 +1,9 @@
 #include <gtkmm-2.4/gtkmm.h>
 #include <gdkmm-2.4/gdkmm.h>
 
-#include "lv2plugin.hpp"
-#include "lv2gui.hpp"
+#include <lvtk-1/lvtk/plugin.hpp>
+#include <lvtk-1/lvtk/gtkui.hpp>
+
 #include "env_gui.hpp"
 #include "env_gui_scope.hpp"
 #include "env.hpp"

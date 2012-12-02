@@ -3,11 +3,12 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lv2plugin.hpp"
+#include <lvtk-1/lvtk/plugin.hpp>
+
 #include "synthdata.hpp"
 #include "absolute.hpp"
 
-using namespace LV2;
+using namespace lvtk;
 
 Absolute::Absolute(double rate)
 :Plugin<Absolute>(p_n_ports)

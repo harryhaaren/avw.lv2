@@ -4,7 +4,8 @@
 #include <math.h>
 #include <time.h>
 
-#include "lv2plugin.hpp"
+#include <lvtk-1/lvtk/plugin.hpp>
+
 #include "synthdata.hpp"
 #include "noise2.hpp"
 

@@ -1,10 +1,14 @@
 #ifndef JACKLFO_GUI_H
 #define JACKLFO_GUI_H
 
+#include <lvtk-1/lvtk/plugin.hpp>
+#include <lvtk-1/lvtk/gtkui.hpp>
+
+using namespace lvtk;
 using namespace sigc;
 using namespace Gtk;
 
-class JackLfoGUI: public LV2::GUI<JackLfoGUI>
+class JackLfoGUI: public UI<JackLfoGUI, GtkUI<true>>
 {
 public:
 	JackLfoGUI(const std::string& URI);

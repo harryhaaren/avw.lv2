@@ -1,26 +1,11 @@
 #ifndef RINGMODULATOR_H
 #define RINGMODULATOR_H
 
-#include "lv2plugin.hpp"
+#include <lvtk-1/lvtk/plugin.hpp>
 
-using namespace LV2;
+#include "ringmodulator.peg"
 
-static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/ringmodulator";
-
-enum p_port_enum {
-  p_gain,
-  p_in1,
-  p_in2,
-  p_output,
-  p_n_ports
-};
-
-static const peg_data_t p_ports[] = {
-  { 0, 5, 0.5, 0, 0, 0 },
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 },
-};
+using namespace lvtk;
 
 class RingModulator: public Plugin<RingModulator>
 {

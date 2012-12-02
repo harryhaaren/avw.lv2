@@ -1,10 +1,14 @@
 #ifndef VCPANNING_GUI_H
 #define VCPANNING_GUI_H
 
+#include <lvtk-1/lvtk/plugin.hpp>
+#include <lvtk-1/lvtk/gtkui.hpp>
+
+using namespace lvtk;
 using namespace sigc;
 using namespace Gtk;
 
-class VcPanningGUI: public LV2::GUI<VcPanningGUI>
+class VcPanningGUI: public UI<VcPanningGUI, GtkUI<true>>
 {
 public:
 	VcPanningGUI(const std::string& URI);

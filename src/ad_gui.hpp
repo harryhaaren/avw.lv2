@@ -1,10 +1,14 @@
 #ifndef AD_GUI_H
 #define AD_GUI_H
 
+#include <lvtk-1/lvtk/plugin.hpp>
+#include <lvtk-1/lvtk/gtkui.hpp>
+
+using namespace lvtk;
 using namespace sigc;
 using namespace Gtk;
 
-class AdGUI: public LV2::GUI<AdGUI>
+class AdGUI: public UI<AdGUI, GtkUI<true>>
 {
 public:
 	AdGUI(const std::string& URI);

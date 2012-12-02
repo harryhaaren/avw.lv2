@@ -6,7 +6,7 @@
 #include "synthdata.hpp"
 #include "vctohz.hpp"
 
-using namespace LV2;
+using namespace lvtk;
 
 VcToHz::VcToHz(double rate)
 :Plugin<VcToHz>(p_n_ports)

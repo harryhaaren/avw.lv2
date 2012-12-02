@@ -1,10 +1,14 @@
 #ifndef LFO_GUI_H
 #define LFO_GUI_H
 
+#include <lvtk-1/lvtk/plugin.hpp>
+#include <lvtk-1/lvtk/gtkui.hpp>
+
+using namespace lvtk;
 using namespace sigc;
 using namespace Gtk;
 
-class LfoGUI: public LV2::GUI<LfoGUI>
+class LfoGUI: public UI<LfoGUI, GtkUI<true>>
 {
 public:
 	LfoGUI(const std::string& URI);

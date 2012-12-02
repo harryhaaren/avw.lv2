@@ -3,11 +3,12 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lv2plugin.hpp"
+#include <lvtk-1/lvtk/plugin.hpp>
+
 #include "synthdata.hpp"
 #include "samplehold.hpp"
 
-using namespace LV2;
+using namespace lvtk;
 
 SampleHold::SampleHold(double rate) :
 		Plugin<SampleHold>(p_n_ports)

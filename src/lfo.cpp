@@ -7,7 +7,7 @@
 #include "synthdata.hpp"
 #include "lfo.hpp"
 
-using namespace LV2;
+using namespace lvtk;
 
 Lfo::Lfo(double rate)
 : Plugin<Lfo>(p_n_ports)
