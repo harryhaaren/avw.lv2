@@ -1,14 +1,16 @@
 #include <cairomm/context.h>
+#include <cmath>
 
 #include "g_dial.hpp"
 
 using namespace std;
 
-Dial::Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double Max, double Step)
+Dial::Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double Max, bool Log, double Step)
 {
-	a_tog = new Gtk::Adjustment(Value, Min, Max, Step, Step);
-	this->mouseDelta = 0;
-	this->mouseDown = false;
+	m_log = Log;
+	m_adj = new Gtk::Adjustment(Value, Min, Max, Step, Step);
+	this->m_mouseDelta = 0;
+	this->m_mouseDown = false;
 
 	add_events(Gdk::EXPOSURE_MASK | Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK| Gdk::POINTER_MOTION_MASK);
 	signal_button_press_event().connect(sigc::mem_fun(*this, &Dial::on_button_press_event) );
@@ -17,8 +19,8 @@ Dial::Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double 
 
 	set_size_request(48, 48);
 
-	a_tog->signal_value_changed().connect(mem_fun(*this, &Dial::value_changed));
-	a_tog->signal_value_changed().connect(toggle_slot);
+	m_adj->signal_value_changed().connect(mem_fun(*this, &Dial::value_changed));
+	m_adj->signal_value_changed().connect(toggle_slot);
 }
 
 Dial::~Dial()
@@ -30,14 +32,14 @@ void Dial::value_changed()
 	Redraw();
 }
 
-float Dial::get_toggle_value()
+float Dial::get_value()
 {
-	return a_tog->get_value();
+	return m_adj->get_value();
 }
 
-void Dial::set_toggle_value(float Value)
+void Dial::set_value(float Value)
 {
-	a_tog->set_value(Value);
+	m_adj->set_value(Value);
 	Redraw();
 }
 
@@ -67,20 +69,20 @@ bool Dial::on_expose_event(GdkEventExpose* event)
 
 		// Arc Angle Value
 		cr->set_line_width(2.4);
-		cr->move_to(xc,yc);
+		cr->move_to(xc, yc);
 		cr->set_source_rgba(0, 0, 0, 0);
 		cr->stroke();
 
-		setColour(cr, COLOUR_GREY_4 );
+		cr->set_source_rgba(  66 / 255.f,  66 / 255.f ,  66 / 255.f , 1.f );
 
 		cr->arc(xc, yc, radius, 2.46, 0.75);
 		cr->move_to(xc, yc);
 		cr->stroke();
 
 		cr->set_line_width(2.8);
-		float angle= 2.46 + (4.54 * ((a_tog->get_value()-a_tog->get_lower()) / (a_tog->get_upper()-a_tog->get_lower())));
+		float angle= 2.46 + (4.54 * ((m_adj->get_value()-m_adj->get_lower()) / (m_adj->get_upper()-m_adj->get_lower())));
 
-		setColour(cr, COLOUR_ORANGE_1 );
+		cr->set_source_rgba( 255 / 255.f, 104 / 255.f ,   0 / 255.f , 1.f );
 
 		cr->set_line_width(1.7);
 		cr->arc(xc,yc, 13, 2.46, angle );
@@ -89,8 +91,6 @@ bool Dial::on_expose_event(GdkEventExpose* event)
 		cr->arc(xc,yc, 17, 2.46, angle );
 		cr->line_to(xc,yc);
 		cr->stroke();
-
-
 	}
 	return true;
 }
@@ -106,22 +106,52 @@ bool Dial::Redraw()
 	return true;
 }
 
+double Dial::CalculateLogStep()
+{
+	double p_perc = (m_adj->get_value()-m_adj->get_lower())/(m_adj->get_upper()-m_adj->get_lower())*100;
+	if(p_perc<1)
+		return m_adj->get_step_increment()/1000;
+	if(p_perc<5)
+		return m_adj->get_step_increment()/100;
+	if(p_perc<15)
+			return m_adj->get_step_increment()/10;
+	if(p_perc<30)
+				return m_adj->get_step_increment()/2;
+
+	return m_adj->get_step_increment();
+}
+
 bool Dial::onMouseMove(GdkEventMotion* event)
 {
-	if (mouseDown)
+	if (m_mouseDown)
 	{
-		if(a_tog->get_value()<a_tog->get_upper() && mouseDelta>event->y)
+		if(m_adj->get_value()<m_adj->get_upper() && m_mouseDelta>event->y)
 		{
-			set_toggle_value(a_tog->get_value()+a_tog->get_step_increment());
-			std::cout << "up " << a_tog->get_value() << std::endl;
-
+			if(!m_log)
+			{
+				set_value(m_adj->get_value()+m_adj->get_step_increment());
+			}
+			else
+			{
+				std::cout << "step " << CalculateLogStep() << std::endl;
+				set_value(m_adj->get_value()+CalculateLogStep());
+			}
+			std::cout << "up " << m_adj->get_value() << std::endl;
 		}
-		else if(a_tog->get_value()>a_tog->get_lower() && mouseDelta<event->y)
+		else if(m_adj->get_value()>m_adj->get_lower() && m_mouseDelta<event->y)
 		{
-			set_toggle_value(a_tog->get_value()-a_tog->get_step_increment());
-			std::cout << "down " << a_tog->get_value() << std::endl;
+			if(!m_log)
+			{
+				set_value(m_adj->get_value()-m_adj->get_step_increment());
+			}
+			else
+			{
+				std::cout << "step " << CalculateLogStep() << std::endl;
+				set_value(m_adj->get_value()-CalculateLogStep());
+			}
+			std::cout << "down " << m_adj->get_value() << std::endl;
 		}
-		mouseDelta = event->y;
+		m_mouseDelta = event->y;
 		Redraw();
 
 		return true;
@@ -136,8 +166,8 @@ bool Dial::on_button_press_event(GdkEventButton* event)
 {
 	if( event->type == GDK_BUTTON_PRESS  ) // && event->button == 3
 	{
-		mouseDown = true; // for pointer motion "drag" operations
-		mouseDelta = event->x;
+		m_mouseDown = true; // for pointer motion "drag" operations
+		m_mouseDelta = event->x;
 
 		return true;
 	}
@@ -151,7 +181,7 @@ bool Dial::on_button_release_event(GdkEventButton* event)
 {
 	if( event->type == GDK_BUTTON_RELEASE  ) // && event->button == 3
 	{
-		mouseDown = false;
+		m_mouseDown = false;
 
 		return true; //It's been handled.
 	}
@@ -160,56 +190,3 @@ bool Dial::on_button_release_event(GdkEventButton* event)
 		return false;
 	}
 }
-
-
-void Dial::setColour( Cairo::RefPtr<Cairo::Context> cr, Colour c, float alpha)
-{
-	switch( c )
-	{
-		case COLOUR_ORANGE_1:
-			cr->set_source_rgba( 255 / 255.f, 104 / 255.f ,   0 / 255.f , alpha ); break;
-		case COLOUR_ORANGE_2:
-			cr->set_source_rgba( 178 / 255.f,  71 / 255.f ,   0 / 255.f , alpha ); break;
-		case COLOUR_ORANGE_3:
-			cr->set_source_rgba(  89 / 255.f,  35 / 255.f ,   0 / 255.f , alpha ); break;
-		case COLOUR_GREEN_1:
-			cr->set_source_rgba(  25 / 255.f, 255 / 255.f ,   0 / 255.f , alpha ); break;
-		case COLOUR_GREEN_2:
-			cr->set_source_rgba(  17 / 255.f, 179 / 255.f ,   0 / 255.f , alpha ); break;
-		case COLOUR_GREEN_3:
-			cr->set_source_rgba(   8 / 255.f,  89 / 255.f ,   0 / 255.f , alpha ); break;
-		case COLOUR_BLUE_1:
-			cr->set_source_rgba(   0 / 255.f, 153 / 255.f , 255 / 255.f , alpha ); break;
-		case COLOUR_BLUE_2:
-			cr->set_source_rgba(  20 / 255.f,  73 / 255.f , 109 / 255.f , alpha ); break;
-		case COLOUR_BLUE_3:
-			cr->set_source_rgba(   0 / 255.f,  53 / 255.f ,  89 / 255.f , alpha ); break;
-		case COLOUR_PURPLE_1:
-			cr->set_source_rgba( 230 / 255.f,   0 / 255.f , 255 / 255.f , alpha ); break;
-		case COLOUR_PURPLE_2:
-			cr->set_source_rgba( 161 / 255.f,   0 / 255.f , 179 / 255.f , alpha ); break;
-		case COLOUR_PURPLE_3:
-			cr->set_source_rgba(  80 / 255.f,   0 / 255.f ,  89 / 255.f , alpha ); break;
-		case COLOUR_GREY_1:
-			cr->set_source_rgba( 130 / 255.f, 130 / 255.f , 130 / 255.f , alpha ); break;
-		case COLOUR_GREY_2:
-			cr->set_source_rgba(  98 / 255.f,  98 / 255.f ,  98 / 255.f , alpha ); break;
-		case COLOUR_GREY_3:
-			cr->set_source_rgba(  66 / 255.f,  66 / 255.f ,  66 / 255.f , alpha ); break;
-		case COLOUR_GREY_4:
-			cr->set_source_rgba(  28 / 255.f,  28 / 255.f ,  28 / 255.f , alpha ); break;
-		case COLOUR_RECORD_RED:
-			cr->set_source_rgba(  226 / 255.f, 0/255.f , 0/255.f, alpha ); break;
-		case COLOUR_TRANSPARENT:
-			cr->set_source_rgba(  0, 0, 0, 0.f ); break;
-		case COLOUR_BACKGROUND: default:
-			cr->set_source_rgba(  40 / 255.f,  40 / 255.f ,  40 / 255.f , alpha ); break;
-	}
-}
-
-void Dial::setColour( Cairo::RefPtr<Cairo::Context> cr, Colour c)
-{
-	setColour(cr, c, 1.f);
-}
-
-

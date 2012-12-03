@@ -2,6 +2,7 @@
 	* Migrated the code to lvtk (lvtoolkitorg)
 	* Starting not to use Gtk Builder
 	* Using Luppp Dial for GUI
+	* Non Linear Dial (very dirty method)
 
 0.0.8:
 	* VCF GUI
