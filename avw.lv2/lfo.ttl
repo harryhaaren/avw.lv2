@@ -8,6 +8,7 @@
 @prefix atom: <http://lv2plug.in/ns/ext/atom#> .
 @prefix urid: <http://lv2plug.in/ns/ext/urid#> .
 @prefix time: <http://lv2plug.in/ns/ext/time#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
 
 <http://avwlv2.sourceforge.net/plugins/avw/lfo/gui>
   a guiext:GtkUI ;
@@ -63,9 +64,19 @@
 		  		rdfs:label "S & H" ;
 				rdf:value 5
 		]
+	] ,	[
+		a lv2:ControlPort, lv2:InputPort;
+	    lv2:index 2 ;
+	    lv2:symbol "sync";
+	    lv2:name "Sync";
+	    lv2:minimum 0;
+	    lv2:maximum 1;
+	    lv2:default 0;
+		lv2:portProperty pprops:hasStrictBounds;
+		lv2:PortProperty lv2:toggled;
 	] , [
 		a lv2:InputPort, lv2:ControlPort ;
-		lv2:index 2 ;
+		lv2:index 3 ;
 		lv2:symbol "frequency" ;
 		lv2:name "Frequency" ;
 		lv2:default 5.0 ;
@@ -75,12 +86,20 @@
 		a lv2:InputPort , atom:AtomPort ;
 		atom:bufferType atom:Sequence ;
 		atom:supports time:Position ;
-		lv2:index 3 ;
+		lv2:index 4 ;
 		lv2:symbol "control" ;
 		lv2:name "Control" ;
 	] ,	[
+		a lv2:InputPort , lv2:ControlPort ;
+		lv2:index 5 ;
+		lv2:symbol "temp_mul" ;
+		lv2:name "Tempo Division-Multiplier" ;
+		lv2:default 1.0 ;
+		lv2:minimum 0.0 ;
+		lv2:maximum 100.0 
+	] ,	[
 		a lv2:InputPort, lv2:ControlPort ;
-		lv2:index 4 ;
+		lv2:index 6 ;
 		lv2:symbol "phi0" ;
 		lv2:name "Phi0" ;
 		lv2:default 0 ;
@@ -88,7 +107,7 @@
 		lv2:maximum 6.28
 	] ,	[
 		a lv2:AudioPort, lv2:OutputPort ;
-		lv2:index 5 ;
+		lv2:index 7 ;
 		lv2:symbol "output" ;
 		lv2:name "Output" ;
 		lv2:default 0.0 ;
