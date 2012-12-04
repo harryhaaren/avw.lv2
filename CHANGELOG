@@ -3,6 +3,8 @@
 	* Starting not to use Gtk Builder
 	* Using Luppp Dial for GUI
 	* Non Linear Dial (very dirty method)
+	* Remove JACKLFO (not necessary, using LV2 Time)
+	* LFO frequency can be set manually or in sync with LV2 Time
 
 0.0.8:
 	* VCF GUI
