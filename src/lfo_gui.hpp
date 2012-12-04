@@ -16,13 +16,16 @@ public:
 	LfoGUI(const std::string& URI);
 	void port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer);
 
-	float get_freq();
-	float get_phi0();
-
 protected:
 	Gtk::ComboBoxText* m_comboWaveForm;
+	Gtk::CheckButton* m_checkSync;
 	Dial* m_dialFreq;
+	Dial* m_dialTempoDiv;
 	Dial* m_dialPhi0;
+
+	float get_freq();
+	float get_div();
+	float get_phi0();
 };
 
 #endif

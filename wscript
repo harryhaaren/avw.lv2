@@ -118,7 +118,6 @@ def build(bld):
 	dynamicwaves
 	absolute
 	inv
-	jacklfo
 	tranches
 	ringmodulator
 	percussiveenv
@@ -142,7 +141,6 @@ def build(bld):
 	vco2_gui
 	ad_gui
 	vcf_gui
-	jacklfo_gui
 	vcpanning_gui
     '''.split()
 

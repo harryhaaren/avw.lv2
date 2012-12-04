@@ -1,5 +1,5 @@
-#ifndef lfo_peg
-#define lfo_peg
+#ifndef ___src_lfo_peg
+#define ___src_lfo_peg
 
 
 #ifndef PEG_STRUCT
@@ -21,8 +21,10 @@ static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/lfo";
 enum p_port_enum {
   p_reset,
   p_waveForm,
+  p_sync,
   p_frequency,
   p_control,
+  p_temp_mul,
   p_phi0,
   p_output,
   p_n_ports
@@ -31,11 +33,13 @@ enum p_port_enum {
 static const peg_data_t p_ports[] = {
   { -1, 1, 0, 0, 0, 0 }, 
   { 0, 6, 0, 0, 0, 0 }, 
+  { 0, 1, 0, 0, 0, 0 }, 
   { 0, 100, 5, 0, 0, 0 }, 
   { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { 0, 100, 1, 0, 0, 0 }, 
   { 0, 6.28, 0, 0, 0, 0 }, 
   { -1, 1, 0, 0, 0, 0 }, 
 };
 
 
-#endif /* lfo_peg */
+#endif /* ___src_lfo_peg */
