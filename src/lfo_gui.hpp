@@ -4,7 +4,7 @@
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>
 
-#include "g_dial.hpp"
+#include "g_labeleddial.hpp"
 
 using namespace lvtk;
 using namespace sigc;
@@ -19,9 +19,9 @@ public:
 protected:
 	Gtk::ComboBoxText* m_comboWaveForm;
 	Gtk::CheckButton* m_checkSync;
-	Dial* m_dialFreq;
-	Dial* m_dialTempoDiv;
-	Dial* m_dialPhi0;
+	LabeledDial* m_dialFreq;
+	LabeledDial* m_dialTempoDiv;
+	LabeledDial* m_dialPhi0;
 
 	float get_freq();
 	float get_div();

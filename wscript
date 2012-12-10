@@ -160,7 +160,7 @@ def build(bld):
         '-DPLUGIN_URI_SUFFIX="lfo_gui"',
         '-DPLUGIN_HEADER="src/lfo_gui.hpp"'],
 		['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
-		['src/g_dial.cpp'])
+		['src/g_dial.cpp', 'src/g_labeleddial.cpp'])
 
 	build_plugin_gui(bld, 'avw.lv2', 'env_gui', ['src/env_gui.cpp'],
 		['-DPLUGIN_CLASS=env_gui',

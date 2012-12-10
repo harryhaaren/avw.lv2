@@ -6,7 +6,7 @@
 
 #include "lfo_gui.hpp"
 #include "lfo.hpp"
-#include "g_dial.hpp"
+//#include "g_labeleddial.hpp"
 
 LfoGUI::LfoGUI(const std::string& URI)
 {
@@ -47,21 +47,21 @@ LfoGUI::LfoGUI(const std::string& URI)
 	p_mainWidget->pack_start(*p_labelFrequency);
 
 	slot<void> p_slotFrequency = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_frequency), mem_fun(*this,  &LfoGUI::get_freq));
-	m_dialFreq = new Dial(p_slotFrequency, p_frequency, 0, 100, true, 1);
+	m_dialFreq = new LabeledDial(p_slotFrequency, p_frequency, 0, 100, true, 1);
 	p_mainWidget->pack_start(*m_dialFreq);
 
 	Label *p_labelTempDiv = manage (new Label("Tempo Division"));
 	p_mainWidget->pack_start(*p_labelTempDiv);
 
 	slot<void> p_slotDivider = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_temp_mul), mem_fun(*this, &LfoGUI::get_div));
-	m_dialTempoDiv = new Dial(p_slotDivider, p_temp_mul, 0, 8, false, 0.25);
+	m_dialTempoDiv = new LabeledDial(p_slotDivider, p_temp_mul, 0, 8, false, 0.25);
 	p_mainWidget->pack_start(*m_dialTempoDiv);
 
 	Label *p_labelPhi0 = manage (new Label("Phi0"));
 	p_mainWidget->pack_start(*p_labelPhi0);
 
 	slot<void> p_slotPhi0 = compose(bind<0> (mem_fun(*this, &LfoGUI::write_control), p_phi0), mem_fun(*this, &LfoGUI::get_phi0));
-	m_dialPhi0 = new Dial(p_slotPhi0, p_phi0, 0, 6.28, false, 0.01);
+	m_dialPhi0 = new LabeledDial(p_slotPhi0, p_phi0, 0, 6.28, false, 0.01);
 	p_mainWidget->pack_start(*m_dialPhi0);
 
 	p_mainWidget->set_size_request(256, 320);
