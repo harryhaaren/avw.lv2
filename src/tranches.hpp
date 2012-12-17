@@ -8,7 +8,7 @@
 
 using namespace lvtk;
 
-class Tranches: public Plugin<Tranches>
+class Tranches: public Plugin<Tranches, URID<true>>
 {
 	private:
 		double m_rate;
@@ -17,7 +17,6 @@ class Tranches: public Plugin<Tranches>
 		int sliceCounter;
 		int sliceSize;
 		int maxSliceSize;
-		int previousBeat;
 		double beatsPerMinute;
 		jack_default_audio_sample_t *fadingTab;
 		std::vector<jack_default_audio_sample_t> sliceSamplesL;
@@ -32,6 +31,19 @@ class Tranches: public Plugin<Tranches>
 	public:
 		Tranches(double rate);
 		void run(uint32_t nframes);
+
+	struct TranchesURIs
+	{
+		LV2_URID atom_Blank;
+		LV2_URID atom_Float;
+		LV2_URID atom_Path;
+		LV2_URID atom_Resource;
+		LV2_URID atom_Sequence;
+		LV2_URID time_Position;
+		LV2_URID time_barBeat;
+		LV2_URID time_beatsPerMinute;
+		LV2_URID time_speed;
+	} uris;
 };
 
 #endif

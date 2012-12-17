@@ -14,12 +14,9 @@
 
 using namespace lvtk;
 
-Tranches::Tranches(double rate) :
-		Plugin<Tranches>(p_n_ports)
-{
-	char *uuid = NULL; // fill it from getopt or however you parse commandline.
-	client = jack_client_open("myapp", JackSessionID, NULL, uuid);
-
+Tranches::Tranches(double rate)
+: Plugin<Tranches, URID<true>>(p_n_ports)
+  {
 	m_rate = rate;
 	beatsPerMinute = 120;
 	sliceCounter = 0;
@@ -28,11 +25,20 @@ Tranches::Tranches(double rate) :
 	slicingAsked = false;
 	sliceRecorded = false;
 	slicing = false;
-	previousBeat = 0;
 	fadingTab = NULL;
 	previousTrigger = false;
 	setSliceSize(1);
-}
+
+	uris.atom_Blank          = map(LV2_ATOM__Blank);
+	uris.atom_Float          = map(LV2_ATOM__Float);
+	uris.atom_Path           = map(LV2_ATOM__Path);
+	uris.atom_Resource       = map(LV2_ATOM__Resource);
+	uris.atom_Sequence       = map(LV2_ATOM__Sequence);
+	uris.time_Position       = map(LV2_TIME__Position);
+	uris.time_barBeat        = map(LV2_TIME__barBeat);
+	uris.time_beatsPerMinute = map(LV2_TIME__beatsPerMinute);
+	uris.time_speed          = map(LV2_TIME__speed);
+  }
 
 void Tranches::run(uint32_t nframes)
 {
@@ -80,13 +86,36 @@ void Tranches::run(uint32_t nframes)
 
 	//GET THE BEAT
 
-	//we get the current Beat and test if the bpm has changed
-	jack_position_t pos;
-	jack_transport_query(client, &pos);
-	int currentBeat = pos.beat - 1;
-	if (pos.beats_per_minute != beatsPerMinute && pos.beats_per_minute != 0)
+	float p_bpm = 0;
+	const LV2_Atom_Sequence* timing = p<LV2_Atom_Sequence> (p_control);
+	uint32_t                 last_t = 0;
+	for (LV2_Atom_Event* ev = lv2_atom_sequence_begin(&timing->body); !lv2_atom_sequence_is_end(&timing->body, timing->atom.size, ev); ev = lv2_atom_sequence_next(ev))
 	{
-		beatsPerMinute = pos.beats_per_minute;
+		if (ev->body.type == uris.atom_Blank)
+		{
+			const LV2_Atom_Object* obj = (LV2_Atom_Object*)&ev->body;
+			if (obj->body.otype == uris.time_Position)
+			{
+				LV2_Atom *bpm = NULL;
+				lv2_atom_object_get(obj, uris.time_beatsPerMinute, &bpm, NULL);
+
+				if (bpm && bpm->type == uris.atom_Float)
+				{
+					/* Tempo changed, update BPM */
+					p_bpm = ((LV2_Atom_Float*)bpm)->body;
+					std::cout << "tempo: " << p_bpm << std::endl;
+				}
+			}
+		}
+
+		/* Update time for next iteration and move to next event*/
+		last_t = ev->time.frames;
+		ev = lv2_atom_sequence_next(ev);
+	}
+
+	if(p_bpm>0 && p_bpm!=beatsPerMinute)
+	{
+		beatsPerMinute = p_bpm;
 		setSliceSize(1);
 	}
 
@@ -152,8 +181,6 @@ void Tranches::run(uint32_t nframes)
 			p(p_outputR)[n] = p(p_inputR)[n];
 		}
 	}
-
-	previousBeat = currentBeat;
 }
 
 void Tranches::setSliceSize(double nbBeats)

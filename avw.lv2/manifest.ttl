@@ -98,11 +98,6 @@
 	lv2:binary <inv.so>  ;
 	rdfs:seeAlso <inv.ttl> .
 	
-<http://avwlv2.sourceforge.net/plugins/avw/jacklfo>
-	a lv2:Plugin ;
-	lv2:binary <jacklfo.so>  ;
-	rdfs:seeAlso <jacklfo.ttl> .
-	
 <http://avwlv2.sourceforge.net/plugins/avw/tranches>
 	a lv2:Plugin ;
 	lv2:binary <tranches.so>  ;
