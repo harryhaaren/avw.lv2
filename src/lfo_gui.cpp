@@ -6,7 +6,6 @@
 
 #include "lfo_gui.hpp"
 #include "lfo.hpp"
-//#include "g_labeleddial.hpp"
 
 LfoGUI::LfoGUI(const std::string& URI)
 {
@@ -15,7 +14,7 @@ LfoGUI::LfoGUI(const std::string& URI)
 	color->set_rgb(7710, 8738, 9252);
 	p_background->modify_bg(Gtk::STATE_NORMAL, *color);
 
-	VBox *p_mainWidget = manage (new VBox(true));
+	VBox *p_mainWidget = manage (new VBox(false));
 
 	Label *p_labelWaveForm = manage (new Label("Wave Form"));
 	p_mainWidget->pack_start(*p_labelWaveForm);
@@ -47,21 +46,21 @@ LfoGUI::LfoGUI(const std::string& URI)
 	p_mainWidget->pack_start(*p_labelFrequency);
 
 	slot<void> p_slotFrequency = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_frequency), mem_fun(*this,  &LfoGUI::get_freq));
-	m_dialFreq = new LabeledDial(p_slotFrequency, p_frequency, 0, 100, true, 1);
+	m_dialFreq = new LabeledDial(p_slotFrequency, p_frequency, 0, 100, true, 0.001, 3);
 	p_mainWidget->pack_start(*m_dialFreq);
 
 	Label *p_labelTempDiv = manage (new Label("Tempo Division"));
 	p_mainWidget->pack_start(*p_labelTempDiv);
 
 	slot<void> p_slotDivider = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_temp_mul), mem_fun(*this, &LfoGUI::get_div));
-	m_dialTempoDiv = new LabeledDial(p_slotDivider, p_temp_mul, 0, 8, false, 0.25);
+	m_dialTempoDiv = new LabeledDial(p_slotDivider, p_temp_mul, 0, 8, false, 0.25, 2);
 	p_mainWidget->pack_start(*m_dialTempoDiv);
 
 	Label *p_labelPhi0 = manage (new Label("Phi0"));
 	p_mainWidget->pack_start(*p_labelPhi0);
 
 	slot<void> p_slotPhi0 = compose(bind<0> (mem_fun(*this, &LfoGUI::write_control), p_phi0), mem_fun(*this, &LfoGUI::get_phi0));
-	m_dialPhi0 = new LabeledDial(p_slotPhi0, p_phi0, 0, 6.28, false, 0.01);
+	m_dialPhi0 = new LabeledDial(p_slotPhi0, p_phi0, 0, 6.28, false, 0.01, 2);
 	p_mainWidget->pack_start(*m_dialPhi0);
 
 	p_mainWidget->set_size_request(256, 320);

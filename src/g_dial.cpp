@@ -1,11 +1,11 @@
 #include <cairomm/context.h>
-#include <cmath>
+#include <math.h>
 
 #include "g_dial.hpp"
 
 using namespace std;
 
-Dial::Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double Max, bool Log, double Step)
+Dial::Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double Max, bool Log, double Step, int NbDigit)
 {
 	m_log = Log;
 	m_adj = new Gtk::Adjustment(Value, Min, Max, Step, Step);
@@ -21,6 +21,12 @@ Dial::Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double 
 
 	m_adj->signal_value_changed().connect(mem_fun(*this, &Dial::value_changed));
 	m_adj->signal_value_changed().connect(toggle_slot);
+
+	m_rounder = 1;
+	for(int i = 0 ; i<NbDigit ; i++)
+	{
+		m_rounder = m_rounder*10;
+	}
 }
 
 Dial::~Dial()
@@ -108,17 +114,14 @@ bool Dial::Redraw()
 
 double Dial::CalculateLogStep()
 {
-	double p_perc = (m_adj->get_value()-m_adj->get_lower())/(m_adj->get_upper()-m_adj->get_lower())*100;
-	if(p_perc<1)
-		return m_adj->get_step_increment()/1000;
-	if(p_perc<5)
-		return m_adj->get_step_increment()/100;
-	if(p_perc<15)
-			return m_adj->get_step_increment()/10;
-	if(p_perc<30)
-				return m_adj->get_step_increment()/2;
+	double p_perc = (m_adj->get_value()-m_adj->get_lower())/(m_adj->get_upper()-m_adj->get_lower())*1000;
 
-	return m_adj->get_step_increment();
+	return m_adj->get_step_increment() + (m_adj->get_step_increment() * p_perc);
+}
+
+double Dial::RoundValue(double Value)
+{
+	return floorf(Value * m_rounder + 0.5) / m_rounder;
 }
 
 bool Dial::onMouseMove(GdkEventMotion* event)
@@ -129,27 +132,23 @@ bool Dial::onMouseMove(GdkEventMotion* event)
 		{
 			if(!m_log)
 			{
-				set_value(m_adj->get_value()+m_adj->get_step_increment());
+				set_value(RoundValue(m_adj->get_value()+m_adj->get_step_increment()));
 			}
 			else
 			{
-				std::cout << "step " << CalculateLogStep() << std::endl;
-				set_value(m_adj->get_value()+CalculateLogStep());
+				set_value(RoundValue(m_adj->get_value()+CalculateLogStep()));
 			}
-			std::cout << "up " << m_adj->get_value() << std::endl;
 		}
 		else if(m_adj->get_value()>m_adj->get_lower() && m_mouseDelta<event->y)
 		{
 			if(!m_log)
 			{
-				set_value(m_adj->get_value()-m_adj->get_step_increment());
+				set_value(RoundValue(m_adj->get_value()-m_adj->get_step_increment()));
 			}
 			else
 			{
-				std::cout << "step " << CalculateLogStep() << std::endl;
-				set_value(m_adj->get_value()-CalculateLogStep());
+				set_value(RoundValue(m_adj->get_value()-CalculateLogStep()));
 			}
-			std::cout << "down " << m_adj->get_value() << std::endl;
 		}
 		m_mouseDelta = event->y;
 		Redraw();

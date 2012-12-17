@@ -11,7 +11,7 @@ using namespace Gtk;
 class Dial: public Gtk::DrawingArea
 {
 	public:
-		Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double Max, bool Log, double Step);
+		Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double Max, bool Log, double Step, int NbDigit);
 		virtual ~Dial();
 		bool Redraw();
 
@@ -32,8 +32,10 @@ class Dial: public Gtk::DrawingArea
 		bool m_mouseDown;
 
 		bool m_log;
+		int m_rounder;
 
 		double CalculateLogStep();
+		double RoundValue(double Value);
 };
 
 #endif
