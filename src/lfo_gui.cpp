@@ -68,8 +68,6 @@ LfoGUI::LfoGUI(const std::string& URI)
 	p_background->add(*p_mainWidget);
 	add(*p_background);
 
-	m_dialFreq->Redraw();
-
 	Gtk::manage(p_mainWidget);
 }
 

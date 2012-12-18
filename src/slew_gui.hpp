@@ -1,0 +1,27 @@
+#ifndef LFO_GUI_H
+#define LFO_GUI_H
+
+#include <lvtk-1/lvtk/plugin.hpp>
+#include <lvtk-1/lvtk/gtkui.hpp>
+
+#include "g_labeleddial.hpp"
+
+using namespace lvtk;
+using namespace sigc;
+using namespace Gtk;
+
+class SlewGUI: public UI<SlewGUI, GtkUI<true>>
+{
+public:
+	SlewGUI(const std::string& URI);
+	void port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer);
+
+protected:
+	LabeledDial* m_dialTimeUp;
+	LabeledDial* m_dialTimeDown;
+
+	float get_timeUp();
+	float get_timeDown();
+};
+
+#endif

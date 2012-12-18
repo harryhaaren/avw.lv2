@@ -53,40 +53,41 @@ Lfo::Lfo(double rate)
 
 void Lfo::run(uint32_t nframes)
 {
-	if(*p(p_sync) == 1)
+	float p_bpm = 0;
+	const LV2_Atom_Sequence* timing = p<LV2_Atom_Sequence> (p_control);
+	uint32_t                 last_t = 0;
+	for (LV2_Atom_Event* ev = lv2_atom_sequence_begin(&timing->body); !lv2_atom_sequence_is_end(&timing->body, timing->atom.size, ev); ev = lv2_atom_sequence_next(ev))
 	{
-		float p_bpm = 0;
-		const LV2_Atom_Sequence* timing = p<LV2_Atom_Sequence> (p_control);
-		uint32_t                 last_t = 0;
-		for (LV2_Atom_Event* ev = lv2_atom_sequence_begin(&timing->body); !lv2_atom_sequence_is_end(&timing->body, timing->atom.size, ev); ev = lv2_atom_sequence_next(ev))
+		if (ev->body.type == uris.atom_Blank)
 		{
-			if (ev->body.type == uris.atom_Blank)
+			const LV2_Atom_Object* obj = (LV2_Atom_Object*)&ev->body;
+			if (obj->body.otype == uris.time_Position)
 			{
-				const LV2_Atom_Object* obj = (LV2_Atom_Object*)&ev->body;
-				if (obj->body.otype == uris.time_Position)
-				{
-					LV2_Atom *bpm = NULL;
-					lv2_atom_object_get(obj, uris.time_beatsPerMinute, &bpm, NULL);
+				LV2_Atom *bpm = NULL;
+				lv2_atom_object_get(obj, uris.time_beatsPerMinute, &bpm, NULL);
 
-					if (bpm && bpm->type == uris.atom_Float)
-					{
-						/* Tempo changed, update BPM */
-						p_bpm = ((LV2_Atom_Float*)bpm)->body;
-						std::cout << "tempo: " << p_bpm << std::endl;
-					}
+				if (bpm && bpm->type == uris.atom_Float)
+				{
+					/* Tempo changed, update BPM */
+					p_bpm = ((LV2_Atom_Float*)bpm)->body;
+					std::cout << "tempo: " << p_bpm << std::endl;
+					break;
 				}
 			}
-
-			/* Update time for next iteration and move to next event*/
-			last_t = ev->time.frames;
-			ev = lv2_atom_sequence_next(ev);
 		}
 
-		if(p_bpm>0)
-		{
-			m_bpm = p_bpm;
-		}
+		/* Update time for next iteration and move to next event*/
+		last_t = ev->time.frames;
+		ev = lv2_atom_sequence_next(ev);
+	}
 
+	if(p_bpm>0)
+	{
+		m_bpm = p_bpm;
+	}
+
+	if(*p(p_sync) == 1)
+	{
 		freq = *p(p_temp_mul) * m_bpm / 60;
 	}
 	else

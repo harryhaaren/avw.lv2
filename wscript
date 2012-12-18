@@ -7,7 +7,7 @@ from waflib.extras import autowaf as autowaf
 
 # Variables for 'waf dist'
 APPNAME = 'avw.lv2'
-VERSION = '0.0.9'
+VERSION = '0.0.10'
 
 # Mandatory variables
 top = '.'
@@ -142,6 +142,8 @@ def build(bld):
 	ad_gui
 	vcf_gui
 	vcpanning_gui
+	lfo_gui
+	slew_gui
     '''.split()
 
 	for i in plugins_gui:
@@ -151,16 +153,8 @@ def build(bld):
             '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
             '-DPLUGIN_URI_SUFFIX="%s"' % i,
             '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-		  	['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI'], [])
-
-	build_plugin_gui(bld, 'avw.lv2', 'lfo_gui', ['src/lfo_gui.cpp'],
-		['-DPLUGIN_CLASS=lfo_gui',
-		'-std=c++11',
-        '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
-        '-DPLUGIN_URI_SUFFIX="lfo_gui"',
-        '-DPLUGIN_HEADER="src/lfo_gui.hpp"'],
-		['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
-		['src/g_dial.cpp', 'src/g_labeleddial.cpp'])
+		  	['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
+			['src/g_dial.cpp', 'src/g_labeleddial.cpp'])
 
 	build_plugin_gui(bld, 'avw.lv2', 'env_gui', ['src/env_gui.cpp'],
 		['-DPLUGIN_CLASS=env_gui',

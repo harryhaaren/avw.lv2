@@ -1,8 +1,3 @@
-0.0.10:
-	* LFO using CV
-	* Slew using CV
-	* Slew Limiter with GUI
-
 0.0.9:
 	* Migrated the code to lvtk (lvtoolkitorg)
 	* Starting not to use Gtk Builder

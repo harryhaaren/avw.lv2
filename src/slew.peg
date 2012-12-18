@@ -1,5 +1,5 @@
-#ifndef slew_peg
-#define slew_peg
+#ifndef src_slew_peg
+#define src_slew_peg
 
 
 #ifndef PEG_STRUCT
@@ -27,11 +27,11 @@ enum p_port_enum {
 };
 
 static const peg_data_t p_ports[] = {
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -1, 1, 0, 0, 0, 0 }, 
   { 0, 10, 0.5, 0, 0, 0 }, 
   { 0, 10, 0.5, 0, 0, 0 }, 
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -1, 1, 0, 0, 0, 0 }, 
 };
 
 
-#endif /* slew_peg */
+#endif /* src_slew_peg */
