@@ -8,46 +8,42 @@
 
 <http://avwlv2.sourceforge.net/plugins/avw/vcf/gui>
   a guiext:GtkUI ;
-  guiext:binary <vcf_gui.so> ;
-  guiext:requiredFeature guiext:makeResident .
+  guiext:binary <vcf_gui.so> .
 
 <http://avwlv2.sourceforge.net/plugins/avw/vcf>
 	a lv2:Plugin ,
-		lv2:VCF ;
-	doap:maintainer [
-		foaf:name "Aurélien Leblond" ;
-		foaf:mbox <mailto:blablack@gmail.com>
-	] ;
+		lv2:FilterPlugin ;
+	lv2:project <http://avwlv2.sourceforge.net/plugins/avw/> ;        
 	doap:name "AMS VCF" ;
-	doap:license <http://opensource.org/licenses/isc-license> ;
+	doap:license <http://opensource.org/licenses/isc> ;
 	ll:pegName "p" ;
 	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/vcf/gui> ;
-	lv2:property lv2:hardRtCapable ;
+	lv2:optionalFeature lv2:hardRTCapable ;
 	lv2:port [
 		a lv2:AudioPort, lv2:InputPort ;
 		lv2:index 0 ;
 		lv2:symbol "in" ;
-		lv2:name "Port - In"
+		lv2:name "In"
 	] ,	[
 		a lv2:AudioPort, lv2:InputPort ;
 		lv2:index 1 ;
 		lv2:symbol "freqPort" ;
-		lv2:name "Port - Freq" 
+		lv2:name "Frequency Mod" 
 	] ,	[
 		a lv2:AudioPort, lv2:InputPort ;
 		lv2:index 2 ;
 		lv2:symbol "expFM" ;
-		lv2:name "Port - Exp. FM"  
+		lv2:name "Exp FM"  
 	] ,	[
 	  	a lv2:AudioPort, lv2:InputPort ;
 		lv2:index 3 ;
 		lv2:symbol "linFM" ;
-		lv2:name "Port - Lin. FM"
+		lv2:name "Lin FM"
 	] , [
 	  	a lv2:AudioPort, lv2:InputPort ;
 		lv2:index 4 ;
 		lv2:symbol "resonancePort" ;
-		lv2:name "Port - Resonance"
+		lv2:name "Resonance Mod"
 	] , [
 		a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 5 ;
@@ -56,6 +52,7 @@
 		lv2:default 0;
 		lv2:minimum 0;
 		lv2:maximum 7;
+		lv2:portProperty lv2:enumeration ;
 		lv2:scalePoint  
 			[
 		    		rdfs:label "Resonant Lowpass" ;

@@ -2,6 +2,14 @@
 	* LFO using CV
 	* Slew using CV
 	* Slew Limiter with GUI
+	* David Robillard Patch:
+		* Fixed several errors and typos discovered by sord_validate.
+		* Clean up port names (unfortunately some symbols are pretty weird too but changing this would break compatibility), use label conventions consistent with fomp
+		* Describe project separately and link plugins to it (one description of maintainer etc., and now validates)
+		* Make ports with scale points enumerations so a combo box will be shown in hosts (including Ingen)
+		* Categorized plugins and remove references to non-existent classes.  I added lv2:EnvelopePlugin for this, it will be included in the next spec release
+		* "Envelop" => "Envelope
+
 
 0.0.9:
 	* Migrated the code to lvtk (lvtoolkitorg)

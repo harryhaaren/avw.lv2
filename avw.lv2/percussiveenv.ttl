@@ -7,15 +7,12 @@
 
 <http://avwlv2.sourceforge.net/plugins/avw/percussiveenv>
 	a lv2:Plugin ,
-		lv2:PERCUSSIVEENV ;
-	doap:maintainer [
-		foaf:name "Aurélien Leblond" ;
-		foaf:mbox <mailto:blablack@gmail.com>
-	] ;
-	doap:name "AMS Percussive Envelop" ;
-	doap:license <http://opensource.org/licenses/isc-license> ;
+		lv2:EnvelopePlugin ;
+	lv2:project <http://avwlv2.sourceforge.net/plugins/avw/> ;        
+	doap:name "AMS Percussive Envelope" ;
+	doap:license <http://opensource.org/licenses/isc> ;
 	ll:pegName "p" ;
-	lv2:property lv2:hardRtCapable ;
+	lv2:optionalFeature lv2:hardRTCapable ;
 	lv2:port [
 		a lv2:AudioPort, lv2:InputPort ;
 		lv2:index 0 ;

@@ -8,40 +8,37 @@
 
 <http://avwlv2.sourceforge.net/plugins/avw/dynamicwaves>
 	a lv2:Plugin ,
-		lv2:DYNAMICWAVES ;
-	doap:maintainer [
-		foaf:name "Aurélien Leblond" ;
-		foaf:mbox <mailto:blablack@gmail.com>
-	] ;
+		lv2:GeneratorPlugin ;
+	lv2:project <http://avwlv2.sourceforge.net/plugins/avw/> ;        
 	doap:name "AMS Dynamic Waves" ;
-	doap:license <http://opensource.org/licenses/isc-license> ;
+	doap:license <http://opensource.org/licenses/isc> ;
 	ll:pegName "p" ;
-	lv2:property lv2:hardRtCapable ;
+	lv2:optionalFeature lv2:hardRTCapable ;
 	lv2:port [
 		a lv2:AudioPort, lv2:InputPort ;
 		lv2:index 0 ;
 		lv2:symbol "freq" ;
-		lv2:name "Port - Freq" 
+		lv2:name "Frequency" 
 	] ,	[
 		a lv2:AudioPort, lv2:InputPort ;
 		lv2:index 1 ;
 		lv2:symbol "expFM" ;
-		lv2:name "Port - Exp. FM"  
+		lv2:name "Exp FM"  
 	] ,	[
 		a lv2:AudioPort, lv2:InputPort ;
 		lv2:index 2 ;
 		lv2:symbol "linFM" ;
-		lv2:name "Port - Lin. FM"  
+		lv2:name "Lin FM"
 	] ,	[
 	  	a lv2:AudioPort, lv2:InputPort ;
 		lv2:index 3 ;
 		lv2:symbol "gate" ;
-		lv2:name "Port - Gate" 
+		lv2:name "Gate" 
 	] , [
 	  	a lv2:AudioPort, lv2:InputPort ;
 		lv2:index 4 ;
 		lv2:symbol "retrigger" ;
-		lv2:name "Port - Retrigger" 
+		lv2:name "Retrigger" 
 	] , [
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 5 ;
@@ -128,6 +125,7 @@
 		lv2:default 0;
 		lv2:minimum 0;
 		lv2:maximum 4;
+		lv2:portProperty lv2:enumeration ;
 		lv2:scalePoint  
 				[
 			    rdfs:label "Sine" ;
@@ -196,6 +194,7 @@
 		lv2:default 0;
 		lv2:minimum 0;
 		lv2:maximum 4;
+		lv2:portProperty lv2:enumeration ;
 		lv2:scalePoint  
 				[
 			    rdfs:label "Sine" ;
@@ -264,6 +263,7 @@
 		lv2:default 0;
 		lv2:minimum 0;
 		lv2:maximum 4;
+		lv2:portProperty lv2:enumeration ;
 		lv2:scalePoint  
 				[
 			    rdfs:label "Sine" ;
@@ -332,6 +332,7 @@
 		lv2:default 0;
 		lv2:minimum 0;
 		lv2:maximum 4;
+		lv2:portProperty lv2:enumeration ;
 		lv2:scalePoint  
 				[
 			    rdfs:label "Sine" ;

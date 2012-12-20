@@ -1,5 +1,5 @@
-#ifndef src_slew_peg
-#define src_slew_peg
+#ifndef slew_peg
+#define slew_peg
 
 
 #ifndef PEG_STRUCT
@@ -34,4 +34,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* src_slew_peg */
+#endif /* slew_peg */
