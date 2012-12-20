@@ -1,5 +1,5 @@
-#ifndef vctohz_peg
-#define vctohz_peg
+#ifndef src_vctohz_peg
+#define src_vctohz_peg
 
 
 #ifndef PEG_STRUCT
@@ -29,9 +29,9 @@ enum p_port_enum {
 static const peg_data_t p_ports[] = {
   { -3, 3, 0, 0, 0, 0 }, 
   { 0, 2, 0, 0, 0, 0 }, 
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -1, 1, 0, 0, 0, 0 }, 
   { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
 };
 
 
-#endif /* vctohz_peg */
+#endif /* src_vctohz_peg */

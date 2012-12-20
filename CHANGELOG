@@ -1,6 +1,7 @@
 0.0.10:
 	* LFO using CV
 	* Slew using CV
+	* CVtoHZ and HZtoCV using CV
 	* Slew Limiter with GUI
 	* David Robillard Patch:
 		* Fixed several errors and typos discovered by sord_validate.
