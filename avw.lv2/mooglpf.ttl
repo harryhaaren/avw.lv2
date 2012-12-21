@@ -20,36 +20,32 @@
 		lv2:name "Input Gain (dB)" ;
 		lv2:default 0 ;
 		lv2:minimum -60 ;
-		lv2:maximum 10 
-	],
-	[
+		lv2:maximum 10 ;
+	],	[
 		a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 1 ;
 		lv2:symbol "frequency" ;
 		lv2:name "Frequency" ;
 		lv2:default 0 ;
 		lv2:minimum -6 ;
-		lv2:maximum 6 
-	],	
-	[
+		lv2:maximum 6 ;
+	],	[
 		a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 2 ;
 		lv2:symbol "expfmgain" ;
 		lv2:name "Exp FM Gain" ;
 		lv2:default 0 ;
 		lv2:minimum 0 ;
-		lv2:maximum 10 
-	],	
-	[
+		lv2:maximum 10 ;
+	],	[
 		a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 3 ;
 		lv2:symbol "resonance" ;
 		lv2:name "Resonance" ;
 		lv2:default 0 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1 
-	],
-	[
+		lv2:maximum 1 ;
+	], 	[
 		a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 4 ;
 		lv2:symbol "resonanceGain" ;
@@ -57,43 +53,46 @@
 		lv2:default 0 ;
 		lv2:minimum 0 ;
 		lv2:maximum 1 
-	],
-	[
+	],	[
 		a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 5 ;
 		lv2:symbol "outputGain" ;
 		lv2:name "Output Gain (dB)" ;
 		lv2:default 0 ;
 		lv2:minimum -15 ;
-		lv2:maximum 15 
-	],		
-	[
-		a lv2:AudioPort, lv2:InputPort ;
+		lv2:maximum 15 ;
+	],	[
+		a lv2:InputPort, lv2:AudioPort;
 		lv2:index 6 ;
 		lv2:symbol "portinput" ;
-		lv2:name "Port Input"
-	],	
-	[
-		a lv2:AudioPort, lv2:InputPort ;
+		lv2:name "Port Input" ;
+	],	[
+		a lv2:InputPort, lv2:CVPort;
 		lv2:index 7 ;
 		lv2:symbol "portfrequency" ;
-		lv2:name "Port Frequency"
-	],
-	[
-		a lv2:AudioPort, lv2:InputPort ;
+		lv2:name "Port Frequency" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ; 
+	],	[
+		a lv2:InputPort, lv2:CVPort ;
 		lv2:index 8 ;
 		lv2:symbol "portexpfm" ;
-		lv2:name "Port Exp FM"
-	],
-	[
-		a lv2:AudioPort, lv2:InputPort ;
+		lv2:name "Port Exp FM" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ; 
+	],	[
+		a lv2:InputPort, lv2:CVPort ;
 		lv2:index 9 ;
 		lv2:symbol "portresonance" ;
-		lv2:name "Port Resonance"
-	],
-	[
+		lv2:name "Port Resonance" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ; 
+	],	[
 		a lv2:AudioPort, lv2:OutputPort ;
 		lv2:index 10 ;
 		lv2:symbol "output" ;
-		lv2:name "Output"
+		lv2:name "Output" ;
 	].

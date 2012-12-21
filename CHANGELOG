@@ -10,7 +10,10 @@
 		* Make ports with scale points enumerations so a combo box will be shown in hosts (including Ingen)
 		* Categorized plugins and remove references to non-existent classes.  I added lv2:EnvelopePlugin for this, it will be included in the next spec release
 		* "Envelop" => "Envelope
-
+	* MoogLPF using CV
+	* Envelope and Advanced Envelope using CV
+	* VCA Linear and VCA Exp using CV
+	* VCF using CV
 
 0.0.9:
 	* Migrated the code to lvtk (lvtoolkitorg)

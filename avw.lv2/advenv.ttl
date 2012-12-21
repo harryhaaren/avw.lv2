@@ -11,8 +11,7 @@
   	guiext:binary <advenv_gui.so> .
 
 <http://avwlv2.sourceforge.net/plugins/avw/advenv>
-	a lv2:Plugin ,
-		lv2:EnvelopePlugin ;
+	a lv2:Plugin, lv2:EnvelopePlugin ;
 	lv2:project <http://avwlv2.sourceforge.net/plugins/avw/> ;        
 	doap:name "AMS Advanced Envelope" ;
 	doap:license <http://opensource.org/licenses/isc> ;
@@ -20,15 +19,21 @@
 	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/advenv/gui> ;
 	lv2:optionalFeature lv2:hardRTCapable ;
 	lv2:port [
-		a lv2:AudioPort, lv2:InputPort ;
+		a lv2:InputPort, lv2:CVPort ;
 		lv2:index 0 ;
 		lv2:symbol "gate" ;
-		lv2:name "Gate" 
+		lv2:name "Gate" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
 	] ,	[
-		a lv2:AudioPort, lv2:InputPort ;
+		a lv2:InputPort, lv2:CVPort;
 		lv2:index 1 ;
 		lv2:symbol "retrigger" ;
-		lv2:name "Retrigger"  
+		lv2:name "Retrigger" ; 
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 2 ;
@@ -36,7 +41,7 @@
 		lv2:name "Time Scale" ;
 		lv2:default 1 ;
 		lv2:minimum 0.1 ;
-		lv2:maximum 10
+		lv2:maximum 10 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 3 ;
@@ -44,7 +49,7 @@
 		lv2:name "Sustain" ;
 		lv2:default 0.7 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 4 ;
@@ -52,7 +57,7 @@
 		lv2:name "Delay" ;
 		lv2:default 0 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 5 ;
@@ -60,7 +65,7 @@
 		lv2:name "Attack Time 1" ;
 		lv2:default 0.05 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 6 ;
@@ -68,7 +73,7 @@
 		lv2:name "Attack Time 2" ;
 		lv2:default 0.05 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 7 ;
@@ -76,7 +81,7 @@
 		lv2:name "Attack Time 3" ;
 		lv2:default 0.05 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 8 ;
@@ -84,7 +89,7 @@
 		lv2:name "Attack Time 4" ;
 		lv2:default 0.1 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 9 ;
@@ -92,7 +97,7 @@
 		lv2:name "Attack Level 1" ;
 		lv2:default 0.5 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 10 ;
@@ -100,7 +105,7 @@
 		lv2:name "Attack Level 2" ;
 		lv2:default 1 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 11 ;
@@ -108,7 +113,7 @@
 		lv2:name "Attack Level 3" ;
 		lv2:default 0.9 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 12 ;
@@ -116,7 +121,7 @@
 		lv2:name "Release Time 1" ;
 		lv2:default 0.5 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 13 ;
@@ -124,7 +129,7 @@
 		lv2:name "Release Time 2" ;
 		lv2:default 0.5 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 14 ;
@@ -132,7 +137,7 @@
 		lv2:name "Release Time 3" ;
 		lv2:default 0.5 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 15 ;
@@ -140,7 +145,7 @@
 		lv2:name "Release Level 1" ;
 		lv2:default 0.5 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
 		a lv2:InputPort , lv2:ControlPort ;
 		lv2:index 16 ;
@@ -148,16 +153,22 @@
 		lv2:name "Release Level 2" ;
 		lv2:default 0.2 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
 	] ,	[
-		a lv2:AudioPort , lv2:OutputPort ;
+		a lv2:OutputPort, lv2:CVPort;
 		lv2:index 17 ;
 		lv2:symbol "out" ;
-		lv2:name "Out"
+		lv2:name "Out" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
 	] ,	[
-		a lv2:AudioPort , lv2:OutputPort ;
+		a lv2:OutputPort, lv2:CVPort ;
 		lv2:index 18 ;
 		lv2:symbol "invOut" ;
-		lv2:name "Inverse Out"
+		lv2:name "Inverse Out" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
 	].
 	

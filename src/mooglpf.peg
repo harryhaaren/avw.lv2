@@ -1,5 +1,5 @@
-#ifndef mooglpf_peg
-#define mooglpf_peg
+#ifndef src_mooglpf_peg
+#define src_mooglpf_peg
 
 
 #ifndef PEG_STRUCT
@@ -41,11 +41,11 @@ static const peg_data_t p_ports[] = {
   { 0, 1, 0, 0, 0, 0 }, 
   { -15, 15, 0, 0, 0, 0 }, 
   { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -1, 1, 0, 0, 0, 0 }, 
+  { -1, 1, 0, 0, 0, 0 }, 
+  { -1, 1, 0, 0, 0, 0 }, 
   { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
 };
 
 
-#endif /* mooglpf_peg */
+#endif /* src_mooglpf_peg */
