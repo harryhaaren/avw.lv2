@@ -8,75 +8,109 @@
 
 AdGUI::AdGUI(const std::string& URI)
 {
-	Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
-	builder->add_from_file(g_strdup_printf("%s/ad_gui.xml", bundle_path()));
+	EventBox *p_background = manage(new EventBox());
+	Gdk::Color* color = new  Gdk::Color();
+	color->set_rgb(7710, 8738, 9252);
+	p_background->modify_bg(Gtk::STATE_NORMAL, *color);
 
-	Gtk::Window* p_window = 0;
-	builder->get_widget("ad_window", p_window);
+	HBox *p_mainWidget = manage(new HBox(true));
 
-	Gtk::Widget* p_mainWidget = 0;
-	builder->get_widget("boxParameters", p_mainWidget);
+	Frame *p_detuneFrame = manage(new Frame("Detune"));
+	VBox *p_detuneBox = manage(new VBox(false));
 
-	p_window->remove();
+	Label *p_labelDetuneAmplitude = manage(new Label("Amplitude"));
+	p_detuneBox->pack_start(*p_labelDetuneAmplitude);
 
-	add(*p_mainWidget);
+	slot<void> p_slotDetuneAmplitude = compose(bind<0>(mem_fun(*this, &AdGUI::write_control), p_detuneAmplitude), mem_fun(*this,  &AdGUI::get_detuneAmplitude));
+	m_dialDetuneAmplitude = new LabeledDial(p_slotDetuneAmplitude, p_detuneAmplitude, 0, 0.084, true, 0.00001, 5);
+	p_detuneBox->pack_start(*m_dialDetuneAmplitude);
 
-	m_scaleDetuneAmplitude = 0;
-	builder->get_widget("scaleDetuneAmplitude", m_scaleDetuneAmplitude);
-	slot<void> p_slotDetuneAmplitude = compose(bind<0> (mem_fun(*this, &AdGUI::write_control), p_detuneAmplitude), mem_fun(*m_scaleDetuneAmplitude, &HScale::get_value));
-	m_scaleDetuneAmplitude->signal_value_changed().connect(p_slotDetuneAmplitude);
+	Label *p_labelDetuneModulation = manage (new Label("Modulation"));
+	p_detuneBox->pack_start(*p_labelDetuneModulation);
 
-	m_scaleDetuneModulation = 0;
-	builder->get_widget("scaleDetuneModulation", m_scaleDetuneModulation);
-	slot<void> p_slotDetuneModulation = compose(bind<0> (mem_fun(*this, &AdGUI::write_control), p_detuneModulation), mem_fun(*m_scaleDetuneModulation, &HScale::get_value));
-	m_scaleDetuneModulation->signal_value_changed().connect(p_slotDetuneModulation);
+	slot<void> p_slotDetuneModulation = compose(bind<0>(mem_fun(*this, &AdGUI::write_control), p_detuneModulation), mem_fun(*this,  &AdGUI::get_detuneModulation));
+	m_dialDetuneModulation = new LabeledDial(p_slotDetuneModulation, p_detuneModulation, 0.01, 1, true, 0.0001, 4);
+	p_detuneBox->pack_start(*m_dialDetuneModulation);
 
-	m_scaleDetuneRate = 0;
-	builder->get_widget("scaleDetuneRate", m_scaleDetuneRate);
-	slot<void> p_slotDetuneRate = compose(bind<0> (mem_fun(*this, &AdGUI::write_control), p_detuneRate), mem_fun(*m_scaleDetuneRate, &HScale::get_value));
-	m_scaleDetuneRate->signal_value_changed().connect(p_slotDetuneRate);
+	Label *p_labelDetuneRate = manage (new Label("Rate"));
+	p_detuneBox->pack_start(*p_labelDetuneRate);
 
-	m_scaleDriftAmplitude = 0;
-	builder->get_widget("scaleDriftAmplitude", m_scaleDriftAmplitude);
-	slot<void> p_slotDriftAmplitude = compose(bind<0> (mem_fun(*this, &AdGUI::write_control), p_driftAmplitude), mem_fun(*m_scaleDriftAmplitude, &HScale::get_value));
-	m_scaleDriftAmplitude->signal_value_changed().connect(p_slotDriftAmplitude);
+	slot<void> p_slotDetuneRate = compose(bind<0>(mem_fun(*this, &AdGUI::write_control), p_detuneRate), mem_fun(*this,  &AdGUI::get_detuneRate));
+	m_dialDetuneRate = new LabeledDial(p_slotDetuneRate, p_detuneRate, 0.01, 10, true, 0.0001, 4);
+	p_detuneBox->pack_start(*m_dialDetuneRate);
 
-	m_scaleDriftModulation = 0;
-	builder->get_widget("scaleDriftModulation", m_scaleDriftModulation);
-	slot<void> p_slotDriftModulation = compose(bind<0> (mem_fun(*this, &AdGUI::write_control), p_driftModulation), mem_fun(*m_scaleDriftModulation, &HScale::get_value));
-	m_scaleDriftModulation->signal_value_changed().connect(p_slotDriftModulation);
+	p_detuneFrame->add(*p_detuneBox);
+	p_mainWidget->pack_start(*p_detuneFrame);
 
-	m_scaleDriftRate = 0;
-	builder->get_widget("scaleDriftRate", m_scaleDriftRate);
-	slot<void> p_slotDriftRate = compose(bind<0> (mem_fun(*this, &AdGUI::write_control), p_driftRate), mem_fun(*m_scaleDriftRate, &HScale::get_value));
-	m_scaleDriftRate->signal_value_changed().connect(p_slotDriftRate);
+
+
+	Frame *p_driftFrame = manage(new Frame("Drift"));
+	VBox *p_driftBox = manage(new VBox(false));
+
+	Label *p_labelDriftAmplitude = manage(new Label("Amplitude"));
+	p_driftBox->pack_start(*p_labelDriftAmplitude);
+
+	slot<void> p_slotDriftAmplitude = compose(bind<0>(mem_fun(*this, &AdGUI::write_control), p_driftAmplitude), mem_fun(*this,  &AdGUI::get_driftAmplitude));
+	m_dialDriftAmplitude = new LabeledDial(p_slotDriftAmplitude, p_driftAmplitude, 0, 0.084, true, 0.00001, 5);
+	p_driftBox->pack_start(*m_dialDriftAmplitude);
+
+	Label *p_labelDriftModulation = manage (new Label("Modulation"));
+	p_driftBox->pack_start(*p_labelDriftModulation);
+
+	slot<void> p_slotDriftModulation = compose(bind<0>(mem_fun(*this, &AdGUI::write_control), p_driftModulation), mem_fun(*this,  &AdGUI::get_driftModulation));
+	m_dialDriftModulation = new LabeledDial(p_slotDriftModulation, p_driftModulation, 0.01, 1, true, 0.0001, 4);
+	p_driftBox->pack_start(*m_dialDriftModulation);
+
+	Label *p_labelDriftRate = manage (new Label("Rate"));
+	p_driftBox->pack_start(*p_labelDriftModulation);
+
+	slot<void> p_slotDriftRate = compose(bind<0>(mem_fun(*this, &AdGUI::write_control), p_driftRate), mem_fun(*this,  &AdGUI::get_driftRate));
+	m_dialDriftRate = new LabeledDial(p_slotDriftRate, p_driftRate, 0.01, 10, true, 0.0001, 4);
+	p_driftBox->pack_start(*m_dialDriftRate);
+
+	p_driftFrame->add(*p_driftBox);
+	p_mainWidget->pack_start(*p_driftFrame);
+
+	p_mainWidget->set_size_request(256, 320);
+
+	p_background->add(*p_mainWidget);
+	add(*p_background);
+
+	Gtk::manage(p_mainWidget);
 }
+
+float AdGUI::get_detuneAmplitude(){ return m_dialDetuneAmplitude->get_value(); }
+float AdGUI::get_detuneModulation(){ return m_dialDetuneModulation->get_value(); }
+float AdGUI::get_detuneRate(){ return m_dialDetuneRate->get_value(); }
+float AdGUI::get_driftAmplitude(){ return m_dialDriftAmplitude->get_value(); }
+float AdGUI::get_driftModulation(){ return m_dialDriftModulation->get_value(); }
+float AdGUI::get_driftRate(){ return m_dialDriftRate->get_value(); }
 
 void AdGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
 {
 	if (port == p_detuneAmplitude)
 	{
-		m_scaleDetuneAmplitude->set_value(*static_cast<const float*> (buffer));
+		m_dialDetuneAmplitude->set_value(*static_cast<const float*> (buffer));
 	}
 	else if (port == p_detuneModulation)
 	{
-		m_scaleDetuneModulation->set_value(*static_cast<const float*> (buffer));
+		m_dialDetuneModulation->set_value(*static_cast<const float*> (buffer));
 	}
 	else if (port == p_detuneRate)
 	{
-		m_scaleDetuneRate->set_value(*static_cast<const float*> (buffer));
+		m_dialDetuneRate->set_value(*static_cast<const float*> (buffer));
 	}
 	else if (port == p_driftAmplitude)
 	{
-		m_scaleDriftAmplitude->set_value(*static_cast<const float*> (buffer));
+		m_dialDriftAmplitude->set_value(*static_cast<const float*> (buffer));
 	}
 	else if (port == p_driftModulation)
 	{
-		m_scaleDriftModulation->set_value(*static_cast<const float*> (buffer));
+		m_dialDriftModulation->set_value(*static_cast<const float*> (buffer));
 	}
 	else if (port == p_driftRate)
 	{
-		m_scaleDriftRate->set_value(*static_cast<const float*> (buffer));
+		m_dialDriftRate->set_value(*static_cast<const float*> (buffer));
 	}
 }
 

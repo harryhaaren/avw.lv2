@@ -14,6 +14,9 @@
 	* Envelope and Advanced Envelope using CV
 	* VCA Linear and VCA Exp using CV
 	* VCF using CV
+	* Absolute using CV
+	* Analog driver using CV
+	* Analog driver new GUI
 
 0.0.9:
 	* Migrated the code to lvtk (lvtoolkitorg)

@@ -114,7 +114,9 @@ bool Dial::Redraw()
 
 double Dial::CalculateLogStep()
 {
-	double p_perc = (m_adj->get_value()-m_adj->get_lower())/(m_adj->get_upper()-m_adj->get_lower())*1000;
+	double p_perc = (m_adj->get_value() - m_adj->get_lower()) / (m_adj->get_upper() - m_adj->get_lower()) * 1000;
+
+	// std::cout << "Perc " << p_perc << "\t Step " << m_adj->get_step_increment() + (m_adj->get_step_increment() * p_perc) <<  std::endl;
 
 	return m_adj->get_step_increment() + (m_adj->get_step_increment() * p_perc);
 }

@@ -27,10 +27,6 @@ LfoGUI::LfoGUI(const std::string& URI)
 	m_comboWaveForm->append_text("Rectangle");
 	m_comboWaveForm->append_text("S & H");
 
-	color->set_rgb(7710, 8738, 9252);
-	m_comboWaveForm->modify_bg(Gtk::STATE_NORMAL, *color);
-	m_comboWaveForm->modify_base(Gtk::STATE_NORMAL, *color);
-
 	slot<void> p_slotWaveForm = compose(bind<0> (mem_fun(*this, &LfoGUI::write_control), p_waveForm), mem_fun(*m_comboWaveForm, &ComboBoxText::get_active_row_number));
 	m_comboWaveForm->signal_changed().connect(p_slotWaveForm);
 
