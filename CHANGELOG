@@ -17,6 +17,7 @@
 	* Absolute using CV
 	* Analog driver using CV
 	* Analog driver new GUI
+	* Dial to react to mouse scroll
 
 0.0.9:
 	* Migrated the code to lvtk (lvtoolkitorg)

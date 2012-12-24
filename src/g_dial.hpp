@@ -24,6 +24,7 @@ class Dial: public Gtk::DrawingArea
 		virtual bool onMouseMove(GdkEventMotion* event);
 		virtual bool on_button_press_event(GdkEventButton* event);
 		virtual bool on_button_release_event(GdkEventButton* event);
+		virtual bool onMouseScroll(GdkEventScroll * e);
 
 	private:
 		Gtk::Adjustment *m_adj;
@@ -36,6 +37,8 @@ class Dial: public Gtk::DrawingArea
 
 		double CalculateLogStep();
 		double RoundValue(double Value);
+		void ChangeValueUp();
+		void ChangeValueDown();
 };
 
 #endif

@@ -15,7 +15,8 @@ Dial::Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double 
 	add_events(Gdk::EXPOSURE_MASK | Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK| Gdk::POINTER_MOTION_MASK);
 	signal_button_press_event().connect(sigc::mem_fun(*this, &Dial::on_button_press_event) );
 	signal_button_release_event().connect(sigc::mem_fun(*this, &Dial::on_button_release_event) );
-	signal_motion_notify_event().connect( sigc::mem_fun( *this, &Dial::onMouseMove ) );
+	signal_motion_notify_event().connect(sigc::mem_fun( *this, &Dial::onMouseMove) );
+	signal_scroll_event().connect(sigc::mem_fun( *this, &Dial::onMouseScroll) );
 
 	set_size_request(48, 48);
 
@@ -126,31 +127,31 @@ double Dial::RoundValue(double Value)
 	return floorf(Value * m_rounder + 0.5) / m_rounder;
 }
 
+bool Dial::onMouseScroll(GdkEventScroll * e)
+{
+	if (e->direction == GDK_SCROLL_UP)
+	{
+		ChangeValueUp();
+	}
+	else if (e->direction == GDK_SCROLL_DOWN)
+	{
+		ChangeValueDown();
+	}
+
+	return true;
+}
+
 bool Dial::onMouseMove(GdkEventMotion* event)
 {
 	if (m_mouseDown)
 	{
 		if(m_adj->get_value()<m_adj->get_upper() && m_mouseDelta>event->y)
 		{
-			if(!m_log)
-			{
-				set_value(RoundValue(m_adj->get_value()+m_adj->get_step_increment()));
-			}
-			else
-			{
-				set_value(RoundValue(m_adj->get_value()+CalculateLogStep()));
-			}
+			ChangeValueUp();
 		}
 		else if(m_adj->get_value()>m_adj->get_lower() && m_mouseDelta<event->y)
 		{
-			if(!m_log)
-			{
-				set_value(RoundValue(m_adj->get_value()-m_adj->get_step_increment()));
-			}
-			else
-			{
-				set_value(RoundValue(m_adj->get_value()-CalculateLogStep()));
-			}
+			ChangeValueDown();
 		}
 		m_mouseDelta = event->y;
 		Redraw();
@@ -160,6 +161,29 @@ bool Dial::onMouseMove(GdkEventMotion* event)
 	else
 	{
 		return false;
+	}
+}
+
+void Dial::ChangeValueUp()
+{
+	if(!m_log)
+	{
+		set_value(RoundValue(m_adj->get_value()+m_adj->get_step_increment()));
+	}
+	else
+	{
+		set_value(RoundValue(m_adj->get_value()+CalculateLogStep()));
+	}
+}
+void Dial::ChangeValueDown()
+{
+	if(!m_log)
+	{
+		set_value(RoundValue(m_adj->get_value()-m_adj->get_step_increment()));
+	}
+	else
+	{
+		set_value(RoundValue(m_adj->get_value()-CalculateLogStep()));
 	}
 }
 
