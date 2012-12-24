@@ -15,7 +15,7 @@ using namespace Gtk;
 class LabeledDial: public Gtk::EventBox
 {
 	public:
-		LabeledDial(const sigc::slot<void> toggle_slot, double Value, double Min, double Max, bool Log, double Step, int NbDigit);
+		LabeledDial(const std::string TextLabel, const sigc::slot<void> toggle_slot, double Value, double Min, double Max, bool Log, double Step, int NbDigit);
 		virtual ~LabeledDial();
 		bool Redraw();
 

@@ -5,13 +5,16 @@
 
 using namespace std;
 
-LabeledDial::LabeledDial(const sigc::slot<void> toggle_slot, double Value, double Min, double Max, bool Log, double Step, int NbDigit)
+LabeledDial::LabeledDial(const std::string TextLabel, const sigc::slot<void> toggle_slot, double Value, double Min, double Max, bool Log, double Step, int NbDigit)
 {
 	Gdk::Color* color = new  Gdk::Color();
 	color->set_rgb(7710, 8738, 9252);
 	this->modify_bg(Gtk::STATE_NORMAL, *color);
 
 	VBox *p_mainWidget = manage (new VBox(false));
+
+	Label *p_label = manage (new Label(TextLabel));
+	p_mainWidget->pack_start(*p_label);
 
 	m_dial = new Dial(toggle_slot, Value, Min, Max, Log, Step, NbDigit);
 
@@ -28,7 +31,6 @@ LabeledDial::LabeledDial(const sigc::slot<void> toggle_slot, double Value, doubl
 	this->add(*p_mainWidget);
 
 	set_size_request(60, 60);
-
 }
 
 LabeledDial::~LabeledDial()
