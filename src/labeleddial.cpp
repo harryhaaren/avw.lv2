@@ -30,7 +30,7 @@ LabeledDial::LabeledDial(const std::string TextLabel, const sigc::slot<void> tog
 
 	this->add(*p_mainWidget);
 
-	set_size_request(60, 60);
+	set_size_request(60, 64);
 }
 
 LabeledDial::~LabeledDial()

@@ -9,6 +9,7 @@ using namespace sigc;
 using namespace Gtk;
 
 #include "advenv_gui_scope.hpp"
+#include "labeleddial.hpp"
 
 class AdvEnvGUI: public UI<AdvEnvGUI, GtkUI<true>>
 {
@@ -40,25 +41,45 @@ class AdvEnvGUI: public UI<AdvEnvGUI, GtkUI<true>>
 		AdvEnvGUIScope* m_envScope;
 
 	protected:
-		Gtk::HScale* m_scaleTimeScale;
-		Gtk::HScale* m_scaleSustain;
-		Gtk::HScale* m_scaleDelay;
+		LabeledDial* m_scaleTimeScale;
+		LabeledDial* m_scaleSustain;
+		LabeledDial* m_scaleDelay;
 
-		Gtk::HScale* m_scaleAttackTime1;
-		Gtk::HScale* m_scaleAttackTime2;
-		Gtk::HScale* m_scaleAttackTime3;
-		Gtk::HScale* m_scaleAttackTime4;
+		LabeledDial* m_scaleAttackTime1;
+		LabeledDial* m_scaleAttackTime2;
+		LabeledDial* m_scaleAttackTime3;
+		LabeledDial* m_scaleAttackTime4;
 
-		Gtk::HScale* m_scaleAttackLevel1;
-		Gtk::HScale* m_scaleAttackLevel2;
-		Gtk::HScale* m_scaleAttackLevel3;
+		LabeledDial* m_scaleAttackLevel1;
+		LabeledDial* m_scaleAttackLevel2;
+		LabeledDial* m_scaleAttackLevel3;
 
-		Gtk::HScale* m_scaleReleaseTime1;
-		Gtk::HScale* m_scaleReleaseTime2;
-		Gtk::HScale* m_scaleReleaseTime3;
+		LabeledDial* m_scaleReleaseTime1;
+		LabeledDial* m_scaleReleaseTime2;
+		LabeledDial* m_scaleReleaseTime3;
 
-		Gtk::HScale* m_scaleReleaseLevel1;
-		Gtk::HScale* m_scaleReleaseLevel2;
+		LabeledDial* m_scaleReleaseLevel1;
+		LabeledDial* m_scaleReleaseLevel2;
+
+		float get_timeScale();
+		float get_sustain();
+		float get_delay();
+
+		float get_attackTime1();
+		float get_attackTime2();
+		float get_attackTime3();
+		float get_attackTime4();
+
+		float get_attackLevel1();
+		float get_attackLevel2();
+		float get_attackLevel3();
+
+		float get_releaseTime1();
+		float get_releaseTime2();
+		float get_releaseTime3();
+
+		float get_releaseLevel1();
+		float get_releaseLevel2();
 };
 
 #endif

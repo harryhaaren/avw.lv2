@@ -172,5 +172,5 @@ def build(bld):
 		'-DPLUGIN_URI_SUFFIX="advenv_gui"',
 		'-DPLUGIN_HEADER="src/advenv_gui.hpp"'],
 		['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
-		['src/advenv_gui_scope.cpp'])
+		['src/dial.cpp', 'src/labeleddial.cpp', 'src/advenv_gui_scope.cpp'])
 		
