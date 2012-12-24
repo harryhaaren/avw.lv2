@@ -1,7 +1,7 @@
 #include <cairomm/context.h>
 #include <cmath>
 
-#include "g_labeleddial.hpp"
+#include "labeleddial.hpp"
 
 using namespace std;
 

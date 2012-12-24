@@ -1,7 +1,7 @@
 #include <cairomm/context.h>
 #include <math.h>
 
-#include "g_dial.hpp"
+#include "dial.hpp"
 
 using namespace std;
 

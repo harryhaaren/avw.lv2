@@ -4,7 +4,7 @@
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>
 
-#include "g_labeleddial.hpp"
+#include "labeleddial.hpp"
 
 using namespace lvtk;
 using namespace sigc;

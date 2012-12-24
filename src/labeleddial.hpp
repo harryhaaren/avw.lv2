@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-#include "g_dial.hpp"
+#include "dial.hpp"
 
 using namespace Gtk;
 

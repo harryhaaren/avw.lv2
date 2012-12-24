@@ -154,7 +154,7 @@ def build(bld):
             '-DPLUGIN_URI_SUFFIX="%s"' % i,
             '-DPLUGIN_HEADER="src/%s.hpp"' % i],
 		  	['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
-			['src/g_dial.cpp', 'src/g_labeleddial.cpp'])
+			['src/dial.cpp', 'src/labeleddial.cpp'])
 
 	build_plugin_gui(bld, 'avw.lv2', 'env_gui', ['src/env_gui.cpp'],
 		['-DPLUGIN_CLASS=env_gui',
@@ -173,3 +173,4 @@ def build(bld):
 		'-DPLUGIN_HEADER="src/advenv_gui.hpp"'],
 		['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
 		['src/advenv_gui_scope.cpp'])
+		
