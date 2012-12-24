@@ -144,6 +144,7 @@ def build(bld):
 	vcpanning_gui
 	lfo_gui
 	slew_gui
+	amp_gui
     '''.split()
 
 	for i in plugins_gui:

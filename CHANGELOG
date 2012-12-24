@@ -19,6 +19,7 @@
 	* Analog driver new GUI
 	* Dial to react to mouse scroll
 	* GUI for Advanced Envelope
+	* GUI for Amp
 
 0.0.9:
 	* Migrated the code to lvtk (lvtoolkitorg)
