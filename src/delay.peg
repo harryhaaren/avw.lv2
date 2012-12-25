@@ -1,5 +1,5 @@
-#ifndef delay_peg
-#define delay_peg
+#ifndef src_delay_peg
+#define src_delay_peg
 
 
 #ifndef PEG_STRUCT
@@ -27,9 +27,9 @@ enum p_port_enum {
 
 static const peg_data_t p_ports[] = {
   { 0, 10, 0, 0, 0, 0 }, 
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -1, 1, 0, 0, 0, 0 }, 
+  { -1, 1, 0, 0, 0, 0 }, 
 };
 
 
-#endif /* delay_peg */
+#endif /* src_delay_peg */

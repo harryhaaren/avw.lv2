@@ -146,6 +146,7 @@ def build(bld):
 	slew_gui
 	amp_gui
 	cvs_gui
+	delay_gui
     '''.split()
 
 	for i in plugins_gui:

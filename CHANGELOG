@@ -21,6 +21,7 @@
 	* GUI for Advanced Envelope
 	* GUI for Amp
 	* GUI for CVS
+	* GUI for Delay
 
 0.0.9:
 	* Migrated the code to lvtk (lvtoolkitorg)
