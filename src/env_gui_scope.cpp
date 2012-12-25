@@ -3,6 +3,7 @@
 
 EnvGUIScope::EnvGUIScope()
 {
+	set_size_request(100, 80);
 }
 
 EnvGUIScope::~EnvGUIScope()

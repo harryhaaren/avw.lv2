@@ -9,6 +9,7 @@ using namespace sigc;
 using namespace Gtk;
 
 #include "env_gui_scope.hpp"
+#include "labeleddial.hpp"
 
 class EnvGUI: public UI<EnvGUI, GtkUI<true>>
 {
@@ -21,13 +22,21 @@ private:
 	EnvGUIScope* m_envScope;
 
 protected:
-	Gtk::HScale* m_scaleAttack;
-	Gtk::HScale* m_scaleDecay;
-	Gtk::HScale* m_scaleSustain;
-	Gtk::HScale* m_scaleRelease;
-	Gtk::HScale* m_scaleDelay;
-	Gtk::HScale* m_scaleHold;
-	Gtk::HScale* m_scaleTimeScale;
+	LabeledDial* m_scaleAttack;
+	LabeledDial* m_scaleDecay;
+	LabeledDial* m_scaleSustain;
+	LabeledDial* m_scaleRelease;
+	LabeledDial* m_scaleDelay;
+	LabeledDial* m_scaleHold;
+	LabeledDial* m_scaleTimeScale;
+
+	float get_attack();
+	float get_decay();
+	float get_sustain();
+	float get_release();
+	float get_delay();
+	float get_hold();
+	float get_timescale();
 };
 
 #endif

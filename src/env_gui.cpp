@@ -10,57 +10,67 @@
 
 EnvGUI::EnvGUI(const std::string& URI)
 {
-	Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
-	builder->add_from_file(g_strdup_printf("%s/env_gui.xml", bundle_path()));
+	EventBox *p_background = manage (new EventBox());
+	Gdk::Color* color = new  Gdk::Color();
+	color->set_rgb(7710, 8738, 9252);
+	p_background->modify_bg(Gtk::STATE_NORMAL, *color);
 
-	Gtk::Window* p_window = 0;
-	builder->get_widget("env_window", p_window);
+	VBox *p_mainWidget = manage (new VBox(false, 5));
 
-	Gtk::Box* p_mainWidget = 0;
-	builder->get_widget("boxMain", p_mainWidget);
-
-	p_window->remove();
-	add(*p_mainWidget);
-
-	m_scaleAttack = 0;
-	builder->get_widget("scaleAttack", m_scaleAttack);
-	slot<void> p_slotAttack = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_attack), mem_fun(*m_scaleAttack, &HScale::get_value));
-	m_scaleAttack->signal_value_changed().connect(p_slotAttack);
-
-	m_scaleDecay = 0;
-	builder->get_widget("scaleDecay", m_scaleDecay);
-	slot<void> p_slotDecay = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_decay), mem_fun(*m_scaleDecay, &HScale::get_value));
-	m_scaleDecay->signal_value_changed().connect(p_slotDecay);
-
-	m_scaleSustain = 0;
-	builder->get_widget("scaleSustain", m_scaleSustain);
-	slot<void> p_slotSustain = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_sustain), mem_fun(*m_scaleSustain, &HScale::get_value));
-	m_scaleSustain->signal_value_changed().connect(p_slotSustain);
-
-	m_scaleRelease = 0;
-	builder->get_widget("scaleRelease", m_scaleRelease);
-	slot<void> p_slotRelease = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_release), mem_fun(*m_scaleRelease, &HScale::get_value));
-	m_scaleRelease->signal_value_changed().connect(p_slotRelease);
-
-	m_scaleDelay = 0;
-	builder->get_widget("scaleDelay", m_scaleDelay);
-	slot<void> p_slotDelay = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_delay), mem_fun(*m_scaleDelay, &HScale::get_value));
-	m_scaleDelay->signal_value_changed().connect(p_slotDelay);
-
-	m_scaleHold = 0;
-	builder->get_widget("scaleHold", m_scaleHold);
-	slot<void> p_slotHold = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_hold), mem_fun(*m_scaleHold, &HScale::get_value));
-	m_scaleHold->signal_value_changed().connect(p_slotHold);
-
-	m_scaleTimeScale = 0;
-	builder->get_widget("scaleTimeScale", m_scaleTimeScale);
-	slot<void> p_slotTimeScale = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_timeScale), mem_fun(*m_scaleTimeScale, &HScale::get_value));
-	m_scaleTimeScale->signal_value_changed().connect(p_slotTimeScale);
-
-	Gtk::Alignment* p_graphFrame = 0;
-	builder->get_widget("alignmentFrame", p_graphFrame);
 	m_envScope = new EnvGUIScope();
-	p_graphFrame->add(*m_envScope);
+	p_mainWidget->pack_start(*m_envScope);
+
+
+
+	Frame *p_adsrFrame = manage (new Frame("ADSR"));
+	p_adsrFrame->set_shadow_type(Gtk::SHADOW_NONE);
+	HBox *p_adsrWidget = manage (new HBox(false));
+
+	slot<void> p_slotAttack = compose(bind<0>(mem_fun(*this, &EnvGUI::write_control), p_attack), mem_fun(*this, &EnvGUI::get_attack));
+	m_scaleAttack = new LabeledDial("Attack", p_slotAttack, p_attack, 0, 1, false, 0.01, 2);
+	p_adsrWidget->pack_start(*m_scaleAttack);
+
+	slot<void> p_slotDecay = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_decay), mem_fun(*this, &EnvGUI::get_decay));
+	m_scaleDecay = new LabeledDial("Decay", p_slotDecay, p_decay, 0, 1, false, 0.01, 2);
+	p_adsrWidget->pack_start(*m_scaleDecay);
+
+	slot<void> p_slotSustain = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_sustain), mem_fun(*this, &EnvGUI::get_sustain));
+	m_scaleSustain = new LabeledDial("Sustain", p_slotSustain, p_delay, 0, 1, false, 0.01, 2);
+	p_adsrWidget->pack_start(*m_scaleSustain);
+
+	slot<void> p_slotRelease = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_release), mem_fun(*this, &EnvGUI::get_release));
+	m_scaleRelease = new LabeledDial("Release", p_slotRelease, p_release, 0, 1, false, 0.01, 2);
+	p_adsrWidget->pack_start(*m_scaleRelease);
+
+	p_adsrFrame->add(*p_adsrWidget);
+	p_mainWidget->pack_start(*p_adsrFrame);
+
+
+
+	p_mainWidget->pack_start(*(new HSeparator()));
+
+
+
+	Frame *p_dhtFrame = manage (new Frame("Delay / Hold / Time Scale"));
+	p_dhtFrame->set_shadow_type(Gtk::SHADOW_NONE);
+		HBox *p_dhtWidget = manage (new HBox(false));
+
+	slot<void> p_slotDelay = compose(bind<0>(mem_fun(*this, &EnvGUI::write_control), p_delay), mem_fun(*this, &EnvGUI::get_delay));
+	m_scaleDelay = new LabeledDial("Delay", p_slotDelay, p_delay, 0, 1, false, 0.01, 2);
+	p_dhtWidget->pack_start(*m_scaleDelay);
+
+	slot<void> p_slotHold = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_hold), mem_fun(*this, &EnvGUI::get_hold));
+	m_scaleHold = new LabeledDial("Hold", p_slotHold, p_hold, 0, 1, false, 0.01, 2);
+	p_dhtWidget->pack_start(*m_scaleHold);
+
+	slot<void> p_slotTimescale = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_timeScale), mem_fun(*this, &EnvGUI::get_timescale));
+	m_scaleTimeScale = new LabeledDial("Time Scale", p_slotTimescale, p_timeScale, 0, 1, false, 0.01, 2);
+	p_dhtWidget->pack_start(*m_scaleTimeScale);
+
+	p_dhtFrame->add(*p_dhtWidget);
+	p_mainWidget->pack_start(*p_dhtFrame);
+
+
 
 	m_envScope->m_attackValue = m_scaleAttack->get_value();
 	m_envScope->m_decayValue = m_scaleDecay->get_value();
@@ -71,8 +81,23 @@ EnvGUI::EnvGUI(const std::string& URI)
 
 	m_envScope->Redraw();
 
+
+
+	p_mainWidget->set_size_request(200, 320);
+
+	p_background->add(*p_mainWidget);
+	add(*p_background);
+
 	Gtk::manage(p_mainWidget);
 }
+
+float EnvGUI::get_attack() { return m_scaleAttack->get_value(); }
+float EnvGUI::get_decay() { return m_scaleDecay->get_value(); }
+float EnvGUI::get_sustain() { return m_scaleSustain->get_value(); }
+float EnvGUI::get_release() { return m_scaleRelease->get_value(); }
+float EnvGUI::get_delay() { return m_scaleDelay->get_value(); }
+float EnvGUI::get_hold() { return m_scaleHold->get_value(); }
+float EnvGUI::get_timescale() { return m_scaleTimeScale->get_value(); }
 
 void EnvGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
 {

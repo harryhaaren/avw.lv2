@@ -166,7 +166,7 @@ def build(bld):
         '-DPLUGIN_URI_SUFFIX="env_gui"',
         '-DPLUGIN_HEADER="src/env_gui.hpp"'],
 		['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
-		['src/env_gui_scope.cpp'])
+		['src/dial.cpp', 'src/labeleddial.cpp', 'src/env_gui_scope.cpp'])
 				  
 	build_plugin_gui(bld, 'avw.lv2', 'advenv_gui', ['src/advenv_gui.cpp'],
 		['-DPLUGIN_CLASS=advenv_gui',
