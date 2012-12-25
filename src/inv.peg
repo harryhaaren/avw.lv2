@@ -1,5 +1,5 @@
-#ifndef inv_peg
-#define inv_peg
+#ifndef src_inv_peg
+#define src_inv_peg
 
 
 #ifndef PEG_STRUCT
@@ -25,9 +25,9 @@ enum p_port_enum {
 };
 
 static const peg_data_t p_ports[] = {
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -1, 1, 0, 0, 0, 0 }, 
+  { -1, 1, 0, 0, 0, 0 }, 
 };
 
 
-#endif /* inv_peg */
+#endif /* src_inv_peg */

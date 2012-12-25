@@ -1,8 +1,6 @@
 0.0.10:
-	* LFO using CV
-	* Slew using CV
-	* CVtoHZ and HZtoCV using CV
-	* Slew Limiter with GUI
+	* Plugins using CV
+	* Plugins with updated GUI
 	* David Robillard Patch:
 		* Fixed several errors and typos discovered by sord_validate.
 		* Clean up port names (unfortunately some symbols are pretty weird too but changing this would break compatibility), use label conventions consistent with fomp
@@ -10,19 +8,7 @@
 		* Make ports with scale points enumerations so a combo box will be shown in hosts (including Ingen)
 		* Categorized plugins and remove references to non-existent classes.  I added lv2:EnvelopePlugin for this, it will be included in the next spec release
 		* "Envelop" => "Envelope
-	* MoogLPF using CV
-	* Envelope and Advanced Envelope using CV
-	* VCA Linear and VCA Exp using CV
-	* VCF using CV
-	* Absolute using CV
-	* Analog driver using CV
-	* Analog driver new GUI
 	* Dial to react to mouse scroll
-	* GUI for Advanced Envelope
-	* GUI for Amp
-	* GUI for CVS
-	* GUI for Delay
-	* GUI for HZToVC
 
 0.0.9:
 	* Migrated the code to lvtk (lvtoolkitorg)
