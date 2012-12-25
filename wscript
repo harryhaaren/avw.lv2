@@ -145,6 +145,7 @@ def build(bld):
 	lfo_gui
 	slew_gui
 	amp_gui
+	cvs_gui
     '''.split()
 
 	for i in plugins_gui:

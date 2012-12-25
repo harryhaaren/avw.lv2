@@ -20,6 +20,7 @@
 	* Dial to react to mouse scroll
 	* GUI for Advanced Envelope
 	* GUI for Amp
+	* GUI for CVS
 
 0.0.9:
 	* Migrated the code to lvtk (lvtoolkitorg)
