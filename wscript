@@ -147,6 +147,7 @@ def build(bld):
 	amp_gui
 	cvs_gui
 	delay_gui
+	hztovc_gui
     '''.split()
 
 	for i in plugins_gui:

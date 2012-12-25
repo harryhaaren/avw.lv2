@@ -1,5 +1,5 @@
-#ifndef AD_GUI_H
-#define AD_GUI_H
+#ifndef CVS_GUI_H
+#define CVS_GUI_H
 
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>

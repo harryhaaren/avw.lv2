@@ -22,6 +22,7 @@
 	* GUI for Amp
 	* GUI for CVS
 	* GUI for Delay
+	* GUI for HZToVC
 
 0.0.9:
 	* Migrated the code to lvtk (lvtoolkitorg)

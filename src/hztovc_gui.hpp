@@ -1,5 +1,5 @@
-#ifndef DELAY_GUI_H
-#define DELAY_GUI_H
+#ifndef HZTOVCGUI_GUI_H
+#define HZTOVCGUI_GUI_H
 
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>
@@ -10,16 +10,16 @@ using namespace lvtk;
 using namespace sigc;
 using namespace Gtk;
 
-class DelayGUI: public UI<DelayGUI, GtkUI<true>>
+class HzToVCGUI: public UI<HzToVCGUI, GtkUI<true>>
 {
 	public:
-		DelayGUI(const std::string& URI);
+		HzToVCGUI(const std::string& URI);
 		void port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer);
 
 	protected:
-		LabeledDial* m_dialDelay;
+		LabeledDial* m_dialOctaveOffset;
 
-		float get_delay();
+		float get_octaveOffset();
 };
 
 #endif
