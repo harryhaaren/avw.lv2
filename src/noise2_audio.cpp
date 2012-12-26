@@ -7,10 +7,10 @@
 #include <lvtk-1/lvtk/plugin.hpp>
 
 #include "synthdata.hpp"
-#include "noise2.hpp"
+#include "noise2_audio.hpp"
 
-Noise2::Noise2(double rate)
-: Plugin<Noise2>(p_n_ports)
+Noise2Audio::Noise2Audio(double rate)
+: Plugin<Noise2Audio>(p_n_ports)
   {
 	int l2;
 	long t;
@@ -21,9 +21,6 @@ Noise2::Noise2(double rate)
 	NoiseType=WHITE;
 	randmax = 2.0f / (float)RAND_MAX;
 
-	//configDialog->addComboBox(tr("Noise Type"), NoiseType, noiseNames);
-	//configDialog->addSlider(tr("Random Rate"), rate, 0, 10);
-	//configDialog->addSlider(tr("Random Level"), level, 0, 1);
 	r = 0;
 	for (l2 = 0; l2 < 3; ++l2)
 	{
@@ -33,7 +30,7 @@ Noise2::Noise2(double rate)
 	srand(abs(t - 10000 * (t % 100)));
   }
 
-void Noise2::run(uint32_t nframes)
+void Noise2Audio::run(uint32_t nframes)
 {
 	unsigned int l2;
 	float white_noise;
@@ -86,5 +83,5 @@ void Noise2::run(uint32_t nframes)
 	}
 }
 
-static int _ = Noise2::register_class("http://avwlv2.sourceforge.net/plugins/avw/noise2");
+static int _ = Noise2Audio::register_class("http://avwlv2.sourceforge.net/plugins/avw/noise2_audio");
 

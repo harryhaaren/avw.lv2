@@ -108,7 +108,8 @@ def build(bld):
 	lfo
 	mixer_audio
 	mixer_cv
-	noise2
+	noise2_audio
+	noise2_cv
 	slew
 	vcaexp
 	vcalin
@@ -152,6 +153,8 @@ def build(bld):
 	mixer_audio_gui
 	mixer_cv_gui
 	mooglpf_gui
+	noise2_audio_gui
+	noise2_cv_gui
     '''.split()
 
 	for i in plugins_gui:
