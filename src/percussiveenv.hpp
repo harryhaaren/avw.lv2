@@ -15,7 +15,6 @@ class PercussiveEnv: public Plugin<PercussiveEnv>
 	private:
 		float delay, attack, hold, decay;
 		float e_noteOff, de;
-		//Port *port_gate, *port_retrigger, *port_inverse_out, *port_gain_out;
 
 		double m_rate;
 

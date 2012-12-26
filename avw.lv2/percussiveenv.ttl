@@ -4,25 +4,36 @@
 @prefix rdf: 	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: 	<http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ll: 	<http://ll-plugins.nongnu.org/lv2/namespace#> .
+@prefix guiext: <http://lv2plug.in/ns/extensions/ui#> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/percussiveenv/gui>
+  	a guiext:GtkUI ;
+  	guiext:binary <percussiveenv_gui.so> .
 
 <http://avwlv2.sourceforge.net/plugins/avw/percussiveenv>
-	a lv2:Plugin ,
-		lv2:EnvelopePlugin ;
+	a lv2:Plugin, lv2:EnvelopePlugin ;
 	lv2:project <http://avwlv2.sourceforge.net/plugins/avw/> ;        
 	doap:name "AMS Percussive Envelope" ;
 	doap:license <http://opensource.org/licenses/isc> ;
 	ll:pegName "p" ;
+	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/percussiveenv/gui> ;
 	lv2:optionalFeature lv2:hardRTCapable ;
 	lv2:port [
-		a lv2:AudioPort, lv2:InputPort ;
+		a lv2:InputPort, lv2:CVPort ;
 		lv2:index 0 ;
 		lv2:symbol "gate" ;
-		lv2:name "Gate" 
+		lv2:name "Gate" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ; 
 	] ,	[
-		a lv2:AudioPort, lv2:InputPort ;
+		a lv2:InputPort, lv2:CVPort ;
 		lv2:index 1 ;
 		lv2:symbol "retrigger" ;
-		lv2:name "Retrigger"  
+		lv2:name "Retrigger" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ; 
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 2 ;
@@ -64,13 +75,19 @@
 		lv2:minimum 1 ;
 		lv2:maximum 10 ;
 	] ,	[
-		a lv2:AudioPort , lv2:OutputPort ;
+		a lv2:OutputPort, lv2:CVPort ;
 		lv2:index 7 ;
 		lv2:symbol "out" ;
-		lv2:name "Out"
+		lv2:name "Out" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ; 
 	] ,	[
-		a lv2:AudioPort , lv2:OutputPort ;
+		a lv2:OutputPort, lv2:CVPort ;
 		lv2:index 8 ;
 		lv2:symbol "invOut" ;
-		lv2:name "Inverse Out"
+		lv2:name "Inverse Out" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ; 
 	].
