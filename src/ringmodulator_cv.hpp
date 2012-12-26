@@ -3,16 +3,16 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "ringmodulator.peg"
+#include "ringmodulator_cv.peg"
 
 using namespace lvtk;
 
-class RingModulator: public Plugin<RingModulator>
+class RingModulatorCV: public Plugin<RingModulatorCV>
 {
 	private:
 		float gain;
 	public:
-		RingModulator(double rate);
+		RingModulatorCV(double rate);
 		void run(uint32_t nframes);
 };
 

@@ -121,7 +121,8 @@ def build(bld):
 	absolute
 	inv
 	tranches
-	ringmodulator
+	ringmodulator_audio
+	ringmodulator_cv
 	percussiveenv
 	samplehold
 	vcpanning
@@ -155,6 +156,8 @@ def build(bld):
 	mooglpf_gui
 	noise2_audio_gui
 	noise2_cv_gui
+	ringmodulator_audio_gui
+	ringmodulator_cv_gui
     '''.split()
 
 	for i in plugins_gui:
