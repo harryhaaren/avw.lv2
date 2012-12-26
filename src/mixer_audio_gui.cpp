@@ -3,10 +3,10 @@
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>
 
-#include "mixer_gui.hpp"
-#include "mixer.hpp"
+#include "mixer_audio_gui.hpp"
+#include "mixer_audio.hpp"
 
-MixerGUI::MixerGUI(const std::string& URI)
+MixerAudioGUI::MixerAudioGUI(const std::string& URI)
 {
 	EventBox *p_background = manage(new EventBox());
 	Gdk::Color* color = new  Gdk::Color();
@@ -19,7 +19,7 @@ MixerGUI::MixerGUI(const std::string& URI)
 
 
 
-	slot<void> p_slotGain = compose(bind<0>(mem_fun(*this, &MixerGUI::write_control), p_gain), mem_fun(*this,  &MixerGUI::get_gain));
+	slot<void> p_slotGain = compose(bind<0>(mem_fun(*this, &MixerAudioGUI::write_control), p_gain), mem_fun(*this,  &MixerAudioGUI::get_gain));
 	m_dialGain = new LabeledDial("Gain", p_slotGain, p_gain, 0, 2, false, 0.01, 2);
 	p_mainWidget->pack_start(*m_dialGain);
 
@@ -29,19 +29,19 @@ MixerGUI::MixerGUI(const std::string& URI)
 	p_volumesFrame->set_shadow_type(Gtk::SHADOW_NONE);
 	Table *p_volumesBox = manage(new Table(2, 2, true));
 
-	slot<void> p_slotVolume1 = compose(bind<0>(mem_fun(*this, &MixerGUI::write_control), p_volume1), mem_fun(*this,  &MixerGUI::get_volume1));
+	slot<void> p_slotVolume1 = compose(bind<0>(mem_fun(*this, &MixerAudioGUI::write_control), p_volume1), mem_fun(*this,  &MixerAudioGUI::get_volume1));
 	m_dialVolume1 = new LabeledDial("Volume 1", p_slotVolume1, p_volume1, 0, 2, false, 0.01, 2);
 	p_volumesBox->attach(*m_dialVolume1, 0, 1, 0, 1);
 
-	slot<void> p_slotVolume2 = compose(bind<0>(mem_fun(*this, &MixerGUI::write_control), p_volume2), mem_fun(*this,  &MixerGUI::get_volume2));
+	slot<void> p_slotVolume2 = compose(bind<0>(mem_fun(*this, &MixerAudioGUI::write_control), p_volume2), mem_fun(*this,  &MixerAudioGUI::get_volume2));
 	m_dialVolume2 = new LabeledDial("Volume 2", p_slotVolume2, p_volume2, 0, 2, false, 0.01, 2);
 	p_volumesBox->attach(*m_dialVolume2, 1, 2, 0, 1);
 
-	slot<void> p_slotVolume3 = compose(bind<0>(mem_fun(*this, &MixerGUI::write_control), p_volume3), mem_fun(*this,  &MixerGUI::get_volume3));
+	slot<void> p_slotVolume3 = compose(bind<0>(mem_fun(*this, &MixerAudioGUI::write_control), p_volume3), mem_fun(*this,  &MixerAudioGUI::get_volume3));
 	m_dialVolume3 = new LabeledDial("Volume 3", p_slotVolume3, p_volume3, 0, 2, false, 0.01, 2);
 	p_volumesBox->attach(*m_dialVolume3, 0, 1, 1, 2);
 
-	slot<void> p_slotVolume4 = compose(bind<0>(mem_fun(*this, &MixerGUI::write_control), p_volume4), mem_fun(*this,  &MixerGUI::get_volume4));
+	slot<void> p_slotVolume4 = compose(bind<0>(mem_fun(*this, &MixerAudioGUI::write_control), p_volume4), mem_fun(*this,  &MixerAudioGUI::get_volume4));
 	m_dialVolume4 = new LabeledDial("Volume 4", p_slotVolume4, p_volume4, 0, 2, false, 0.01, 2);
 	p_volumesBox->attach(*m_dialVolume4, 1, 2, 1, 2);
 
@@ -58,14 +58,14 @@ MixerGUI::MixerGUI(const std::string& URI)
 	Gtk::manage(p_mainWidget);
 }
 
-float MixerGUI::get_gain(){ return m_dialGain->get_value(); }
-float MixerGUI::get_volume1(){ return m_dialVolume1->get_value(); }
-float MixerGUI::get_volume2(){ return m_dialVolume2->get_value(); }
-float MixerGUI::get_volume3(){ return m_dialVolume3->get_value(); }
-float MixerGUI::get_volume4(){ return m_dialVolume4->get_value(); }
+float MixerAudioGUI::get_gain(){ return m_dialGain->get_value(); }
+float MixerAudioGUI::get_volume1(){ return m_dialVolume1->get_value(); }
+float MixerAudioGUI::get_volume2(){ return m_dialVolume2->get_value(); }
+float MixerAudioGUI::get_volume3(){ return m_dialVolume3->get_value(); }
+float MixerAudioGUI::get_volume4(){ return m_dialVolume4->get_value(); }
 
 
-void MixerGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
+void MixerAudioGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
 {
 	if (port == p_gain)
 	{
@@ -89,4 +89,4 @@ void MixerGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, 
 	}
 }
 
-static int _ = MixerGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/mixer/gui");
+static int _ = MixerAudioGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/mixer_audio/gui");

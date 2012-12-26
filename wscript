@@ -106,7 +106,7 @@ def build(bld):
 	env
 	hztovc
 	lfo
-	mixer
+	mixer_audio
 	noise2
 	slew
 	vcaexp
@@ -148,7 +148,7 @@ def build(bld):
 	cvs_gui
 	delay_gui
 	hztovc_gui
-	mixer_gui
+	mixer_audio_gui
     '''.split()
 
 	for i in plugins_gui:

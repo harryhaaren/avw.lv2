@@ -5,16 +5,16 @@
 #include <time.h>
 
 #include "synthdata.hpp"
-#include "mixer.hpp"
+#include "mixer_audio.hpp"
 
 using namespace lvtk;
 
-Mixer::Mixer(double rate)
-: Plugin<Mixer>(p_n_ports)
+MixerAudio::MixerAudio(double rate)
+: Plugin<MixerAudio>(p_n_ports)
   {
   }
 
-void Mixer::run(uint32_t nframes)
+void MixerAudio::run(uint32_t nframes)
 {
 	unsigned int l2;
 	float mixgain;
@@ -44,5 +44,5 @@ void Mixer::run(uint32_t nframes)
 	}
 }
 
-static int _ = Mixer::register_class("http://avwlv2.sourceforge.net/plugins/avw/mixer");
+static int _ = MixerAudio::register_class("http://avwlv2.sourceforge.net/plugins/avw/mixer_audio");
 

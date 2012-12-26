@@ -1,5 +1,5 @@
-#ifndef mixer_peg
-#define mixer_peg
+#ifndef src_mixer_audio_peg
+#define src_mixer_audio_peg
 
 
 #ifndef PEG_STRUCT
@@ -14,9 +14,9 @@ typedef struct {
 } peg_data_t;
 #endif
 
-/* <http://avwlv2.sourceforge.net/plugins/avw/mixer> */
+/* <http://avwlv2.sourceforge.net/plugins/avw/mixer_audio> */
 
-static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/mixer";
+static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/mixer_audio";
 
 enum p_port_enum {
   p_in1,
@@ -46,4 +46,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* mixer_peg */
+#endif /* src_mixer_audio_peg */
