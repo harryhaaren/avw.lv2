@@ -151,6 +151,7 @@ def build(bld):
 	hztovc_gui
 	mixer_audio_gui
 	mixer_cv_gui
+	mooglpf_gui
     '''.split()
 
 	for i in plugins_gui:
