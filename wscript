@@ -158,6 +158,7 @@ def build(bld):
 	noise2_cv_gui
 	ringmodulator_audio_gui
 	ringmodulator_cv_gui
+	tranches_gui
     '''.split()
 
 	for i in plugins_gui:
