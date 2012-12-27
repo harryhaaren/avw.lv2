@@ -158,6 +158,7 @@ def build(bld):
 	vcalin_gui
 	vcswitch_audio_gui
 	vcswitch_cv_gui
+	vctohz_gui
 	'''.split()
 
 	for i in plugins_gui:
