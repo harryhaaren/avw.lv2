@@ -58,9 +58,9 @@ LfoGUI::LfoGUI(const std::string& URI)
 	Gtk::manage(p_mainWidget);
 }
 
-float LfoGUI::get_freq() { return m_dialFreq->get_value(); }
-float LfoGUI::get_div() { return m_dialTempoDiv->get_value(); }
-float LfoGUI::get_phi0() { return m_dialPhi0->get_value(); }
+float LfoGUI::get_freq() 	{ return m_dialFreq->get_value(); }
+float LfoGUI::get_div() 	{ return m_dialTempoDiv->get_value(); }
+float LfoGUI::get_phi0() 	{ return m_dialPhi0->get_value(); }
 
 void LfoGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
 {

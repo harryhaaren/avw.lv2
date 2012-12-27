@@ -92,12 +92,6 @@ def build(bld):
             target = bld.path.get_bld().make_node('avw.lv2/%s' % i),
             install_path = '${LV2DIR}/avw.lv2')
 
-	for i in bld.path.ant_glob('gui/*.xml'):
-		bld(rule   = do_copy,
-            source = i,
-            target = bld.path.get_bld().make_node('avw.lv2/%s' % i),
-            install_path = '${LV2DIR}/avw.lv2')
-
  	plugins = '''
 	vco2
 	ad
@@ -161,7 +155,7 @@ def build(bld):
 	tranches_gui
 	vcaexp_gui
 	vcalin_gui
-    '''.split()
+	'''.split()
 
 	for i in plugins_gui:
 		build_plugin_gui(bld, 'avw.lv2', i, ['src/%s.cpp' % i],

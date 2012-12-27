@@ -8,34 +8,50 @@
 
 VcPanningGUI::VcPanningGUI(const std::string& URI)
 {
-	Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
-	builder->add_from_file(g_strdup_printf("%s/vcpanning_gui.xml", bundle_path()));
+	EventBox *p_background = manage (new EventBox());
+	Gdk::Color* color = new  Gdk::Color();
+	color->set_rgb(7710, 8738, 9252);
+	p_background->modify_bg(Gtk::STATE_NORMAL, *color);
 
-	Gtk::Window* p_window = 0;
-	builder->get_widget("vcpanning_window", p_window);
+	VBox *p_mainWidget = manage (new VBox(false, 5));
 
-	Gtk::Widget* p_mainWidget = 0;
-	builder->get_widget("vbox_main", p_mainWidget);
+	Label *p_labelPanningMode = manage (new Label("Panning Mode"));
+	p_mainWidget->pack_start(*p_labelPanningMode);
 
-	p_window->remove();
+	m_comboPanningMode = manage (new ComboBoxText());
+	m_comboPanningMode->append_text("VC Control");
+	m_comboPanningMode->append_text("Fixed Alternating Panorama - Full Width");
+	m_comboPanningMode->append_text("Fixed Alternating Panorama - Half Width");
+	m_comboPanningMode->append_text("Fixed Alternating Panorama - Quarter Width");
+	m_comboPanningMode->append_text("Mono");
 
-	add(*p_mainWidget);
-
-	m_comboPanningMode = 0;
-	builder->get_widget("comboboxtextVCFType", m_comboPanningMode);
 	slot<void> p_slotPanningMode = compose(bind<0> (mem_fun(*this, &VcPanningGUI::write_control), p_panningMode), mem_fun(*m_comboPanningMode, &ComboBoxText::get_active_row_number));
 	m_comboPanningMode->signal_changed().connect(p_slotPanningMode);
 
-	m_scalePanOffset = 0;
-	builder->get_widget("hscaleInputGain", m_scalePanOffset);
-	slot<void> p_slotPanOffset = compose(bind<0> (mem_fun(*this, &VcPanningGUI::write_control), p_panOffset), mem_fun(*m_scalePanOffset, &HScale::get_value));
-	m_scalePanOffset->signal_value_changed().connect(p_slotPanOffset);
+	p_mainWidget->pack_start(*m_comboPanningMode);
 
-	m_scalePanGain = 0;
-	builder->get_widget("hscaleFrequency", m_scalePanGain);
-	slot<void> p_slotPanGain = compose(bind<0> (mem_fun(*this, &VcPanningGUI::write_control), p_panGain), mem_fun(*m_scalePanGain, &HScale::get_value));
-	m_scalePanGain->signal_value_changed().connect(p_slotPanGain);
+	HBox *p_dials = manage (new HBox(true));
+
+	slot<void> p_slotOffset = compose(bind<0>(mem_fun(*this, &VcPanningGUI::write_control), p_panOffset), mem_fun(*this,  &VcPanningGUI::get_panOffset));
+	m_scalePanOffset = new LabeledDial("Pan Offset", p_slotOffset, p_panOffset, -1, 1, false, 0.01, 2);
+	p_dials->pack_start(*m_scalePanOffset);
+
+	slot<void> p_slotGain = compose(bind<0>(mem_fun(*this, &VcPanningGUI::write_control), p_panGain), mem_fun(*this, &VcPanningGUI::get_panGain));
+	m_scalePanGain = new LabeledDial("Pain Gain", p_slotGain, p_panGain, 0, 2, true, 0.0001, 4);
+	p_dials->pack_start(*m_scalePanGain);
+
+	p_mainWidget->pack_start(*p_dials);
+
+	p_mainWidget->set_size_request(256, 160);
+
+	p_background->add(*p_mainWidget);
+	add(*p_background);
+
+	Gtk::manage(p_mainWidget);
 }
+
+float VcPanningGUI::get_panOffset() { return m_scalePanOffset->get_value(); }
+float VcPanningGUI::get_panGain() 	{ return m_scalePanGain->get_value(); }
 
 void VcPanningGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
 {
