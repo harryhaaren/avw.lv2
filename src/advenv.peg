@@ -1,5 +1,5 @@
-#ifndef advenv_peg
-#define advenv_peg
+#ifndef avw_lv__advenv_peg
+#define avw_lv__advenv_peg
 
 
 #ifndef PEG_STRUCT
@@ -64,4 +64,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* advenv_peg */
+#endif /* avw_lv__advenv_peg */

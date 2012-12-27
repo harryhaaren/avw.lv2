@@ -1,5 +1,5 @@
-#ifndef vcpanning_peg
-#define vcpanning_peg
+#ifndef avw_lv__vcpanning_peg
+#define avw_lv__vcpanning_peg
 
 
 #ifndef PEG_STRUCT
@@ -40,4 +40,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* vcpanning_peg */
+#endif /* avw_lv__vcpanning_peg */

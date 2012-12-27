@@ -1,5 +1,5 @@
-#ifndef amp_peg
-#define amp_peg
+#ifndef avw_lv__amp_peg
+#define avw_lv__amp_peg
 
 
 #ifndef PEG_STRUCT
@@ -32,4 +32,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* amp_peg */
+#endif /* avw_lv__amp_peg */

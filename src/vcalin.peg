@@ -1,5 +1,5 @@
-#ifndef vcalin_peg
-#define vcalin_peg
+#ifndef avw_lv__vcalin_peg
+#define avw_lv__vcalin_peg
 
 
 #ifndef PEG_STRUCT
@@ -46,4 +46,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* vcalin_peg */
+#endif /* avw_lv__vcalin_peg */

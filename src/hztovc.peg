@@ -1,5 +1,5 @@
-#ifndef hztovc_peg
-#define hztovc_peg
+#ifndef avw_lv__hztovc_peg
+#define avw_lv__hztovc_peg
 
 
 #ifndef PEG_STRUCT
@@ -32,4 +32,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* hztovc_peg */
+#endif /* avw_lv__hztovc_peg */

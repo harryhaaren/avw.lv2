@@ -1,5 +1,5 @@
-#ifndef dynamicwaves_peg
-#define dynamicwaves_peg
+#ifndef avw_lv__dynamicwaves_peg
+#define avw_lv__dynamicwaves_peg
 
 
 #ifndef PEG_STRUCT
@@ -216,4 +216,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* dynamicwaves_peg */
+#endif /* avw_lv__dynamicwaves_peg */

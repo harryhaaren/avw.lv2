@@ -1,5 +1,5 @@
-#ifndef delay_peg
-#define delay_peg
+#ifndef avw_lv__delay_peg
+#define avw_lv__delay_peg
 
 
 #ifndef PEG_STRUCT
@@ -32,4 +32,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* delay_peg */
+#endif /* avw_lv__delay_peg */

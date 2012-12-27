@@ -1,5 +1,5 @@
-#ifndef vcaexp_peg
-#define vcaexp_peg
+#ifndef avw_lv__vcaexp_peg
+#define avw_lv__vcaexp_peg
 
 
 #ifndef PEG_STRUCT
@@ -46,4 +46,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* vcaexp_peg */
+#endif /* avw_lv__vcaexp_peg */

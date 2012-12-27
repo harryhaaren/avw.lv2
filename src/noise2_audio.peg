@@ -1,5 +1,5 @@
-#ifndef noise__audio_peg
-#define noise__audio_peg
+#ifndef avw_lv__noise__audio_peg
+#define avw_lv__noise__audio_peg
 
 
 #ifndef PEG_STRUCT
@@ -34,4 +34,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* noise__audio_peg */
+#endif /* avw_lv__noise__audio_peg */

@@ -1,5 +1,5 @@
-#ifndef mooglpf_peg
-#define mooglpf_peg
+#ifndef avw_lv__mooglpf_peg
+#define avw_lv__mooglpf_peg
 
 
 #ifndef PEG_STRUCT
@@ -48,4 +48,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* mooglpf_peg */
+#endif /* avw_lv__mooglpf_peg */

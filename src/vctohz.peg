@@ -1,5 +1,5 @@
-#ifndef vctohz_peg
-#define vctohz_peg
+#ifndef avw_lv__vctohz_peg
+#define avw_lv__vctohz_peg
 
 
 #ifndef PEG_STRUCT
@@ -34,4 +34,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* vctohz_peg */
+#endif /* avw_lv__vctohz_peg */

@@ -1,5 +1,5 @@
-#ifndef samplehold_peg
-#define samplehold_peg
+#ifndef avw_lv__samplehold_peg
+#define avw_lv__samplehold_peg
 
 
 #ifndef PEG_STRUCT
@@ -36,4 +36,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* samplehold_peg */
+#endif /* avw_lv__samplehold_peg */

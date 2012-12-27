@@ -1,5 +1,5 @@
-#ifndef lfo_peg
-#define lfo_peg
+#ifndef avw_lv__lfo_peg
+#define avw_lv__lfo_peg
 
 
 #ifndef PEG_STRUCT
@@ -42,4 +42,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* lfo_peg */
+#endif /* avw_lv__lfo_peg */
