@@ -90,7 +90,7 @@ void Vco2::run(uint32_t nframes)
 				case TRIANGLE:
 					p(p_out)[l2] = synthdata->wave_tri[phint];
 					break;
-				case AWAVE_SAW:
+				case AWAVE_SAW1:
 					p(p_out)[l2] = synthdata->wave_saw2[phint];
 					break;
 				case AWAVE_SAW2:
@@ -207,7 +207,7 @@ void Vco2::run(uint32_t nframes)
 				case TRIANGLE:
 					p(p_out)[l2] = synthdata->wave_tri[phint];
 					break;
-				case AWAVE_SAW:
+				case AWAVE_SAW1:
 					p(p_out)[l2] = synthdata->wave_saw2[phint];
 					break;
 				case AWAVE_SAW2:

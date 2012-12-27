@@ -1,5 +1,5 @@
-#ifndef src_cvs_peg
-#define src_cvs_peg
+#ifndef cvs_peg
+#define cvs_peg
 
 
 #ifndef PEG_STRUCT
@@ -50,4 +50,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* src_cvs_peg */
+#endif /* cvs_peg */

@@ -1,5 +1,5 @@
-#ifndef src_hztovc_peg
-#define src_hztovc_peg
+#ifndef hztovc_peg
+#define hztovc_peg
 
 
 #ifndef PEG_STRUCT
@@ -32,4 +32,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* src_hztovc_peg */
+#endif /* hztovc_peg */

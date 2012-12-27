@@ -1,5 +1,5 @@
-#ifndef ___src_mixer_cv_peg
-#define ___src_mixer_cv_peg
+#ifndef mixer_cv_peg
+#define mixer_cv_peg
 
 
 #ifndef PEG_STRUCT
@@ -46,4 +46,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* ___src_mixer_cv_peg */
+#endif /* mixer_cv_peg */

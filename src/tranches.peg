@@ -1,5 +1,5 @@
-#ifndef src_tranches_peg
-#define src_tranches_peg
+#ifndef tranches_peg
+#define tranches_peg
 
 
 #ifndef PEG_STRUCT
@@ -42,4 +42,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* src_tranches_peg */
+#endif /* tranches_peg */

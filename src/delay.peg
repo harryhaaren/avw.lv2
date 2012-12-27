@@ -1,5 +1,5 @@
-#ifndef src_delay_peg
-#define src_delay_peg
+#ifndef delay_peg
+#define delay_peg
 
 
 #ifndef PEG_STRUCT
@@ -32,4 +32,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* src_delay_peg */
+#endif /* delay_peg */

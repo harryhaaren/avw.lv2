@@ -1,5 +1,5 @@
-#ifndef ___src_samplehold_peg
-#define ___src_samplehold_peg
+#ifndef samplehold_peg
+#define samplehold_peg
 
 
 #ifndef PEG_STRUCT
@@ -36,4 +36,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* ___src_samplehold_peg */
+#endif /* samplehold_peg */

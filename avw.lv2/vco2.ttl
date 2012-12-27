@@ -62,13 +62,13 @@
 		  		rdfs:label "Rectangle" ;
 				rdf:value 3
 		] ,		[
-		  		rdfs:label "Aux Saw" ;
+		  		rdfs:label "Aux Saw 1" ;
 				rdf:value 4
 		] ,		[
-		  		rdfs:label "Aux Saw 1" ;
+		  		rdfs:label "Aux Saw 2" ;
 				rdf:value 5
 		] , 	[
-		  		rdfs:label "Aux Saw 2" ;
+		  		rdfs:label "Aux Saw 3" ;
 				rdf:value 6
 		]
 	] , [

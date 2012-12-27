@@ -1,5 +1,5 @@
-#ifndef src_vcalin_peg
-#define src_vcalin_peg
+#ifndef vcalin_peg
+#define vcalin_peg
 
 
 #ifndef PEG_STRUCT
@@ -46,4 +46,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* src_vcalin_peg */
+#endif /* vcalin_peg */

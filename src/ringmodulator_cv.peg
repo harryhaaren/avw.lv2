@@ -1,5 +1,5 @@
-#ifndef ___src_ringmodulator_cv_peg
-#define ___src_ringmodulator_cv_peg
+#ifndef ringmodulator_cv_peg
+#define ringmodulator_cv_peg
 
 
 #ifndef PEG_STRUCT
@@ -34,4 +34,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* ___src_ringmodulator_cv_peg */
+#endif /* ringmodulator_cv_peg */

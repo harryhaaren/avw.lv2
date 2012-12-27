@@ -1,5 +1,5 @@
-#ifndef ___src_ringmodulator_audio_peg
-#define ___src_ringmodulator_audio_peg
+#ifndef ringmodulator_audio_peg
+#define ringmodulator_audio_peg
 
 
 #ifndef PEG_STRUCT
@@ -29,9 +29,9 @@ enum p_port_enum {
 static const peg_data_t p_ports[] = {
   { 0, 5, 0.5, 0, 0, 0 }, 
   { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
-  { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
+  { -1, 1, 0, 0, 0, 0 }, 
   { -3.40282e+38, 3.40282e+38, -3.40282e+38, 0, 0, 0 }, 
 };
 
 
-#endif /* ___src_ringmodulator_audio_peg */
+#endif /* ringmodulator_audio_peg */

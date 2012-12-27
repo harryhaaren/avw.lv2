@@ -1,5 +1,5 @@
-#ifndef src_absolute_peg
-#define src_absolute_peg
+#ifndef absolute_peg
+#define absolute_peg
 
 
 #ifndef PEG_STRUCT
@@ -30,4 +30,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* src_absolute_peg */
+#endif /* absolute_peg */

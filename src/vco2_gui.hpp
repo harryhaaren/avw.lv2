@@ -4,6 +4,8 @@
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>
 
+#include "labeleddial.hpp"
+
 using namespace lvtk;
 using namespace sigc;
 using namespace Gtk;
@@ -15,16 +17,27 @@ public:
 	void port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer);
 
 protected:
-	Gtk::ComboBox* m_comboWaveForm;
-	Gtk::HScale* m_scaleOctave;
-	Gtk::HScale* m_scaleTune;
-	Gtk::HScale* m_scaleHarmonic;
-	Gtk::HScale* m_scaleSubHarmonic;
-	Gtk::HScale* m_scalePW;
-	Gtk::HScale* m_scalePWGain;
-	Gtk::HScale* m_scalePhi0;
-	Gtk::HScale* m_scaleExpFMGain;
-	Gtk::HScale* m_scaleLinFMGain;
+	Gtk::ComboBoxText* m_comboWaveForm;
+
+	LabeledDial* m_scaleOctave;
+	LabeledDial* m_scaleTune;
+	LabeledDial* m_scaleHarmonic;
+	LabeledDial* m_scaleSubHarmonic;
+	LabeledDial* m_scalePW;
+	LabeledDial* m_scalePWGain;
+	LabeledDial* m_scalePhi0;
+	LabeledDial* m_scaleExpFMGain;
+	LabeledDial* m_scaleLinFMGain;
+
+	float get_octave();
+	float get_tune();
+	float get_harmonic();
+	float get_subharmonic();
+	float get_pw();
+	float get_pwGain();
+	float get_phi0();
+	float get_expFMGain();
+	float get_linFMGain();
 };
 
 #endif

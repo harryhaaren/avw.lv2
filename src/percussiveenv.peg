@@ -1,5 +1,5 @@
-#ifndef ___src_percussiveenv_peg
-#define ___src_percussiveenv_peg
+#ifndef percussiveenv_peg
+#define percussiveenv_peg
 
 
 #ifndef PEG_STRUCT
@@ -44,4 +44,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* ___src_percussiveenv_peg */
+#endif /* percussiveenv_peg */
