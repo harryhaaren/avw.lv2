@@ -1,18 +1,18 @@
-#ifndef VCSWITCH_H
-#define VCSWITCH_H
+#ifndef VCSWITCH_CV_H
+#define VCSWITCH_CV_H
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "vcswitch.peg"
+#include "vcswitch_cv.peg"
 
 using namespace lvtk;
 
-class VCSwitch: public Plugin<VCSwitch>
+class VCSwitchCV: public Plugin<VCSwitchCV>
 {
 	private:
 		float switchlevel;
 	public:
-		VCSwitch(double rate);
+		VCSwitchCV(double rate);
 		void run(uint32_t nframes);
 };
 

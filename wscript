@@ -120,7 +120,8 @@ def build(bld):
 	percussiveenv
 	samplehold
 	vcpanning
-	vcswitch
+	vcswitch_audio
+	vcswitch_cv
 	mooglpf
 	'''.split()
 
@@ -155,6 +156,8 @@ def build(bld):
 	tranches_gui
 	vcaexp_gui
 	vcalin_gui
+	vcswitch_audio_gui
+	vcswitch_cv_gui
 	'''.split()
 
 	for i in plugins_gui:

@@ -151,11 +151,16 @@
 	lv2:binary <vcpanning.so>  ;
 	rdfs:seeAlso <vcpanning.ttl> .
 	
-<http://avwlv2.sourceforge.net/plugins/avw/vcswitch>
+<http://avwlv2.sourceforge.net/plugins/avw/vcswitch_audio>
 	a lv2:Plugin ;
-	lv2:binary <vcswitch.so>  ;
-	rdfs:seeAlso <vcswitch.ttl> .
+	lv2:binary <vcswitch_audio.so>  ;
+	rdfs:seeAlso <vcswitch_audio.ttl> .
 	
+<http://avwlv2.sourceforge.net/plugins/avw/vcswitch_cv>
+	a lv2:Plugin ;
+	lv2:binary <vcswitch_cv.so>  ;
+	rdfs:seeAlso <vcswitch_cv.ttl> .
+		
 <http://avwlv2.sourceforge.net/plugins/avw/mooglpf>
 	a lv2:Plugin ;
 	lv2:binary <mooglpf.so>  ;

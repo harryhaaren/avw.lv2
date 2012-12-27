@@ -5,19 +5,17 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
-
-#include "vcswitch.hpp"
+#include "vcswitch_audio.hpp"
 
 using namespace lvtk;
 
-VCSwitch::VCSwitch(double rate) :
-		Plugin<VCSwitch>(p_n_ports)
+VCSwitchAudio::VCSwitchAudio(double rate) :
+		Plugin<VCSwitchAudio>(p_n_ports)
 {
 	switchlevel = 0.5;
 }
 
-void VCSwitch::run(uint32_t nframes)
+void VCSwitchAudio::run(uint32_t nframes)
 {
 	unsigned int l2;
 	float mix1, mix2;
@@ -47,5 +45,5 @@ void VCSwitch::run(uint32_t nframes)
 	}
 }
 
-static int _ = VCSwitch::register_class("http://avwlv2.sourceforge.net/plugins/avw/vcswitch");
+static int _ = VCSwitchAudio::register_class("http://avwlv2.sourceforge.net/plugins/avw/vcswitch_audio");
 
