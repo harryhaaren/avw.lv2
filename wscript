@@ -176,7 +176,7 @@ def build(bld):
 		['LV2', 'LVTK_PLUGIN', 'LVTK_GTKGUI', 'GTKMM', 'GTK2', 'CAIRO'], 
 		['src/dial.cpp', 'src/labeleddial.cpp', 'src/env_gui_scope.cpp'])
 		
-	build_plugin_gui(bld, 'avw.lv2', 'env_gui', ['src/percussiveenv_gui.cpp'],
+	build_plugin_gui(bld, 'avw.lv2', 'percussiveenv_gui', ['src/percussiveenv_gui.cpp'],
 		['-DPLUGIN_CLASS=percussiveenv_gui',
 		'-std=c++11',
         '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
