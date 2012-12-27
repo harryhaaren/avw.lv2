@@ -7,7 +7,7 @@ from waflib.extras import autowaf as autowaf
 
 # Variables for 'waf dist'
 APPNAME = 'avw.lv2'
-VERSION = '0.0.10'
+VERSION = '0.1.0'
 
 # Mandatory variables
 top = '.'
