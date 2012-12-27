@@ -8,54 +8,93 @@
 
 VcfGUI::VcfGUI(const std::string& URI)
 {
-	Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create();
-	builder->add_from_file(g_strdup_printf("%s/vcf_gui.xml", bundle_path()));
+	EventBox *p_background = manage(new EventBox());
+	Gdk::Color* color = new  Gdk::Color();
+	color->set_rgb(7710, 8738, 9252);
+	p_background->modify_bg(Gtk::STATE_NORMAL, *color);
 
-	Gtk::Window* p_window = 0;
-	builder->get_widget("vcf_window", p_window);
 
-	Gtk::Widget* p_mainWidget = 0;
-	builder->get_widget("vbox_main", p_mainWidget);
 
-	p_window->remove();
+	VBox *p_mainWidget = manage(new VBox(false, 5));
 
-	add(*p_mainWidget);
 
-	m_comboVCFType = 0;
-	builder->get_widget("comboboxtextVCFType", m_comboVCFType);
+	Label *p_labeFilterType = manage (new Label("Filter Type"));
+	p_mainWidget->pack_start(*p_labeFilterType);
+
+	m_comboVCFType = manage (new ComboBoxText());
+	m_comboVCFType->append_text("Resonant Lowpass");
+	m_comboVCFType->append_text("Lowpass");
+	m_comboVCFType->append_text("Highpass");
+	m_comboVCFType->append_text("Bandpass I");
+	m_comboVCFType->append_text("Bandpass II");
+	m_comboVCFType->append_text("Notch");
+	m_comboVCFType->append_text("24dB Lowpass I");
+	m_comboVCFType->append_text("24dB Lowpass II");
+
 	slot<void> p_slotVCFType = compose(bind<0> (mem_fun(*this, &VcfGUI::write_control), p_vcfType), mem_fun(*m_comboVCFType, &ComboBoxText::get_active_row_number));
 	m_comboVCFType->signal_changed().connect(p_slotVCFType);
+	p_mainWidget->pack_start(*m_comboVCFType);
 
-	m_scaleInputGain = 0;
-	builder->get_widget("hscaleInputGain", m_scaleInputGain);
-	slot<void> p_slotInputGain = compose(bind<0> (mem_fun(*this, &VcfGUI::write_control), p_inputGain), mem_fun(*m_scaleInputGain, &HScale::get_value));
-	m_scaleInputGain->signal_value_changed().connect(p_slotInputGain);
 
-	m_scaleFrequency = 0;
-	builder->get_widget("hscaleFrequency", m_scaleFrequency);
-	slot<void> p_slotFrequency = compose(bind<0> (mem_fun(*this, &VcfGUI::write_control), p_freq), mem_fun(*m_scaleFrequency, &HScale::get_value));
-	m_scaleFrequency->signal_value_changed().connect(p_slotFrequency);
 
-	m_scaleResonance = 0;
-	builder->get_widget("hscaleResonance", m_scaleResonance);
-	slot<void> p_slotResonance = compose(bind<0> (mem_fun(*this, &VcfGUI::write_control), p_resonance), mem_fun(*m_scaleResonance, &HScale::get_value));
-	m_scaleResonance->signal_value_changed().connect(p_slotResonance);
+	slot<void> p_slotGain = compose(bind<0>(mem_fun(*this, &VcfGUI::write_control), p_inputGain), mem_fun(*this,  &VcfGUI::get_inputGain));
+	m_scaleInputGain = new LabeledDial("Input Gain", p_slotGain, p_inputGain, 0, 10, true, 0.0001, 4);
+	p_mainWidget->pack_start(*m_scaleInputGain);
 
-	m_scaleResonanceGain = 0;
-	builder->get_widget("hscaleResonanceGain", m_scaleResonanceGain);
-	slot<void> p_slotResonanceGain = compose(bind<0> (mem_fun(*this, &VcfGUI::write_control), p_resonanceGain), mem_fun(*m_scaleResonanceGain, &HScale::get_value));
-	m_scaleResonanceGain->signal_value_changed().connect(p_slotResonanceGain);
 
-	m_scaleExpFMGain = 0;
-	builder->get_widget("hscaleExpFMGain", m_scaleExpFMGain);
-	slot<void> p_slotExpFMGain = compose(bind<0> (mem_fun(*this, &VcfGUI::write_control), p_expFMGain), mem_fun(*m_scaleExpFMGain, &HScale::get_value));
-	m_scaleExpFMGain->signal_value_changed().connect(p_slotExpFMGain);
 
-	m_scaleLinFMGain = 0;
-	builder->get_widget("hscaleLinFMGain", m_scaleLinFMGain);
-	slot<void> p_slotLinFMGain = compose(bind<0> (mem_fun(*this, &VcfGUI::write_control), p_linFMGain), mem_fun(*m_scaleLinFMGain, &HScale::get_value));
-	m_scaleLinFMGain->signal_value_changed().connect(p_slotLinFMGain);
+	Frame *p_freqFrame = manage(new Frame("Frequency"));
+	//p_gainFrame->set_shadow_type(Gtk::SHADOW_NONE);
+	HBox *p_freqBox = manage(new HBox(true));
+
+	slot<void> p_slotFrequency = compose(bind<0>(mem_fun(*this, &VcfGUI::write_control), p_freq), mem_fun(*this,  &VcfGUI::get_frequency));
+	m_scaleFrequency = new LabeledDial("Frequency", p_slotFrequency, p_freq, 0, 10, true, 0.0001, 4);
+	p_freqBox->pack_start(*m_scaleFrequency);
+
+	slot<void> p_slotExpFMGain = compose(bind<0>(mem_fun(*this, &VcfGUI::write_control), p_expFMGain), mem_fun(*this,  &VcfGUI::get_expFMGain));
+	m_scaleExpFMGain = new LabeledDial("Exp FM Gain", p_slotExpFMGain, p_expFMGain, 0, 10, true, 0.0001, 4);
+	p_freqBox->pack_start(*m_scaleExpFMGain);
+
+	slot<void> p_slotLinFMGain = compose(bind<0>(mem_fun(*this, &VcfGUI::write_control), p_linFMGain), mem_fun(*this,  &VcfGUI::get_linFMGain));
+	m_scaleLinFMGain = new LabeledDial("Lin FM Gain", p_slotLinFMGain, p_linFMGain, 0, 10, true, 0.0001, 4);
+	p_freqBox->pack_start(*m_scaleLinFMGain);
+
+	p_freqFrame->add(*p_freqBox);
+	p_mainWidget->pack_start(*p_freqFrame);
+
+
+
+	Frame *p_resFrame = manage(new Frame("Resonance"));
+	//p_gainFrame->set_shadow_type(Gtk::SHADOW_NONE);
+	HBox *p_resBox = manage(new HBox(true));
+
+	slot<void> p_slotResonance = compose(bind<0>(mem_fun(*this, &VcfGUI::write_control), p_resonance), mem_fun(*this,  &VcfGUI::get_resonance));
+	m_scaleResonance = new LabeledDial("Resonance", p_slotResonance, p_resonance, 0.01, 1, true, 0.0001, 4);
+	p_resBox->pack_start(*m_scaleResonance);
+
+	slot<void> p_slotResonanceGain = compose(bind<0>(mem_fun(*this, &VcfGUI::write_control), p_resonanceGain), mem_fun(*this,  &VcfGUI::get_resonanceGain));
+	m_scaleResonanceGain = new LabeledDial("Resonance Gain", p_slotResonanceGain, p_resonanceGain, 0, 1, true, 0.0001, 4);
+	p_resBox->pack_start(*m_scaleResonanceGain);
+
+	p_resFrame->add(*p_resBox);
+	p_mainWidget->pack_start(*p_resFrame);
+
+
+
+	p_mainWidget->set_size_request(180, 310);
+
+	p_background->add(*p_mainWidget);
+	add(*p_background);
+
+	Gtk::manage(p_mainWidget);
 }
+
+float VcfGUI::get_inputGain() 		{ return m_scaleInputGain->get_value(); }
+float VcfGUI::get_frequency() 		{ return m_scaleFrequency->get_value(); }
+float VcfGUI::get_expFMGain() 		{ return m_scaleExpFMGain->get_value(); }
+float VcfGUI::get_linFMGain() 		{ return m_scaleLinFMGain->get_value(); }
+float VcfGUI::get_resonance() 		{ return m_scaleResonance->get_value(); }
+float VcfGUI::get_resonanceGain() 	{ return m_scaleResonanceGain->get_value(); }
 
 void VcfGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
 {
