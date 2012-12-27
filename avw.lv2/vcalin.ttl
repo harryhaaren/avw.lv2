@@ -4,6 +4,11 @@
 @prefix rdf: 	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: 	<http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ll: 	<http://ll-plugins.nongnu.org/lv2/namespace#> .
+@prefix guiext: <http://lv2plug.in/ns/extensions/ui#> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/vcalin/gui>
+  a guiext:GtkUI ;
+  guiext:binary <vcalin_gui.so> .
 
 <http://avwlv2.sourceforge.net/plugins/avw/vcalin>
 	a lv2:Plugin, lv2:AmplifierPlugin ;
@@ -11,6 +16,7 @@
 	doap:name "AMS VCA Lin" ;
 	doap:license <http://opensource.org/licenses/isc> ;
 	ll:pegName "p" ;
+	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/vcalin/gui> ;
 	lv2:optionalFeature lv2:hardRTCapable ;
 	lv2:port [
 		a lv2:InputPort, lv2:CVPort ;

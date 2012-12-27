@@ -159,6 +159,8 @@ def build(bld):
 	ringmodulator_audio_gui
 	ringmodulator_cv_gui
 	tranches_gui
+	vcaexp_gui
+	vcalin_gui
     '''.split()
 
 	for i in plugins_gui:
