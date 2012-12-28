@@ -166,3 +166,7 @@
 	lv2:binary <mooglpf.so>  ;
 	rdfs:seeAlso <mooglpf.ttl> .
 
+<http://avwlv2.sourceforge.net/plugins/avw/downsampler>
+	a lv2:Plugin ;
+	lv2:binary <downsampler.so>  ;
+	rdfs:seeAlso <downsampler.ttl> .

@@ -7,8 +7,6 @@
 
 using namespace lvtk;
 
-#include "synthdata.hpp"
-
 #include "vcf.hpp"
 
 Vcf::Vcf(double rate):

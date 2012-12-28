@@ -5,8 +5,6 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
-
 #include "percussiveenv.hpp"
 
 PercussiveEnv::PercussiveEnv(double rate) :
@@ -17,14 +15,6 @@ PercussiveEnv::PercussiveEnv(double rate) :
 	hold = 0.02;
 	decay = 0.1;
 	timeScale = 1.0;
-
-	//configDialog->addSlider(tr("Delay"), delay, 0, 1, false, delayTab);
-	//configDialog->addSlider(tr("Attack"), attack, 0, 1, false, adsrTab);
-	//configDialog->addSlider(tr("Hold"), hold, 0, 1, false, delayTab);
-	//configDialog->addSlider(tr("Decay"), decay, 0, 1, false, adsrTab);
-	//configDialog->addSlider(tr("Sustain"), sustain, 0, 1, false, adsrTab);
-	//configDialog->addSlider(tr("Release"), release, 0, 1, false, adsrTab);
-	//configDialog->addSlider(tr("Time Scale"), timeScale, 0.1, 10, false, delayTab);
 
 	gate = false;
 	retrigger = false;
@@ -44,8 +34,8 @@ void PercussiveEnv::run(uint32_t nframes)
 	float a, dl, dc, h;
 	int idl, idla, idlah, idlahdc;
 
-	gateData = p(p_gate); //port_gate->getinputdata();
-	retriggerData = p(p_retrigger); //port_retrigger->getinputdata();
+	gateData = p(p_gate);
+	retriggerData = p(p_retrigger);
 
 	delay = *p(p_delay);
 	attack = *p(p_attack);

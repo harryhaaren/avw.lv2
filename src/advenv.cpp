@@ -5,17 +5,11 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
-
 #include "advenv.hpp"
 
 AdvEnv::AdvEnv(double rate):
 Plugin<AdvEnv>(p_n_ports)
 {
-	//QString qs;
-	//int l1;
-
-	//setGeometry(MODULE_NEW_X, MODULE_NEW_Y, MODULE_ADVENV_WIDTH, MODULE_ADVENV_HEIGHT);
 	attack[0] = 0;
 	attack[1] = 0.05;
 	attack[2] = 0.5;
@@ -31,50 +25,6 @@ Plugin<AdvEnv>(p_n_ports)
 	release[3] = 0.2;
 	release[4] = 0.05;
 	timeScale = 1.0;
-	//port_gate = new Port(tr("Gate"), PORT_IN, 0, this);
-	//port_retrigger = new Port(tr("Retrigger"), PORT_IN, 1, this);
-	//cv.out_off = 75;
-	//port_gain_out = new Port("Out", PORT_OUT, 0, this);
-	//port_inverse_out = new Port(tr("Inverse Out"), PORT_OUT, 1, this);
-
-	//MultiEnvelope *multiEnv = configDialog->addMultiEnvelope(1, &timeScale, attack, &sustain, release);//
-	//configDialog->initTabWidget();
-	//QVBoxLayout *sustainTab = configDialog->addVBoxTab(tr("Time Scale / Sustain / Delay"));
-	//QVBoxLayout *attackTimeTab = configDialog->addVBoxTab(tr("Attack Time"));
-	//QVBoxLayout *attackLevelTab = configDialog->addVBoxTab(tr("Attack Level"));
-	//QVBoxLayout *releaseTimeTab = configDialog->addVBoxTab(tr("Release Time"));
-	//QVBoxLayout *releaseLevelTab = configDialog->addVBoxTab(tr("Release Level"));
-	//qs = tr("Time Scale");
-	//configDialog->addSlider(qs, timeScale, 0.1, 10, false, sustainTab);
-	//qs = tr("Sustain");
-	//configDialog->addSlider(qs, sustain, 0, 1, false, sustainTab);
-	//qs = tr("Delay");
-	//configDialog->addSlider(qs, attack[0], 0, 1, false, sustainTab);
-	//qs = tr("Attack Time 0");
-	//configDialog->addSlider(qs, attack[1], 0, 1, false, attackTimeTab);
-	//qs = tr("Attack Level 0");
-	//configDialog->addSlider(qs, attack[2], 0, 1, false, attackLevelTab);
-	//qs = tr("Attack Time 1");
-	//configDialog->addSlider(qs, attack[3], 0, 1, false, attackTimeTab);
-	//qs = tr("Attack Level 1");
-	//configDialog->addSlider(qs, attack[4], 0, 1, false, attackLevelTab);
-	//qs = tr("Attack Time 2");
-	//configDialog->addSlider(qs, attack[5], 0, 1, false, attackTimeTab);
-	//qs = tr("Attack Level 2");
-	//configDialog->addSlider(qs, attack[6], 0, 1, false, attackLevelTab);
-	//qs = tr("Attack Time 3");
-	//configDialog->addSlider(qs, attack[7], 0, 1, false, attackTimeTab);
-	//qs = tr("Release Time 0");
-	//configDialog->addSlider(qs, release[0], 0, 1, false, releaseTimeTab);
-	//qs = tr("Release Level 0");
-	//configDialog->addSlider(qs, release[1], 0, 1, false, releaseLevelTab);
-	//qs = tr("Release Time 1");
-	//configDialog->addSlider(qs, release[2], 0, 1, false, releaseTimeTab);
-	//qs = tr("Release Level 1");
-	//configDialog->addSlider(qs, release[3], 0, 1, false, releaseLevelTab);
-	//qs = tr("Release Time 2");
-	//configDialog->addSlider(qs, release[4], 0, 1, false, releaseTimeTab);
-	//multiEnv->listenTo(this);
 
 	noteActive = false;
 	gate = false;
@@ -94,8 +44,8 @@ void AdvEnv::run(uint32_t nframes)
 	float tscale, de_a[4], de_d[3];
 	float t[8];
 
-	gateData = p(p_gate);			//port_gate->getinputdata();
-	retriggerData = p(p_retrigger);	//port_retrigger->getinputdata();
+	gateData = p(p_gate);
+	retriggerData = p(p_retrigger);
 
 	timeScale = *p(p_timeScale);
 	sustain = *p(p_sustain);
@@ -151,7 +101,6 @@ void AdvEnv::run(uint32_t nframes)
 			noteOffOfs = 0;
 			e_noteOff = e;
 			de_release = (release[0] > 0) ? (release[1] - e_noteOff) / (tscale * release[0]) : 0;
-			//        fprintf(stderr, "de_release[%d]: %f, e_noteOff: %f\n", l1, de_release, e_noteOff);
 		}
 		if (!retrigger && (retriggerData[l2] > 0.5))
 		{

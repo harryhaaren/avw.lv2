@@ -3,7 +3,6 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
 #include "percussiveenv.peg"
 
 using namespace lvtk;

@@ -1,5 +1,7 @@
 0.1.2:
 	* VCF Resonance filter bug fix
+	* Optimization in wscript
+	* Trashy DownSampler
 
 0.1.1:
 	* New presets

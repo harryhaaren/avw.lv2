@@ -14,7 +14,7 @@ LfoGUI::LfoGUI(const std::string& URI)
 	color->set_rgb(7710, 8738, 9252);
 	p_background->modify_bg(Gtk::STATE_NORMAL, *color);
 
-	VBox *p_mainWidget = manage (new VBox(false));
+	VBox *p_mainWidget = manage (new VBox(false, 5));
 
 	Label *p_labelWaveForm = manage (new Label("Wave Form"));
 	p_mainWidget->pack_start(*p_labelWaveForm);
@@ -50,7 +50,7 @@ LfoGUI::LfoGUI(const std::string& URI)
 	m_dialPhi0 = new LabeledDial("Phi0", p_slotPhi0, p_phi0, 0, 6.28, false, 0.01, 2);
 	p_mainWidget->pack_start(*m_dialPhi0);
 
-	p_mainWidget->set_size_request(256, 320);
+	p_mainWidget->set_size_request(160, 320);
 
 	p_background->add(*p_mainWidget);
 	add(*p_background);

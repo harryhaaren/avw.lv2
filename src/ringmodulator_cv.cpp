@@ -5,7 +5,6 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
 #include "ringmodulator_cv.hpp"
 
 using namespace lvtk;

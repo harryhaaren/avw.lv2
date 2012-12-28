@@ -4,7 +4,6 @@
 #include <math.h>
 #include <time.h>
 
-#include "synthdata.hpp"
 #include "mixer_audio.hpp"
 
 using namespace lvtk;

@@ -1,7 +1,6 @@
 #include <math.h>
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
 #include "ad.hpp"
 
 using namespace lvtk;
@@ -20,12 +19,6 @@ Ad::Ad(double rate) :
 	detune_a = 0.4 * (double) random() / (double) RAND_MAX - 0.2;
 	detune_c = 0.4 * (double) random() / (double) RAND_MAX - 0.2;
 
-	//detune_amp = 0.005; p(p_detuneAmplitude)
-	//detune_mod = 0.01; p(p_detuneModulation)
-	//detune_rate = 1; p(p_detuneRate)
-	//drift_amp = 0.005; p(p_driftAmplitude)
-	//drift_mod = 0.01; p(p_driftModulation)
-	//drift_rate = 3; p(p_driftRate)
 	detuneCount = 0;
 	driftCount = 0;
 

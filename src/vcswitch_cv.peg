@@ -1,5 +1,5 @@
-#ifndef src_vcswitch_cv_peg
-#define src_vcswitch_cv_peg
+#ifndef avw_lv__vcswitch_cv_peg
+#define avw_lv__vcswitch_cv_peg
 
 
 #ifndef PEG_STRUCT
@@ -40,4 +40,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* src_vcswitch_cv_peg */
+#endif /* avw_lv__vcswitch_cv_peg */

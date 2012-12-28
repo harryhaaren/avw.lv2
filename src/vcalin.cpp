@@ -5,8 +5,6 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
-
 #include "vcalin.hpp"
 
 VcaLin::VcaLin(double rate):
@@ -17,12 +15,6 @@ Plugin<VcaLin>(p_n_ports)
 	in1 = 1.0;
 	in2 = 1.0;
 	out = 1.0;
-
-	//configDialog->addSlider(tr("Gain"), gain1, 0, 1);
-	//configDialog->addSlider(tr("Gain 1"), gain2, 0, 1);
-	//configDialog->addSlider(tr("In 0"), in1, 0, 2);
-	//configDialog->addSlider(tr("In 1"), in2, 0, 2);
-	//configDialog->addSlider(tr("Output level"), out, 0, 2);
 }
 
 void VcaLin::run(uint32_t nframes)

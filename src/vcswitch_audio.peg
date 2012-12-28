@@ -1,5 +1,5 @@
-#ifndef avw_lv__vcswitch_peg
-#define avw_lv__vcswitch_peg
+#ifndef avw_lv__vcswitch_audio_peg
+#define avw_lv__vcswitch_audio_peg
 
 
 #ifndef PEG_STRUCT
@@ -14,9 +14,9 @@ typedef struct {
 } peg_data_t;
 #endif
 
-/* <http://avwlv2.sourceforge.net/plugins/avw/vcswitch> */
+/* <http://avwlv2.sourceforge.net/plugins/avw/vcswitch_audio> */
 
-static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/vcswitch";
+static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/vcswitch_audio";
 
 enum p_port_enum {
   p_switchlevel,
@@ -40,4 +40,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* avw_lv__vcswitch_peg */
+#endif /* avw_lv__vcswitch_audio_peg */

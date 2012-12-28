@@ -5,8 +5,6 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
-
 #include "vco2.hpp"
 
 Vco2::Vco2(double rate) :

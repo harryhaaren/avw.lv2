@@ -100,7 +100,7 @@ Vco2GUI::Vco2GUI(const char* plugin_uri)
 
 
 
-	p_mainWidget->set_size_request(220, 340);
+	p_mainWidget->set_size_request(260, 360);
 
 	p_background->add(*p_mainWidget);
 	add(*p_background);

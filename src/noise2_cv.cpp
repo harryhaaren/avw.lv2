@@ -6,7 +6,6 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
 #include "noise2_cv.hpp"
 
 Noise2CV::Noise2CV(double rate)

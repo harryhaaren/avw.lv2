@@ -4,7 +4,6 @@
 #include <math.h>
 #include <time.h>
 
-#include "synthdata.hpp"
 #include "lfo.hpp"
 
 using namespace lvtk;

@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "synthdata.hpp"
 #include "vctohz.hpp"
 
 using namespace lvtk;

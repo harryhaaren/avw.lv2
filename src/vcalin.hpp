@@ -3,8 +3,6 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
-
 #include "vcalin.peg"
 
 using namespace lvtk;

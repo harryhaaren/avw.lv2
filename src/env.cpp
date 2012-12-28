@@ -5,8 +5,6 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
-
 #include "env.hpp"
 
 Env::Env(double rate):
@@ -19,14 +17,6 @@ Plugin<Env>(p_n_ports)
 	sustain = 0.7;
 	release = 0.05;
 	timeScale = 1.0;
-
-	//configDialog->addSlider(tr("Delay"), delay, 0, 1, false, delayTab);
-	//configDialog->addSlider(tr("Attack"), attack, 0, 1, false, adsrTab);
-	//configDialog->addSlider(tr("Hold"), hold, 0, 1, false, delayTab);
-	//configDialog->addSlider(tr("Decay"), decay, 0, 1, false, adsrTab);
-	//configDialog->addSlider(tr("Sustain"), sustain, 0, 1, false, adsrTab);
-	//configDialog->addSlider(tr("Release"), release, 0, 1, false, adsrTab);
-	//configDialog->addSlider(tr("Time Scale"), timeScale, 0.1, 10, false, delayTab);
 
 	gate = false;
 	retrigger = false;
@@ -46,8 +36,8 @@ void Env::run(uint32_t nframes)
 	float a, dl, dc, h;
 	int idl, idla, idlah, idlahdc;
 
-	gateData = p(p_gate);			//port_gate->getinputdata();
-	retriggerData = p(p_retrigger);	//port_retrigger->getinputdata();
+	gateData = p(p_gate);
+	retriggerData = p(p_retrigger);
 
 	delay = *p(p_delay);
 	attack = *p(p_attack);
@@ -119,20 +109,20 @@ void Env::run(uint32_t nframes)
 				status = 5;
 			switch (status)
 			{
-			case 0: e -= de;
-			break;
-			case 1: e = 0;
-			break;
-			case 2: e += de_attack;
-			break;
-			case 3: e = 1.0;
-			break;
-			case 4: e -= de_decay;
-			break;
-			case 5: e = sustain;
-			break;
-			default: e = 0;
-			break;
+				case 0: e -= de;
+				break;
+				case 1: e = 0;
+				break;
+				case 2: e += de_attack;
+				break;
+				case 3: e = 1.0;
+				break;
+				case 4: e -= de_decay;
+				break;
+				case 5: e = sustain;
+				break;
+				default: e = 0;
+				break;
 			}
 			if (e < 0)
 				e = 0;

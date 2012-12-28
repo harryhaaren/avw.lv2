@@ -6,7 +6,6 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
 #include "noise2_audio.hpp"
 
 Noise2Audio::Noise2Audio(double rate)

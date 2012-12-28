@@ -3,7 +3,6 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
 #include "slew.peg"
 
 using namespace lvtk;
@@ -11,12 +10,8 @@ using namespace lvtk;
 class Slew: public Plugin<Slew>
 {
 	private:
-		//Port *port_M_in, *port_out;
-		//float timeUp, timeDown;
 		float lastData;
 		double m_rate;
-
-		//public:
 		float *inData;
 
 	public:

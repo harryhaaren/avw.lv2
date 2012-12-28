@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "synthdata.hpp"
 #include "hztovc.hpp"
 
 using namespace lvtk;

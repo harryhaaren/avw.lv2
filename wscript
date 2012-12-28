@@ -44,12 +44,12 @@ def configure(conf):
     print('')
 
 
-def build_plugin(bld, bundle, name, source, cxxflags=[], libs=[]):
+def build_plugin(bld, bundle, name, source, cxxflags=[], libs=[], add_source=[]):
     penv = bld.env.derive()
     penv['cxxshlib_PATTERN'] = bld.env['pluginlib_PATTERN']
     obj              = bld(features = 'cxx cxxshlib')
     obj.env          = penv
-    obj.source       = source + ['src/synthdata.cpp']
+    obj.source       = source + add_source
     obj.includes     = ['.', './src']
     obj.name         = name
     obj.target       = os.path.join(bundle, name)
@@ -93,8 +93,6 @@ def build(bld):
             install_path = '${LV2DIR}/avw.lv2')
 
  	plugins = '''
-	vco2
-	ad
 	advenv
 	amp
 	env
@@ -107,11 +105,9 @@ def build(bld):
 	slew
 	vcaexp
 	vcalin
-	vcf
 	vctohz
 	cvs
 	delay
-	dynamicwaves
 	absolute
 	inv
 	tranches
@@ -123,6 +119,7 @@ def build(bld):
 	vcswitch_audio
 	vcswitch_cv
 	mooglpf
+	downsampler
 	'''.split()
 
 	for i in plugins:
@@ -132,8 +129,25 @@ def build(bld):
             '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
             '-DPLUGIN_URI_SUFFIX="%s"' % i,
             '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-		  	['LV2', 'LVTK_PLUGIN', 'JACK'])
+		  	['LV2', 'LVTK_PLUGIN', 'JACK'],
+		  	[])
 
+	plugins = '''
+	vco2
+	ad
+	dynamicwaves
+	vcf
+	'''.split()
+	
+	for i in plugins:
+		build_plugin(bld, 'avw.lv2', i, ['src/%s.cpp' % i],
+			['-DPLUGIN_CLASS=%s' % i,
+			'-std=c++11',
+            '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
+            '-DPLUGIN_URI_SUFFIX="%s"' % i,
+            '-DPLUGIN_HEADER="src/%s.hpp"' % i],
+		  	['LV2', 'LVTK_PLUGIN', 'JACK'],
+		  	['src/synthdata.cpp'])
 		  
 	plugins_gui = '''
 	vco2_gui
@@ -159,6 +173,7 @@ def build(bld):
 	vcswitch_audio_gui
 	vcswitch_cv_gui
 	vctohz_gui
+	downsampler_gui
 	'''.split()
 
 	for i in plugins_gui:

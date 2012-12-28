@@ -5,8 +5,6 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
-
 #include "dynamicwaves.hpp"
 
 DynamicWaves::DynamicWaves(double rate) :

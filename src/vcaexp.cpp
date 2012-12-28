@@ -5,8 +5,6 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "synthdata.hpp"
-
 #include "vcaexp.hpp"
 
 VcaExp::VcaExp(double rate):
@@ -19,12 +17,6 @@ Plugin<VcaExp>(p_n_ports)
 	out = 1.0;
 
 	synthdata = new SynthData(1);
-
-	//configDialog->addSlider(tr("Gain"), gain1, 0, 1);
-	//configDialog->addSlider(tr("Gain 1"), gain2, 0, 1);
-	//configDialog->addSlider(tr("In 0"), in1, 0, 2);
-	//configDialog->addSlider(tr("In 1"), in2, 0, 2);
-	//configDialog->addSlider(tr("Output level"), out, 0, 2);
 }
 
 void VcaExp::run(uint32_t nframes)
