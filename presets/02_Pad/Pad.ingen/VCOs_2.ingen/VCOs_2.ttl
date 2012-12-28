@@ -1,0 +1,495 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atom: <http://lv2plug.in/ns/ext/atom#> .
+@prefix patch: <http://lv2plug.in/ns/ext/patch#> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix ingen: <http://drobilla.net/ns/ingen#> .
+@prefix lv2: <http://lv2plug.in/ns/lv2core#> .
+@prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
+@prefix midi: <http://lv2plug.in/ns/ext/midi#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<>
+	ingen:block <mixer_audio> ,
+		<vco2> ,
+		<vco2_2> ;
+	ingen:edge [
+		ingen:head <vco2_2/linFM> ;
+		ingen:tail <cv_in_2>
+	] , [
+		ingen:head <mixer_audio/in1> ;
+		ingen:tail <vco2/out>
+	] , [
+		ingen:head <mixer_audio/in2> ;
+		ingen:tail <vco2_2/out>
+	] , [
+		ingen:head <audio_out_1> ;
+		ingen:tail <mixer_audio/out>
+	] , [
+		ingen:head <vco2/freq> ;
+		ingen:tail <cv_in_1>
+	] , [
+		ingen:head <vco2_2/freq> ;
+		ingen:tail <cv_in_1>
+	] , [
+		ingen:head <vco2/linFM> ;
+		ingen:tail <cv_in_2>
+	] ;
+	ingen:enabled true ;
+	ingen:polyphony 1 ;
+	<http://lv2plug.in/ns/extensions/ui#ui> ingen:GraphUIGtk2 ;
+	lv2:extensionData <http://lv2plug.in/ns/ext/state#interface> ;
+	lv2:port <audio_out_1> ,
+		<cv_in_1> ,
+		<cv_in_2> ;
+	lv2:symbol "VCOs_2" ;
+	doap:name "VCOs_2" ;
+	a ingen:Block ,
+		ingen:Graph ,
+		lv2:Plugin .
+
+<audio_out_1>
+	ingen:canvasX 569.5 ;
+	ingen:canvasY 624.5 ;
+	ingen:polyphonic false ;
+	lv2:index 2 ;
+	lv2:name "Audio Out 1" ;
+	lv2:symbol "audio_out_1" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<cv_in_1>
+	ingen:canvasX 8.0 ;
+	ingen:canvasY 84.0 ;
+	ingen:polyphonic false ;
+	ingen:value 0.9999752 ;
+	lv2:index 0 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:name "CV In 1" ;
+	lv2:symbol "cv_in_1" ;
+	a lv2:CVPort ,
+		lv2:InputPort .
+
+<cv_in_2>
+	ingen:canvasX 8.0 ;
+	ingen:canvasY 224.0 ;
+	ingen:polyphonic false ;
+	ingen:value 0.99481112 ;
+	lv2:index 1 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:name "CV In 2" ;
+	lv2:symbol "cv_in_2" ;
+	a lv2:CVPort ,
+		lv2:InputPort .
+
+<mixer_audio>
+	ingen:canvasX 357.5 ;
+	ingen:canvasY 450.0 ;
+	ingen:polyphonic false ;
+	ingen:prototype <http://avwlv2.sourceforge.net/plugins/avw/mixer_audio> ;
+	lv2:port <mixer_audio/gain> ,
+		<mixer_audio/in1> ,
+		<mixer_audio/in2> ,
+		<mixer_audio/in3> ,
+		<mixer_audio/in4> ,
+		<mixer_audio/out> ,
+		<mixer_audio/volume1> ,
+		<mixer_audio/volume2> ,
+		<mixer_audio/volume3> ,
+		<mixer_audio/volume4> ;
+	lv2:symbol "mixer_audio" ;
+	a ingen:Block .
+
+<mixer_audio/gain>
+	ingen:value 1.0 ;
+	lv2:index 4 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "gain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<mixer_audio/in1>
+	ingen:value 0.0 ;
+	lv2:index 0 ;
+	lv2:symbol "in1" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<mixer_audio/in2>
+	ingen:value 0.0 ;
+	lv2:index 1 ;
+	lv2:symbol "in2" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<mixer_audio/in3>
+	ingen:value 0.0 ;
+	lv2:index 2 ;
+	lv2:symbol "in3" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<mixer_audio/in4>
+	ingen:value 0.0 ;
+	lv2:index 3 ;
+	lv2:symbol "in4" ;
+	a lv2:AudioPort ,
+		lv2:InputPort .
+
+<mixer_audio/out>
+	lv2:index 9 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<mixer_audio/volume1>
+	ingen:value 0.5 ;
+	lv2:index 5 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "volume1" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<mixer_audio/volume2>
+	ingen:value 0.5 ;
+	lv2:index 6 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "volume2" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<mixer_audio/volume3>
+	ingen:value 1.0 ;
+	lv2:index 7 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "volume3" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<mixer_audio/volume4>
+	ingen:value 1.0 ;
+	lv2:index 8 ;
+	lv2:maximum 2.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "volume4" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2>
+	ingen:canvasX 153.0 ;
+	ingen:canvasY 8.0 ;
+	ingen:polyphonic false ;
+	ingen:prototype <http://avwlv2.sourceforge.net/plugins/avw/vco2> ;
+	lv2:port <vco2/expFM> ,
+		<vco2/expFMGain> ,
+		<vco2/freq> ,
+		<vco2/harmonic> ,
+		<vco2/linFM> ,
+		<vco2/linFMGain> ,
+		<vco2/octave> ,
+		<vco2/out> ,
+		<vco2/phi0> ,
+		<vco2/pw0> ,
+		<vco2/pwGain> ,
+		<vco2/pwPort> ,
+		<vco2/subharmonic> ,
+		<vco2/tune> ,
+		<vco2/waveForm> ;
+	lv2:symbol "vco2" ;
+	a ingen:Block .
+
+<vco2/expFM>
+	ingen:value 0.0 ;
+	lv2:index 1 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "expFM" ;
+	a lv2:CVPort ,
+		lv2:InputPort .
+
+<vco2/expFMGain>
+	ingen:value 0.0 ;
+	lv2:index 12 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "expFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/freq>
+	ingen:value 0.0 ;
+	lv2:index 0 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "freq" ;
+	a lv2:CVPort ,
+		lv2:InputPort .
+
+<vco2/harmonic>
+	ingen:value 1.0 ;
+	lv2:index 7 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "harmonic" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/linFM>
+	ingen:value 0.0 ;
+	lv2:index 2 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "linFM" ;
+	a lv2:CVPort ,
+		lv2:InputPort .
+
+<vco2/linFMGain>
+	ingen:value 0.04 ;
+	lv2:index 13 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "linFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/octave>
+	ingen:value 4.0 ;
+	lv2:index 5 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "octave" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/out>
+	lv2:index 14 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<vco2/phi0>
+	ingen:value 0.0 ;
+	lv2:index 11 ;
+	lv2:maximum 6.28299999 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "phi0" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/pw0>
+	ingen:value 0.5 ;
+	lv2:index 9 ;
+	lv2:maximum 0.89999998 ;
+	lv2:minimum 0.1 ;
+	lv2:symbol "pw0" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/pwGain>
+	ingen:value 0.0 ;
+	lv2:index 10 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "pwGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/pwPort>
+	ingen:value 0.0 ;
+	lv2:index 3 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "pwPort" ;
+	a lv2:CVPort ,
+		lv2:InputPort .
+
+<vco2/subharmonic>
+	ingen:value 1.0 ;
+	lv2:index 8 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "subharmonic" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/tune>
+	ingen:value 0.0 ;
+	lv2:index 6 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "tune" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2/waveForm>
+	ingen:value 0.0 ;
+	lv2:index 4 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
+	lv2:portProperty lv2:enumeration ;
+	lv2:symbol "waveForm" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2>
+	ingen:canvasX 153.0 ;
+	ingen:canvasY 353.0 ;
+	ingen:polyphonic false ;
+	ingen:prototype <http://avwlv2.sourceforge.net/plugins/avw/vco2> ;
+	lv2:port <vco2_2/expFM> ,
+		<vco2_2/expFMGain> ,
+		<vco2_2/freq> ,
+		<vco2_2/harmonic> ,
+		<vco2_2/linFM> ,
+		<vco2_2/linFMGain> ,
+		<vco2_2/octave> ,
+		<vco2_2/out> ,
+		<vco2_2/phi0> ,
+		<vco2_2/pw0> ,
+		<vco2_2/pwGain> ,
+		<vco2_2/pwPort> ,
+		<vco2_2/subharmonic> ,
+		<vco2_2/tune> ,
+		<vco2_2/waveForm> ;
+	lv2:symbol "vco2_2" ;
+	a ingen:Block .
+
+<vco2_2/expFM>
+	ingen:value 0.0 ;
+	lv2:index 1 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "expFM" ;
+	a lv2:CVPort ,
+		lv2:InputPort .
+
+<vco2_2/expFMGain>
+	ingen:value 0.0 ;
+	lv2:index 12 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "expFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/freq>
+	ingen:value 0.0 ;
+	lv2:index 0 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "freq" ;
+	a lv2:CVPort ,
+		lv2:InputPort .
+
+<vco2_2/harmonic>
+	ingen:value 1.0 ;
+	lv2:index 7 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "harmonic" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/linFM>
+	ingen:value 0.0 ;
+	lv2:index 2 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "linFM" ;
+	a lv2:CVPort ,
+		lv2:InputPort .
+
+<vco2_2/linFMGain>
+	ingen:value 0.04 ;
+	lv2:index 13 ;
+	lv2:maximum 10.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "linFMGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/octave>
+	ingen:value 4.0 ;
+	lv2:index 5 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "octave" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/out>
+	lv2:index 14 ;
+	lv2:symbol "out" ;
+	a lv2:AudioPort ,
+		lv2:OutputPort .
+
+<vco2_2/phi0>
+	ingen:value 0.0 ;
+	lv2:index 11 ;
+	lv2:maximum 6.28299999 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "phi0" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/pw0>
+	ingen:value 0.5 ;
+	lv2:index 9 ;
+	lv2:maximum 0.89999998 ;
+	lv2:minimum 0.1 ;
+	lv2:symbol "pw0" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/pwGain>
+	ingen:value 0.0 ;
+	lv2:index 10 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "pwGain" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/pwPort>
+	ingen:value 0.0 ;
+	lv2:index 3 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "pwPort" ;
+	a lv2:CVPort ,
+		lv2:InputPort .
+
+<vco2_2/subharmonic>
+	ingen:value 1.0 ;
+	lv2:index 8 ;
+	lv2:maximum 16.0 ;
+	lv2:minimum 1.0 ;
+	lv2:symbol "subharmonic" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/tune>
+	ingen:value 0.0024 ;
+	lv2:index 6 ;
+	lv2:maximum 1.0 ;
+	lv2:minimum 0.0 ;
+	lv2:symbol "tune" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
+
+<vco2_2/waveForm>
+	ingen:value 0.0 ;
+	lv2:index 4 ;
+	lv2:maximum 6.0 ;
+	lv2:minimum 0.0 ;
+	lv2:portProperty lv2:enumeration ;
+	lv2:symbol "waveForm" ;
+	a lv2:ControlPort ,
+		lv2:InputPort .
