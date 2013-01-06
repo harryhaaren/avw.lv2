@@ -76,15 +76,25 @@
 	lv2:binary <vcaexp.so>  ;
 	rdfs:seeAlso <vcaexp.ttl> .
 	
-<http://avwlv2.sourceforge.net/plugins/avw/mixer_audio>
+<http://avwlv2.sourceforge.net/plugins/avw/mixer_4ch_audio>
 	a lv2:Plugin ;
-	lv2:binary <mixer_audio.so>  ;
-	rdfs:seeAlso <mixer_audio.ttl> .		
+	lv2:binary <mixer_4ch_audio.so>  ;
+	rdfs:seeAlso <mixer_4ch_audio.ttl> .		
 
-<http://avwlv2.sourceforge.net/plugins/avw/mixer_cv>
+<http://avwlv2.sourceforge.net/plugins/avw/mixer_4ch_cv>
 	a lv2:Plugin ;
-	lv2:binary <mixer_cv.so>  ;
-	rdfs:seeAlso <mixer_cv.ttl> .	
+	lv2:binary <mixer_4ch_cv.so>  ;
+	rdfs:seeAlso <mixer_4ch_cv.ttl> .	
+	
+<http://avwlv2.sourceforge.net/plugins/avw/mixer_2ch_audio>
+	a lv2:Plugin ;
+	lv2:binary <mixer_2ch_audio.so>  ;
+	rdfs:seeAlso <mixer_2ch_audio.ttl> .		
+
+<http://avwlv2.sourceforge.net/plugins/avw/mixer_2ch_cv>
+	a lv2:Plugin ;
+	lv2:binary <mixer_2ch_cv.so>  ;
+	rdfs:seeAlso <mixer_2ch_cv.ttl> .
 		
 <http://avwlv2.sourceforge.net/plugins/avw/slew>
 	a lv2:Plugin ;
@@ -106,11 +116,6 @@
 	lv2:binary <delay.so>  ;
 	rdfs:seeAlso <delay.ttl> .
 	
-<http://avwlv2.sourceforge.net/plugins/avw/dynamicwaves>
-	a lv2:Plugin ;
-	lv2:binary <dynamicwaves.so>  ;
-	rdfs:seeAlso <dynamicwaves.ttl> .
-
 <http://avwlv2.sourceforge.net/plugins/avw/absolute>
 	a lv2:Plugin ;
 	lv2:binary <absolute.so>  ;
@@ -166,7 +171,25 @@
 	lv2:binary <mooglpf.so>  ;
 	rdfs:seeAlso <mooglpf.ttl> .
 
-<http://avwlv2.sourceforge.net/plugins/avw/downsampler>
+<http://avwlv2.sourceforge.net/plugins/avw/downsampler_mono>
 	a lv2:Plugin ;
-	lv2:binary <downsampler.so>  ;
-	rdfs:seeAlso <downsampler.ttl> .
+	lv2:binary <downsampler_mono.so>  ;
+	rdfs:seeAlso <downsampler_mono.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/downsampler_stereo>
+	a lv2:Plugin ;
+	lv2:binary <downsampler_stereo.so>  ;
+	rdfs:seeAlso <downsampler_stereo.ttl> .
+
+	
+<http://avwlv2.sourceforge.net/plugins/avw/granulator_mono>
+	a lv2:Plugin ;
+	lv2:binary <granulator_mono.so>  ;
+	rdfs:seeAlso <granulator_mono.ttl> .
+
+	
+<http://avwlv2.sourceforge.net/plugins/avw/granulator_stereo>
+	a lv2:Plugin ;
+	lv2:binary <granulator_stereo.so>  ;
+	rdfs:seeAlso <granulator_stereo.ttl> .
+	

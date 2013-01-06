@@ -64,7 +64,7 @@ EnvGUI::EnvGUI(const std::string& URI)
 	p_dhtWidget->pack_start(*m_scaleHold);
 
 	slot<void> p_slotTimescale = compose(bind<0> (mem_fun(*this, &EnvGUI::write_control), p_timeScale), mem_fun(*this, &EnvGUI::get_timescale));
-	m_scaleTimeScale = new LabeledDial("Time Scale", p_slotTimescale, p_timeScale, 0, 1, false, 0.01, 2);
+	m_scaleTimeScale = new LabeledDial("Time Scale", p_slotTimescale, p_timeScale, 0, 10, false, 0.01, 2);
 	p_dhtWidget->pack_start(*m_scaleTimeScale);
 
 	p_dhtFrame->add(*p_dhtWidget);

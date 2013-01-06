@@ -7,15 +7,8 @@
 
 #include "percussiveenv.hpp"
 
-PercussiveEnv::PercussiveEnv(double rate) :
-		Plugin<PercussiveEnv>(p_n_ports)
+PercussiveEnv::PercussiveEnv(double rate): Plugin<PercussiveEnv>(p_n_ports)
 {
-	delay = 0;
-	attack = 0.05;
-	hold = 0.02;
-	decay = 0.1;
-	timeScale = 1.0;
-
 	gate = false;
 	retrigger = false;
 	noteOnOfs = 0;
@@ -34,23 +27,14 @@ void PercussiveEnv::run(uint32_t nframes)
 	float a, dl, dc, h;
 	int idl, idla, idlah, idlahdc;
 
-	gateData = p(p_gate);
-	retriggerData = p(p_retrigger);
-
-	delay = *p(p_delay);
-	attack = *p(p_attack);
-	hold = *p(p_hold);
-	decay = *p(p_decay);
-	timeScale = *p(p_timeScale);
-
-	tscale = timeScale * (float) m_rate;
-	de_attack = (attack > 0) ? 1.0 / (attack * tscale) : 0;
-	de_decay = (decay > 0) ? 1.0 / (decay * tscale) : 0;
-	a = tscale * attack;
-	dl = tscale * delay;
+	tscale = *p(p_timeScale) * (float) m_rate;
+	de_attack = (*p(p_attack) > 0) ? 1.0 / (*p(p_attack) * tscale) : 0;
+	de_decay = (*p(p_decay) > 0) ? 1.0 / (*p(p_decay) * tscale) : 0;
+	a = tscale * *p(p_attack);
+	dl = tscale * *p(p_delay);
 	idl = (int) dl;
-	h = tscale * hold;
-	dc = tscale * decay;
+	h = tscale * *p(p_hold);
+	dc = tscale * *p(p_delay);
 	idla = (int) (dl + a);
 	idlah = idla + (int) h;
 	if (idlah == idla)
@@ -61,7 +45,7 @@ void PercussiveEnv::run(uint32_t nframes)
 	idlahdc = idlah + (int) dc;
 	for (l2 = 0; l2 < nframes; l2++)
 	{
-		if (!gate && (gateData[l2] > 0.5))
+		if (!gate && (p(p_gate)[l2] > 0.5))
 		{
 			gate = true;
 			if (e > 0)
@@ -74,12 +58,12 @@ void PercussiveEnv::run(uint32_t nframes)
 				noteOnOfs = 0;
 			}
 		}
-		if (gate && (gateData[l2] < 0.5))
+		if (gate && (p(p_gate)[l2] < 0.5))
 		{
 			gate = false;
 			e_noteOff = e;
 		}
-		if (!retrigger && (retriggerData[l2] > 0.5))
+		if (!retrigger && (p(p_retrigger)[l2] > 0.5))
 		{
 			retrigger = true;
 			if (e > 0)
@@ -87,7 +71,7 @@ void PercussiveEnv::run(uint32_t nframes)
 			else
 				noteOnOfs = 0;
 		}
-		if (retrigger && (retriggerData[l2] < 0.5))
+		if (retrigger && (p(p_retrigger)[l2] < 0.5))
 			retrigger = false;
 
 		status = 1;

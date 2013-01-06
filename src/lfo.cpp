@@ -15,7 +15,7 @@ Lfo::Lfo(double rate)
 
 	freq = 5;
 	phi0 = 0;
-	wave_period = rate/ (16.0 * freq);
+	wave_period = rate / (16.0 * freq);
 	m_rate = rate;
 
 	trigger = false;

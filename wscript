@@ -33,6 +33,23 @@ def configure(conf):
     autowaf.check_pkg(conf, 'lvtk-ui-1', uselib_store='LVTK_UI', atleast_version='1.0.3')
     autowaf.check_pkg(conf, 'lvtk-gtkui-1', uselib_store='LVTK_GTKGUI', atleast_version='1.0.3')
     autowaf.check_pkg(conf, 'jack', uselib_store='JACK', atleast_version='0.120.0')	
+
+    check = 'Extended Initializer Lists'
+    conf.check_cxx(
+        msg         = check,
+        define_name = 'WAF_CXX_FEATURE_' + check.replace(' ', '_').upper(),
+        fragment    = '#include <vector>\n'+
+			'struct foo {\n'+
+    			'int i;\n'+
+    			'int j;\n'+
+    			'int k;\n'+
+			'};\n'+
+			'int main() {\n'+
+    			'std::vector<foo> v(1);\n'+
+    			'v[0] = {0, 0, 0};\n'+
+    			'return 0;\n'+
+			'}',
+        mandatory   = False)
     
     # Set env['pluginlib_PATTERN']
     pat = conf.env['cxxshlib_PATTERN']
@@ -98,8 +115,10 @@ def build(bld):
 	env
 	hztovc
 	lfo
-	mixer_audio
-	mixer_cv
+	mixer_4ch_audio
+	mixer_4ch_cv
+	mixer_2ch_audio
+	mixer_2ch_cv
 	noise2_audio
 	noise2_cv
 	slew
@@ -119,7 +138,10 @@ def build(bld):
 	vcswitch_audio
 	vcswitch_cv
 	mooglpf
-	downsampler
+	downsampler_mono
+	downsampler_stereo
+	granulator_mono
+	granulator_stereo
 	'''.split()
 
 	for i in plugins:
@@ -135,7 +157,6 @@ def build(bld):
 	plugins = '''
 	vco2
 	ad
-	dynamicwaves
 	vcf
 	'''.split()
 	
@@ -160,8 +181,10 @@ def build(bld):
 	cvs_gui
 	delay_gui
 	hztovc_gui
-	mixer_audio_gui
-	mixer_cv_gui
+	mixer_2ch_audio_gui
+	mixer_2ch_cv_gui
+	mixer_4ch_audio_gui
+	mixer_4ch_cv_gui
 	mooglpf_gui
 	noise2_audio_gui
 	noise2_cv_gui
@@ -173,7 +196,10 @@ def build(bld):
 	vcswitch_audio_gui
 	vcswitch_cv_gui
 	vctohz_gui
-	downsampler_gui
+	downsampler_mono_gui
+	downsampler_stereo_gui
+	granulator_mono_gui
+	granulator_stereo_gui
 	'''.split()
 
 	for i in plugins_gui:

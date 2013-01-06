@@ -13,7 +13,8 @@ class Tranches: public Plugin<Tranches, URID<true>>
 	private:
 		double m_rate;
 
-		jack_client_t *client;bool slicingAsked;bool stopSlicingAsked;bool sliceRecorded;bool slicing;bool reverse;
+		//jack_client_t *client;
+		bool slicingAsked;bool stopSlicingAsked;bool sliceRecorded;bool slicing;bool reverse;
 		int sliceCounter;
 		int sliceSize;
 		int maxSliceSize;

@@ -39,7 +39,7 @@ LfoGUI::LfoGUI(const std::string& URI)
 	p_mainWidget->pack_start(*m_checkSync);
 
 	slot<void> p_slotFrequency = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_frequency), mem_fun(*this,  &LfoGUI::get_freq));
-	m_dialFreq = new LabeledDial("Frequency", p_slotFrequency, p_frequency, 0, 100, true, 0.001, 3);
+	m_dialFreq = new LabeledDial("Frequency", p_slotFrequency, p_frequency, 0.001, 100, true, 0.001, 3);
 	p_mainWidget->pack_start(*m_dialFreq);
 
 	slot<void> p_slotDivider = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_temp_mul), mem_fun(*this, &LfoGUI::get_div));
