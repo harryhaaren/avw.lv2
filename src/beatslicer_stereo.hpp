@@ -1,14 +1,14 @@
-#ifndef TRANCHES_H
-#define TRANCHES_H
+#ifndef BEATSLICER_STEREO_H
+#define BEATSLICER_STEREO_H
 
 #include <jack/jack.h>
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "tranches.peg"
+#include "beatslicer_stereo.peg"
 
 using namespace lvtk;
 
-class Tranches: public Plugin<Tranches, URID<true>>
+class BeatSlicerStereo: public Plugin<BeatSlicerStereo, URID<true>>
 {
 	private:
 		double m_rate;
@@ -30,7 +30,7 @@ class Tranches: public Plugin<Tranches, URID<true>>
 		jack_default_audio_sample_t getNextSliceSample(int channel);
 
 	public:
-		Tranches(double rate);
+		BeatSlicerStereo(double rate);
 		void run(uint32_t nframes);
 
 	struct TranchesURIs

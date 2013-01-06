@@ -9,12 +9,12 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "tranches.hpp"
+#include "beatslicer_mono.hpp"
 
 using namespace lvtk;
 
-Tranches::Tranches(double rate)
-: Plugin<Tranches, URID<true>>(p_n_ports)
+BeatSlicerMono::BeatSlicerMono(double rate)
+: Plugin<BeatSlicerMono, URID<true>>(p_n_ports)
   {
 	m_rate = rate;
 	beatsPerMinute = 120;
@@ -39,7 +39,7 @@ Tranches::Tranches(double rate)
 	uris.time_speed          = map(LV2_TIME__speed);
   }
 
-void Tranches::run(uint32_t nframes)
+void BeatSlicerMono::run(uint32_t nframes)
 {
 	//GET THE PORTS
 
@@ -62,8 +62,7 @@ void Tranches::run(uint32_t nframes)
 	{
 		//out[0][n] = 0;
 		//out[1][n] = 0;
-		p(p_outputL)[n] = 0;
-		p(p_outputR)[n] = 0;
+		p(p_output)[n] = 0;
 	}
 
 	triggerData = p(p_trigger);
@@ -146,27 +145,22 @@ void Tranches::run(uint32_t nframes)
 			if (!(sliceRecorded))
 			{
 				//we add all the mix of all theinputs to the slice
-				jack_default_audio_sample_t in1 = 0;
-				jack_default_audio_sample_t in2 = 0;
+				jack_default_audio_sample_t in = 0;
 
-				in1 += p(p_inputL)[n];
-				in2 += p(p_inputR)[n];
+				in += p(p_input)[n];
 
-				addSliceSample(in1, in2);
+				addSliceSample(in);
 
 				//and we play the sample in the current output
-				p(p_outputL)[n] = in1;
-				p(p_outputR)[n] = in2;
+				p(p_output)[n] = in;
 			}
 			else //if it is over
 			{
 				//we get the sample from the slice
-				jack_default_audio_sample_t s1 = getNextSliceSample(1);
-				jack_default_audio_sample_t s2 = getNextSliceSample(2);
+				jack_default_audio_sample_t s = getNextSliceSample();
 
 				//and we play the sample in the current output
-				p(p_outputL)[n] = s1;
-				p(p_outputR)[n] = s2;
+				p(p_output)[n] = s;
 			}
 		}
 	}
@@ -176,13 +170,12 @@ void Tranches::run(uint32_t nframes)
 
 		for (unsigned int n = 0; n < nframes; n++) //for each sample
 		{
-			p(p_outputL)[n] = p(p_inputL)[n];
-			p(p_outputR)[n] = p(p_inputR)[n];
+			p(p_output)[n] = p(p_input)[n];
 		}
 	}
 }
 
-void Tranches::setSliceSize(double nbBeats)
+void BeatSlicerMono::setSliceSize(double nbBeats)
 {
 	int fadeTime = 100;
 
@@ -231,23 +224,21 @@ void Tranches::setSliceSize(double nbBeats)
 	sliceCounter = sliceCounter % sliceSize;
 }
 
-void Tranches::clearSlice()
+void BeatSlicerMono::clearSlice()
 {
 	slicingAsked = false;
 	stopSlicingAsked = false;
 	slicing = false;
-	sliceSamplesL.clear();
-	sliceSamplesR.clear();
+	sliceSamples.clear();
 }
 
-void Tranches::addSliceSample(jack_default_audio_sample_t in1, jack_default_audio_sample_t in2)
+void BeatSlicerMono::addSliceSample(jack_default_audio_sample_t in)
 {
 	//we add the sample
-	sliceSamplesL.push_back(in1);
-	sliceSamplesR.push_back(in2);
+	sliceSamples.push_back(in);
 	//test with the size of the repeat
 	//if size reached, slice is recorded
-	if (sliceSamplesL.size() >= (unsigned int) sliceSize)
+	if (sliceSamples.size() >= (unsigned int) sliceSize)
 	{
 		maxSliceSize = sliceSize;
 		sliceRecorded = true;
@@ -255,23 +246,18 @@ void Tranches::addSliceSample(jack_default_audio_sample_t in1, jack_default_audi
 	}
 }
 
-jack_default_audio_sample_t Tranches::getNextSliceSample(int channel)
+jack_default_audio_sample_t BeatSlicerMono::getNextSliceSample()
 {
 	//return the sample faded in/out to avoid clicks
 	jack_default_audio_sample_t res;
-	if (channel == 1)
-		res = sliceSamplesL[sliceCounter] * fadingTab[sliceCounter];
+	res = sliceSamples[sliceCounter] * fadingTab[sliceCounter];
+	//counter ++
+	if (reverse)
+		sliceCounter = (sliceCounter <= 0) ? (sliceSize - 1) : sliceCounter - 1;
 	else
-	{
-		res = sliceSamplesR[sliceCounter] * fadingTab[sliceCounter];
-		//counter ++
-		if (reverse)
-			sliceCounter = (sliceCounter <= 0) ? (sliceSize - 1) : sliceCounter - 1;
-		else
-			sliceCounter = (sliceCounter >= (sliceSize - 1)) ? 0 : sliceCounter + 1;
-	}
+		sliceCounter = (sliceCounter >= (sliceSize - 1)) ? 0 : sliceCounter + 1;
 	return res;
 }
 
-static int _ = Tranches::register_class("http://avwlv2.sourceforge.net/plugins/avw/tranches");
+static int _ = BeatSlicerMono::register_class("http://avwlv2.sourceforge.net/plugins/avw/beatslicer_mono");
 

@@ -129,7 +129,8 @@ def build(bld):
 	delay
 	absolute
 	inv
-	tranches
+	beatslicer_mono
+	beatslicer_stereo
 	ringmodulator_audio
 	ringmodulator_cv
 	percussiveenv
@@ -190,7 +191,8 @@ def build(bld):
 	noise2_cv_gui
 	ringmodulator_audio_gui
 	ringmodulator_cv_gui
-	tranches_gui
+	beatslicer_mono_gui
+	beatslicer_stereo_gui
 	vcaexp_gui
 	vcalin_gui
 	vcswitch_audio_gui

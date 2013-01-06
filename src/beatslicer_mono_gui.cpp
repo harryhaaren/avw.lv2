@@ -4,10 +4,10 @@
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>
 
-#include "tranches_gui.hpp"
-#include "tranches.hpp"
+#include "beatslicer_mono_gui.hpp"
+#include "beatslicer_mono.hpp"
 
-TranchesGUI::TranchesGUI(const std::string& URI)
+BeatSlicerMonoGUI::BeatSlicerMonoGUI(const std::string& URI)
 {
 	EventBox *p_background = manage (new EventBox());
 	Gdk::Color* color = new  Gdk::Color();
@@ -17,12 +17,12 @@ TranchesGUI::TranchesGUI(const std::string& URI)
 	VBox *p_mainWidget = manage (new VBox(false));
 
 
-	slot<void> p_slotSliceSize = compose(bind<0>(mem_fun(*this, &TranchesGUI::write_control), p_slice), mem_fun(*this,  &TranchesGUI::get_sizeSlice));
+	slot<void> p_slotSliceSize = compose(bind<0>(mem_fun(*this, &BeatSlicerMonoGUI::write_control), p_slice), mem_fun(*this,  &BeatSlicerMonoGUI::get_sizeSlice));
 	m_dialSizeSlice = new LabeledDial("Size of Slice", p_slotSliceSize, p_slice, 0.125, 1, false, 0.125, 3);
 	p_mainWidget->pack_start(*m_dialSizeSlice);
 
 	m_checkReverse = manage(new CheckButton("Reverse"));
-	slot<void> p_slotReverse= compose(bind<0>(mem_fun(*this, &TranchesGUI::write_control), p_reverse), mem_fun(*m_checkReverse, &CheckButton::get_active));
+	slot<void> p_slotReverse= compose(bind<0>(mem_fun(*this, &BeatSlicerMonoGUI::write_control), p_reverse), mem_fun(*m_checkReverse, &CheckButton::get_active));
 	m_checkReverse->signal_toggled().connect(p_slotReverse);
 	p_mainWidget->pack_start(*m_checkReverse);
 
@@ -35,9 +35,9 @@ TranchesGUI::TranchesGUI(const std::string& URI)
 	Gtk::manage(p_mainWidget);
 }
 
-float TranchesGUI::get_sizeSlice() { return m_dialSizeSlice->get_value(); }
+float BeatSlicerMonoGUI::get_sizeSlice() { return m_dialSizeSlice->get_value(); }
 
-void TranchesGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
+void BeatSlicerMonoGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
 {
 	if (port == p_reverse)
 	{
@@ -49,4 +49,4 @@ void TranchesGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t forma
 	}
 }
 
-static int _ = TranchesGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/tranches/gui");
+static int _ = BeatSlicerMonoGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/beatslicer_mono/gui");
