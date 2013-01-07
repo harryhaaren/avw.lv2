@@ -12,16 +12,6 @@ Env::Env(double rate): Plugin<Env>(p_n_ports)
 	gate = false;
 	retrigger = false;
 
-	/*
-	attack = false;
-	hold = false;
-	release = true;
-	decay = false;
-	sustain = false;
-	delay = false;
-	retrigger2 = false;
-	*/
-
 	noteOnOfs = 0;
 	e = 0;
 	de = 0;
@@ -61,10 +51,7 @@ void Env::run(uint32_t nframes)
 	{
 		if (!gate && (p(p_gate)[l2] == 1))
 		{
-			//printf("Gate Open\n");
-
 			gate = true;
-
 
 			if (e > 0)
 			{
@@ -79,8 +66,6 @@ void Env::run(uint32_t nframes)
 		}
 		else if (gate && (p(p_gate)[l2] == 0))
 		{
-			//printf("Gate Close\n");
-
 			gate = false;
 			e_noteOff = e;
 		}
@@ -88,7 +73,7 @@ void Env::run(uint32_t nframes)
 		if (!retrigger && (p(p_retrigger)[l2] == 1))
 		{
 			retrigger = true;
-			//printf("Rettriger On\n");
+
 			if (e > 0)
 			{
 				noteOnOfs = (de_attack > 0) ? (int)(e / de_attack) : 0;
@@ -101,7 +86,6 @@ void Env::run(uint32_t nframes)
 		else if (retrigger && (p(p_retrigger)[l2] == 0))
 		{
 			retrigger = false;
-			//printf("Rettriger Off\n");
 		}
 
 		if (gate)
@@ -131,112 +115,24 @@ void Env::run(uint32_t nframes)
 			switch (status)
 			{
 				case 0:
-					/*
-					if(!retrigger2)
-					{
-						retrigger2 = true;
-						release = false;
-						hold = false;
-						attack = false;
-						decay = false;
-						sustain = false;
-						delay = false;
-						printf("Retrigger\n");
-					}
-					*/
 					e -= de;
 					break;
 				case 1:
-					/*
-					if(!delay)
-					{
-						delay = true;
-						release = false;
-						attack = false;
-						decay = false;
-						hold = false;
-						sustain = false;
-						retrigger2 = false;
-						printf("Delay\n");
-					}
-					*/
 					e = 0;
 					break;
 				case 2:
-					/*
-					if(!attack)
-					{
-						attack = true;
-						release = false;
-						hold = false;
-						decay = false;
-						delay = false;
-						sustain = false;
-						retrigger2 = false;
-						printf("Attack\n");
-					}
-					*/
 					e += de_attack;
 					break;
 				case 3:
-					/*
-					if(!hold)
-					{
-						hold = true;
-						release = false;
-						attack = false;
-						decay = false;
-						sustain = false;
-						delay = false;
-						retrigger2 = false;
-						printf("Hold\n");
-					}
-					*/
 					e = 1.0;
 					break;
 				case 4:
-					/*
-					if(!decay)
-					{
-						decay = true;
-						release = false;
-						hold = false;
-						attack = false;
-						sustain = false;
-						delay = false;
-						retrigger2 = false;
-						printf("Decay\n");
-					}
-					*/
 					e -= de_decay;
 					break;
 				case 5:
-					/*
-					if(!sustain)
-					{
-						sustain = true;
-						release = false;
-						hold = false;
-						attack = false;
-						decay = false;
-						delay = false;
-						retrigger2 = false;
-						printf("Sustain\n");
-					}
-					*/
 					e = *p(p_sustain);
 					break;
 				default:
-					/*
-					release = false;
-					hold = false;
-					attack = false;
-					decay = false;
-					sustain = false;
-					delay = false;
-					retrigger2 = false;
-					printf("Should not be here\n");
-					*/
 					e = 0;
 					break;
 			}
@@ -250,19 +146,6 @@ void Env::run(uint32_t nframes)
 		}
 		else
 		{
-			/*
-			if(!release)
-			{
-				release = true;
-				hold = false;
-				attack = false;
-				decay = false;
-				sustain = false;
-				delay = false;
-				retrigger2 = false;
-				printf("Release\n");
-			}
-			*/
 			// Release
 			de_release = (*p(p_release) > 0) ? e_noteOff / (*p(p_release) * tscale) : 0;
 

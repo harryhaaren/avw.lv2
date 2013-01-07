@@ -12,18 +12,13 @@ using namespace lvtk;
 class PercussiveEnv: public Plugin<PercussiveEnv>
 {
 	private:
-		//float delay, attack, hold, decay;
-		float e_noteOff, de;
+		float e;
+		bool trigger, triggered;
+		int noteOnOfs;
 
 		double m_rate;
 
 	public:
-		float e;
-		//float timeScale;
-		bool gate, retrigger;
-		int noteOnOfs;
-		//float *gateData, *retriggerData;
-
 		PercussiveEnv(double rate);
 		void run(uint32_t nframes);
 };

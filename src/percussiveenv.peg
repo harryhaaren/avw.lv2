@@ -19,8 +19,7 @@ typedef struct {
 static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/percussiveenv";
 
 enum p_port_enum {
-  p_gate,
-  p_retrigger,
+  p_trigger,
   p_attack,
   p_decay,
   p_delay,
@@ -32,7 +31,6 @@ enum p_port_enum {
 };
 
 static const peg_data_t p_ports[] = {
-  { 0, 1, 0, 0, 0, 0 }, 
   { 0, 1, 0, 0, 0, 0 }, 
   { 0, 1, 0.05, 0, 0, 0 }, 
   { 0, 1, 0.1, 0, 0, 0 }, 
