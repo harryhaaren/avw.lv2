@@ -179,7 +179,6 @@ void BeatRepeaterMono::run(uint32_t nframes)
 			}
 			else
 			{
-				printf("%i %g\n", m_sampleRepeatingPosition, m_envelopeRec[m_sampleRepeatingPosition] );
 				p(p_output)[n] = p(p_input)[n] * m_envelopeRec[m_sampleRepeatingPosition];
 				m_sampleRepeatingPosition++;
 				if(m_sampleRepeatingPosition >= m_sampleFullSize)
