@@ -129,8 +129,8 @@ def build(bld):
 	delay
 	absolute
 	inv
-	beatslicer_mono
-	beatslicer_stereo
+	beatrepeater_mono
+	beatrepeater_stereo
 	ringmodulator_audio
 	ringmodulator_cv
 	percussiveenv
@@ -191,8 +191,6 @@ def build(bld):
 	noise2_cv_gui
 	ringmodulator_audio_gui
 	ringmodulator_cv_gui
-	beatslicer_mono_gui
-	beatslicer_stereo_gui
 	vcaexp_gui
 	vcalin_gui
 	vcswitch_audio_gui
@@ -202,6 +200,8 @@ def build(bld):
 	downsampler_stereo_gui
 	granulator_mono_gui
 	granulator_stereo_gui
+	beatrepeater_mono_gui
+	beatrepeater_stereo_gui
 	'''.split()
 
 	for i in plugins_gui:

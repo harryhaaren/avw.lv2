@@ -49,7 +49,7 @@ void Env::run(uint32_t nframes)
 
 	for (l2 = 0; l2 < nframes; l2++)
 	{
-		if (!gate && (p(p_gate)[l2] == 1))
+		if (!gate && (p(p_gate)[l2] > 0.5))
 		{
 			gate = true;
 
@@ -64,7 +64,7 @@ void Env::run(uint32_t nframes)
 			}
 
 		}
-		else if (gate && (p(p_gate)[l2] == 0))
+		else if (gate && (p(p_gate)[l2] < 0.5))
 		{
 			gate = false;
 			e_noteOff = e;
