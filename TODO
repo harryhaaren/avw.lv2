@@ -1,6 +1,6 @@
 TO-DO LIST:
-- GUI for BeatRepeater
-- BeatSlicer
+- BeatSlicer GUI
 - Float to Int 
 - Better DownSampler (X out of Y samples)
+- CV Port to Control Port (crashes the thing at the moment)
 

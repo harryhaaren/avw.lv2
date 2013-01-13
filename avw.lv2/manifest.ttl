@@ -185,16 +185,23 @@
 	a lv2:Plugin ;
 	lv2:binary <downsampler_stereo.so>  ;
 	rdfs:seeAlso <downsampler_stereo.ttl> .
-
 	
 <http://avwlv2.sourceforge.net/plugins/avw/granulator_mono>
 	a lv2:Plugin ;
 	lv2:binary <granulator_mono.so>  ;
 	rdfs:seeAlso <granulator_mono.ttl> .
-
 	
 <http://avwlv2.sourceforge.net/plugins/avw/granulator_stereo>
 	a lv2:Plugin ;
 	lv2:binary <granulator_stereo.so>  ;
 	rdfs:seeAlso <granulator_stereo.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/beatslicer_mono>
+	a lv2:Plugin ;
+	lv2:binary <beatslicer_mono.so>  ;
+	rdfs:seeAlso <beatslicer_mono.ttl> .
 	
+<http://avwlv2.sourceforge.net/plugins/avw/beatslicer_stereo>
+	a lv2:Plugin ;
+	lv2:binary <beatslicer_stereo.so>  ;
+	rdfs:seeAlso <beatslicer_stereo.ttl> .

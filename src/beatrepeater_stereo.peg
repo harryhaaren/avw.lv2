@@ -1,5 +1,5 @@
-#ifndef src_beatrepeater_stereo_peg
-#define src_beatrepeater_stereo_peg
+#ifndef avw_lv__beatrepeater_stereo_peg
+#define avw_lv__beatrepeater_stereo_peg
 
 
 #ifndef PEG_STRUCT
@@ -46,4 +46,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* src_beatrepeater_stereo_peg */
+#endif /* avw_lv__beatrepeater_stereo_peg */
