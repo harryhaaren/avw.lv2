@@ -203,6 +203,7 @@ def build(bld):
 	granulator_stereo_gui
 	beatrepeater_mono_gui
 	beatrepeater_stereo_gui
+	beatslicer_mono_gui
 	'''.split()
 
 	for i in plugins_gui:
