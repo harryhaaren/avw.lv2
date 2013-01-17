@@ -5,12 +5,12 @@
 #include <jack/jack.h>
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "beatslicer_mono.peg"
+#include "beatslicer_stereo.peg"
 
 using namespace lvtk;
 using namespace std;
 
-class BeatSlicerMono: public Plugin<BeatSlicerMono>
+class BeatSlicerStereo: public Plugin<BeatSlicerStereo>
 {
 	private:
 		double m_rate;
@@ -22,8 +22,10 @@ class BeatSlicerMono: public Plugin<BeatSlicerMono>
 		int m_fadeInInputSize;
 		int m_fadeInPosition;
 
-		deque<jack_default_audio_sample_t> m_sample;
-		deque<jack_default_audio_sample_t> m_readingSample;
+		deque<jack_default_audio_sample_t> m_sampleL;
+		deque<jack_default_audio_sample_t> m_sampleR;
+		deque<jack_default_audio_sample_t> m_readingSampleL;
+		deque<jack_default_audio_sample_t> m_readingSampleR;
 		int m_sampleFullSize;
 		bool m_sampleFull;
 
@@ -44,7 +46,7 @@ class BeatSlicerMono: public Plugin<BeatSlicerMono>
 		void giveMeReverse(int ReverseMode);
 
 	public:
-		BeatSlicerMono(double rate);
+		BeatSlicerStereo(double rate);
 		void run(uint32_t nframes);
 };
 

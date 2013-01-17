@@ -90,7 +90,7 @@ void BeatRepeaterStereo::run(uint32_t nframes)
 		attack = release;
 	}
 
-	if(tempo != m_tempo || beatSize != m_beatSize || attack != m_attack || release != m_release)
+	if(!m_gate && (tempo != m_tempo || beatSize != m_beatSize || attack != m_attack || release != m_release))
 	{
 		m_tempo = tempo;
 		m_beatSize = beatSize;

@@ -144,6 +144,7 @@ def build(bld):
 	beatrepeater_mono
 	beatrepeater_stereo
 	beatslicer_mono
+	beatslicer_stereo
 	'''.split()
 
 	for i in plugins:
@@ -204,6 +205,7 @@ def build(bld):
 	beatrepeater_mono_gui
 	beatrepeater_stereo_gui
 	beatslicer_mono_gui
+	beatslicer_stereo_gui
 	'''.split()
 
 	for i in plugins_gui:

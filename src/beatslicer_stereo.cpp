@@ -8,12 +8,12 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "beatslicer_mono.hpp"
+#include "beatslicer_stereo.hpp"
 
 using namespace lvtk;
 
-BeatSlicerMono::BeatSlicerMono(double rate)
-: Plugin<BeatSlicerMono>(p_n_ports)
+BeatSlicerStereo::BeatSlicerStereo(double rate)
+: Plugin<BeatSlicerStereo>(p_n_ports)
   {
 	m_rate = rate;
 
@@ -33,7 +33,7 @@ BeatSlicerMono::BeatSlicerMono(double rate)
 	m_inputBackIn = true;
   }
 
-void BeatSlicerMono::run(uint32_t nframes)
+void BeatSlicerStereo::run(uint32_t nframes)
 {
 	int tempo = int(*p(p_tempo) + 0.5);
 	if(tempo < 40)
@@ -78,7 +78,8 @@ void BeatSlicerMono::run(uint32_t nframes)
 		m_sliceSize = sliceSize;
 
 		m_sampleFullSize = int(60 * m_rate * m_sampleSize / m_tempo + 0.5);
-		m_sample.clear();
+		m_sampleL.clear();
+		m_sampleR.clear();
 		m_sampleFull = false;
 		m_readingSampleSize = int(m_sampleFullSize * m_sliceSize + 0.5);
 
@@ -119,7 +120,8 @@ void BeatSlicerMono::run(uint32_t nframes)
 			m_gate = true;
 			if(m_sampleFull)
 			{
-				m_readingSample = m_sample;
+				m_readingSampleL = m_sampleL;
+				m_readingSampleR = m_sampleR;
 			}
 			giveMeReverse(int(*p(p_reverseMode)));
 			m_enveloperReadingPosition = 0;
@@ -132,16 +134,19 @@ void BeatSlicerMono::run(uint32_t nframes)
 			m_fadeInPosition = 0;
 		}
 
-		m_sample.push_back(float(p(p_input)[n]));
-		while(m_sample.size() > m_sampleFullSize)
+		m_sampleL.push_back(float(p(p_inputL)[n]));
+		m_sampleR.push_back(float(p(p_inputR)[n]));
+		while(m_sampleL.size() > m_sampleFullSize)
 		{
-			m_sample.pop_front();
+			m_sampleL.pop_front();
+			m_sampleR.pop_front();
 			m_sampleFull = true;
 		}
 
 		if(m_gate && m_sampleFull)
 		{
-			p(p_output)[n] = m_readingSample[m_readingPosition] * m_envelope[m_enveloperReadingPosition];
+			p(p_outputL)[n] = m_readingSampleL[m_readingPosition] * m_envelope[m_enveloperReadingPosition];
+			p(p_outputR)[n] = m_readingSampleR[m_readingPosition] * m_envelope[m_enveloperReadingPosition];
 			m_enveloperReadingPosition++;
 			if(m_reverse)
 			{
@@ -168,15 +173,18 @@ void BeatSlicerMono::run(uint32_t nframes)
 			{
 				if(!m_slicerFinished && !m_inputBackIn)
 				{
-					p(p_output)[n] = m_readingSample[m_readingPosition] * m_envelope[m_enveloperReadingPosition] +  p(p_input)[n] * m_fadeInInput[m_fadeInPosition];
+					p(p_outputL)[n] = m_readingSampleL[m_readingPosition] * m_envelope[m_enveloperReadingPosition] +  p(p_inputL)[n] * m_fadeInInput[m_fadeInPosition];
+					p(p_outputR)[n] = m_readingSampleR[m_readingPosition] * m_envelope[m_enveloperReadingPosition] +  p(p_inputR)[n] * m_fadeInInput[m_fadeInPosition];
 				}
 				else if(!m_slicerFinished)
 				{
-					p(p_output)[n] = p(p_input)[n] * m_fadeInInput[m_fadeInPosition];
+					p(p_outputL)[n] = p(p_inputL)[n] * m_fadeInInput[m_fadeInPosition];
+					p(p_outputR)[n] = p(p_inputR)[n] * m_fadeInInput[m_fadeInPosition];
 				}
 				else if(!m_inputBackIn)
 				{
-					p(p_output)[n] = m_readingSample[m_readingPosition] * m_envelope[m_enveloperReadingPosition] +  p(p_input)[n];
+					p(p_outputL)[n] = m_readingSampleL[m_readingPosition] * m_envelope[m_enveloperReadingPosition] +  p(p_inputL)[n];
+					p(p_outputR)[n] = m_readingSampleR[m_readingPosition] * m_envelope[m_enveloperReadingPosition] +  p(p_inputR)[n];
 				}
 
 				m_enveloperReadingPosition++;
@@ -205,13 +213,14 @@ void BeatSlicerMono::run(uint32_t nframes)
 			}
 			else
 			{
-				p(p_output)[n] = p(p_input)[n];
+				p(p_outputL)[n] = p(p_inputL)[n];
+				p(p_outputR)[n] = p(p_inputR)[n];
 			}
 		}
 	}
 }
 
-void BeatSlicerMono::giveMeReverse(int ReverseMode)
+void BeatSlicerStereo::giveMeReverse(int ReverseMode)
 {
 	switch(ReverseMode)
 	{
@@ -240,5 +249,5 @@ void BeatSlicerMono::giveMeReverse(int ReverseMode)
 	}
 }
 
-static int _ = BeatSlicerMono::register_class("http://avwlv2.sourceforge.net/plugins/avw/beatslicer_mono");
+static int _ = BeatSlicerStereo::register_class("http://avwlv2.sourceforge.net/plugins/avw/beatslicer_stereo");
 
