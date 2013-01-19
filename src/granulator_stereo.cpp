@@ -5,6 +5,7 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
+#include "envgen.hpp"
 #include "granulator_stereo.hpp"
 
 using namespace lvtk;
@@ -90,30 +91,8 @@ void GranulatorStereo::run(uint32_t nframes)
 
 		m_recordingGrainL = new jack_default_audio_sample_t[m_lastGrainSize];
 		m_recordingGrainR = new jack_default_audio_sample_t[m_lastGrainSize];
-		m_envelope = new jack_default_audio_sample_t[m_lastGrainSize];
+		m_envelope = gen_full_envelope(m_lastGrainSize, m_lastAttack, m_lastRelease);
 		m_recordingGrainPosition = 0;
-
-		float m_fadeInStep = 1.0 / m_lastAttack;
-		float m_fadeOutStep = 1.0 / m_lastRelease;
-
-		float m_fadeIn = 0.0;
-		for (int i = 0 ; i < m_lastAttack ; i++)
-		{
-			m_envelope[i] = m_fadeIn;
-			m_fadeIn += m_fadeInStep;
-		}
-
-		for (int i = m_lastAttack ; i < m_lastGrainSize - m_lastRelease ; i++)
-		{
-			m_envelope[i] = 1;
-		}
-
-		float m_fadeOut = 1.0;
-		for (int i = m_lastGrainSize - m_lastRelease ; i < m_lastGrainSize ; i++)
-		{
-			m_fadeOut -= m_fadeOutStep;
-			m_envelope[i] = m_fadeOut;
-		}
 	}
 
 	for (unsigned int n = 0; n < nframes; n++)

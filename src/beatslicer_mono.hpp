@@ -15,12 +15,12 @@ class BeatSlicerMono: public Plugin<BeatSlicerMono>
 	private:
 		double m_rate;
 
-		jack_default_audio_sample_t *m_envelope;
+		float *m_envelope;
 		int m_attack, m_release;
 
-		jack_default_audio_sample_t *m_fadeInInput;
-		int m_fadeInInputSize;
-		int m_fadeInPosition;
+		float *m_fadeIn;
+		float *m_fadeOut;
+		int m_fadePosition;
 
 		deque<jack_default_audio_sample_t> m_sample;
 		deque<jack_default_audio_sample_t> m_readingSample;
@@ -28,14 +28,14 @@ class BeatSlicerMono: public Plugin<BeatSlicerMono>
 		bool m_sampleFull;
 
 		int m_readingSampleSize;
-		int m_positionEnd;
+		int m_positionStart;
 		int m_readingPosition;
-		int m_enveloperReadingPosition;
+		int m_calculatedReadingPosition;
 
 		bool m_reverse;
 
 		bool m_gate;
-		bool m_slicerFinished, m_inputBackIn;
+		bool m_slicing;
 
 		int m_tempo;
 		int m_sampleSize;

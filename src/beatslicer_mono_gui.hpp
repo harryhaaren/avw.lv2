@@ -1,5 +1,5 @@
-#ifndef LFO_GUI_H
-#define LFO_GUI_H
+#ifndef BEATSLICER_MONO_GUI_H
+#define BEATSLICER_MONO_GUI_H
 
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>

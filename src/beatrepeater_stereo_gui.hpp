@@ -1,5 +1,5 @@
-#ifndef LFO_GUI_H
-#define LFO_GUI_H
+#ifndef BEATREPEATER_STEREO_GUI_H
+#define BEATREPEATER_STEREO_GUI_H
 
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>

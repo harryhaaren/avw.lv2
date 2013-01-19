@@ -1,5 +1,5 @@
-#ifndef BEATSLICER_MONO_H
-#define BEATSLICER_MONO_H
+#ifndef BEATSLICER_STEREO_H
+#define BEATSLICER_STEREO_H
 
 #include <deque>
 #include <jack/jack.h>
@@ -15,12 +15,12 @@ class BeatSlicerStereo: public Plugin<BeatSlicerStereo>
 	private:
 		double m_rate;
 
-		jack_default_audio_sample_t *m_envelope;
+		float *m_envelope;
 		int m_attack, m_release;
 
-		jack_default_audio_sample_t *m_fadeInInput;
-		int m_fadeInInputSize;
-		int m_fadeInPosition;
+		float *m_fadeIn;
+		float *m_fadeOut;
+		int m_fadePosition;
 
 		deque<jack_default_audio_sample_t> m_sampleL;
 		deque<jack_default_audio_sample_t> m_sampleR;
@@ -30,14 +30,14 @@ class BeatSlicerStereo: public Plugin<BeatSlicerStereo>
 		bool m_sampleFull;
 
 		int m_readingSampleSize;
-		int m_positionEnd;
+		int m_positionStart;
 		int m_readingPosition;
-		int m_enveloperReadingPosition;
+		int m_calculatedReadingPosition;
 
 		bool m_reverse;
 
 		bool m_gate;
-		bool m_slicerFinished, m_inputBackIn;
+		bool m_slicing;
 
 		int m_tempo;
 		int m_sampleSize;

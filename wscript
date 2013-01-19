@@ -139,6 +139,19 @@ def build(bld):
 	mooglpf
 	downsampler_mono
 	downsampler_stereo
+	'''.split()
+
+	for i in plugins:
+		build_plugin(bld, 'avw.lv2', i, ['src/%s.cpp' % i],
+			['-DPLUGIN_CLASS=%s' % i,
+			'-std=c++11',
+            '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
+            '-DPLUGIN_URI_SUFFIX="%s"' % i,
+            '-DPLUGIN_HEADER="src/%s.hpp"' % i],
+		  	['LV2', 'LVTK_PLUGIN', 'JACK'],
+		  	[])
+		  	
+	plugins = '''
 	granulator_mono
 	granulator_stereo
 	beatrepeater_mono
@@ -155,7 +168,7 @@ def build(bld):
             '-DPLUGIN_URI_SUFFIX="%s"' % i,
             '-DPLUGIN_HEADER="src/%s.hpp"' % i],
 		  	['LV2', 'LVTK_PLUGIN', 'JACK'],
-		  	[])
+		  	['src/envgen.cpp'])
 
 	plugins = '''
 	vco2
