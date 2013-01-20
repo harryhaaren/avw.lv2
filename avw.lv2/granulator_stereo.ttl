@@ -13,7 +13,7 @@
 <http://avwlv2.sourceforge.net/plugins/avw/granulator_stereo>
 	a lv2:Plugin, lv2:FilterPlugin ;
 	lv2:project <http://avwlv2.sourceforge.net/plugins/avw/> ;        
-	doap:name "Granulator" ;
+	doap:name "Granulator - Stereo" ;
 	doap:license <http://opensource.org/licenses/isc> ;
 	ll:pegName "p" ;
 	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/granulator_stereo/gui> ;

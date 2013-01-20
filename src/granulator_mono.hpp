@@ -20,7 +20,7 @@ class GranulatorMono: public Plugin<GranulatorMono>
 		int m_lastGrainSize;
 
 		int m_lastAttack, m_lastRelease;
-		jack_default_audio_sample_t *m_envelope;
+		float* m_envelope;
 
 		int m_recordingGrainPosition;
 		jack_default_audio_sample_t *m_recordingGrain;

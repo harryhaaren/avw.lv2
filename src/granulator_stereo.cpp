@@ -25,7 +25,7 @@ GranulatorStereo::GranulatorStereo(double rate)
 
 	m_recordingGrainL = new jack_default_audio_sample_t[10];
 	m_recordingGrainR = new jack_default_audio_sample_t[10];
-	m_envelope = new jack_default_audio_sample_t[10];
+	m_envelope = new float[10];
 	m_playingGrainL = new jack_default_audio_sample_t[10];
 	m_playingGrainR = new jack_default_audio_sample_t[10];
 	m_grainsL.insert(m_grainsL.begin(), m_recordingGrainL);
@@ -49,19 +49,19 @@ void GranulatorStereo::run(uint32_t nframes)
 	 * output
 	 */
 
-	int attack = *p(p_attack);
+	int attack = int(*p(p_attack));
 	if(attack < 3)
 	{
 		attack = 3;
 	}
 
-	int release = *p(p_release);
+	int release = int(*p(p_release));
 	if(release < 3)
 	{
 		release  = 3;
 	}
 
-	int grainSize = *p(p_grainSize);
+	int grainSize = int(*p(p_grainSize));
 	if(grainSize < 6 || attack + release > grainSize)
 	{
 		grainSize = attack + release;
@@ -70,13 +70,13 @@ void GranulatorStereo::run(uint32_t nframes)
 	attack = m_rate / 1000 * attack;
 	release = m_rate / 1000 * release;
 
-	int grainSpread = *p(p_grainSpread);
+	int grainSpread = int(*p(p_grainSpread));
 	if(grainSpread < 2)
 	{
 		grainSpread = 2;
 	}
 
-	int grainDensity = *p(p_grainDensity);
+	int grainDensity = int(*p(p_grainDensity));
 	if(grainDensity < 1)
 	{
 		grainDensity = 1;
