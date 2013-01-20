@@ -1,5 +1,5 @@
-#ifndef BEATSLICER_MONO_H
-#define BEATSLICER_MONO_H
+#ifndef BEATSLICER_STEREO_H
+#define BEATSLICER_STEREO_H
 
 #include <jack/jack.h>
 #include <lvtk-1/lvtk/plugin.hpp>
@@ -14,10 +14,10 @@ class BeatRepeaterStereo: public Plugin<BeatRepeaterStereo>
 	private:
 		double m_rate;
 
-		jack_default_audio_sample_t *m_envelope;
-		jack_default_audio_sample_t *m_envelopeRec;
-		jack_default_audio_sample_t *m_attackEnv;
-		jack_default_audio_sample_t *m_releaseEnv;
+		float* m_envelope;
+		float* m_envelopeRec;
+		float* m_attackEnv;
+		float* m_releaseEnv;
 
 		jack_default_audio_sample_t* m_sampleL;
 		jack_default_audio_sample_t* m_sampleR;
@@ -25,11 +25,10 @@ class BeatRepeaterStereo: public Plugin<BeatRepeaterStereo>
 		bool m_sampleFull;
 
 		bool m_gate;
+		bool m_repeating;
 
-		int m_sampleRepeatingPosition;
-		int m_sampleRecordingPosition;
-		int m_attackEnvPosition;
-		int m_releaseEnvPosition;
+		int m_repeatingPosition;
+		int m_fadePosition;
 
 		int m_tempo;
 		float m_beatSize;

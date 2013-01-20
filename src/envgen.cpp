@@ -80,6 +80,25 @@ float* gen_attack(int Attack)
 	return m_envelope;
 }
 
+float* gen_long_release(int Size, int Release)
+{
+	float* m_envelope = new float[Size];
+
+	for(int i = 0 ; i < Size - Release ; i++)
+	{
+		m_envelope[i] = 1;
+	}
+
+	float* m_release = gen_release(Release);
+
+	for(int i = 0 ; i < Release ; i++)
+	{
+		m_envelope[Size - Release + i] = m_release[i];
+	}
+
+	return m_envelope;
+}
+
 float* gen_release(int Release)
 {
 	return gen_release(1.0f, Release);
