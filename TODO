@@ -1,3 +1,6 @@
 TO-DO LIST:
 - Better DownSampler (X out of Y samples)
+- Beat Slicer -> Randomize size of slice
+- Port AMS Sequencer
+- Beat Slicer/Beat Repeater -> Make one plugin out of the two?
 

@@ -89,7 +89,7 @@
 	ingen:canvasX 357.5 ;
 	ingen:canvasY 450.0 ;
 	ingen:polyphonic false ;
-	ingen:prototype <http://avwlv2.sourceforge.net/plugins/avw/mixer_audio> ;
+	ingen:prototype <http://avwlv2.sourceforge.net/plugins/avw/mixer_4ch_audio> ;
 	lv2:port <mixer_audio/gain> ,
 		<mixer_audio/in1> ,
 		<mixer_audio/in2> ,

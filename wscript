@@ -7,7 +7,7 @@ from waflib.extras import autowaf as autowaf
 
 # Variables for 'waf dist'
 APPNAME = 'avw.lv2'
-VERSION = '0.1.2'
+VERSION = '0.1.3'
 
 # Mandatory variables
 top = '.'
@@ -122,7 +122,6 @@ def build(bld):
 	noise2_audio
 	noise2_cv
 	slew
-	vcaexp
 	vcalin
 	vctohz
 	cvs
@@ -174,6 +173,7 @@ def build(bld):
 	vco2
 	ad
 	vcf
+	vcaexp
 	'''.split()
 	
 	for i in plugins:
