@@ -9,7 +9,7 @@
 using namespace lvtk;
 
 Lfo::Lfo(double rate)
-: Plugin<Lfo, URID<true>>(p_n_ports)
+: Plugin<Lfo>(p_n_ports)
   {
 	long tm;
 
@@ -32,67 +32,15 @@ Lfo::Lfo(double rate)
 	state = 0;
 	dt = 4.0 / wave_period;
 
-	m_bpm = 0;
-
 	waveForm = SINUS;
 
 	tm = time(NULL) % 1000000;
 	srand(abs(tm - 10000 * (tm % 100)));
-
-	uris.atom_Blank          = map(LV2_ATOM__Blank);
-	uris.atom_Float          = map(LV2_ATOM__Float);
-	uris.atom_Path           = map(LV2_ATOM__Path);
-	uris.atom_Resource       = map(LV2_ATOM__Resource);
-	uris.atom_Sequence       = map(LV2_ATOM__Sequence);
-	uris.time_Position       = map(LV2_TIME__Position);
-	uris.time_barBeat        = map(LV2_TIME__barBeat);
-	uris.time_beatsPerMinute = map(LV2_TIME__beatsPerMinute);
-	uris.time_speed          = map(LV2_TIME__speed);
   }
 
 void Lfo::run(uint32_t nframes)
 {
-	float p_bpm = 0;
-	const LV2_Atom_Sequence* timing = p<LV2_Atom_Sequence> (p_control);
-	uint32_t                 last_t = 0;
-	for (LV2_Atom_Event* ev = lv2_atom_sequence_begin(&timing->body); !lv2_atom_sequence_is_end(&timing->body, timing->atom.size, ev); ev = lv2_atom_sequence_next(ev))
-	{
-		if (ev->body.type == uris.atom_Blank)
-		{
-			const LV2_Atom_Object* obj = (LV2_Atom_Object*)&ev->body;
-			if (obj->body.otype == uris.time_Position)
-			{
-				LV2_Atom *bpm = NULL;
-				lv2_atom_object_get(obj, uris.time_beatsPerMinute, &bpm, NULL);
-
-				if (bpm && bpm->type == uris.atom_Float)
-				{
-					/* Tempo changed, update BPM */
-					p_bpm = ((LV2_Atom_Float*)bpm)->body;
-					std::cout << "tempo: " << p_bpm << std::endl;
-					break;
-				}
-			}
-		}
-
-		/* Update time for next iteration and move to next event*/
-		last_t = ev->time.frames;
-		ev = lv2_atom_sequence_next(ev);
-	}
-
-	if(p_bpm>0)
-	{
-		m_bpm = p_bpm;
-	}
-
-	if(*p(p_sync) == 1)
-	{
-		freq = *p(p_temp_mul) * m_bpm / 60;
-	}
-	else
-	{
-		freq = *p(p_frequency);
-	}
+	freq = *p(p_tempo) / 60;
 
 	int l2, k, len, phi0i, l2_out;
 	double ldsi, ldsa, ldt, ldr, ldsh, dt0, dsa;

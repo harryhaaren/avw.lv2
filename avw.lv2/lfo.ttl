@@ -5,10 +5,6 @@
 @prefix rdfs: 	<http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ll: 	<http://ll-plugins.nongnu.org/lv2/namespace#> .
 @prefix guiext: <http://lv2plug.in/ns/extensions/ui#> .
-@prefix atom: 	<http://lv2plug.in/ns/ext/atom#> .
-@prefix urid: 	<http://lv2plug.in/ns/ext/urid#> .
-@prefix time: 	<http://lv2plug.in/ns/ext/time#> .
-@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
 
 <http://avwlv2.sourceforge.net/plugins/avw/lfo/gui>
   a guiext:GtkUI ;
@@ -18,7 +14,6 @@
 	a lv2:Plugin, lv2:OscillatorPlugin ;
 	lv2:project <http://avwlv2.sourceforge.net/plugins/avw/> ;        
 	doap:name "AMS LFO" ;
-	lv2:requiredFeature urid:map ;
 	doap:license <http://opensource.org/licenses/isc> ;
 	ll:pegName "p" ;
 	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/lfo/gui> ;
@@ -62,40 +57,15 @@
 		] ;
 	] ,	[
 		a lv2:InputPort, lv2:ControlPort ;
-	    lv2:index 2 ;
-	    lv2:symbol "sync" ;
-	    lv2:name "Sync" ;
-	    lv2:minimum 0 ;
-	    lv2:maximum 1 ;
-	    lv2:default 0 ;
-		lv2:portProperty pprops:hasStrictBounds ;
-		lv2:portProperty lv2:toggled ;
-	] , [
+		lv2:index 2 ;
+		lv2:symbol "tempo" ;
+		lv2:name "Tempo" ;
+		lv2:default 120.0 ;
+		lv2:minimum 1.0 ;
+		lv2:maximum 320.0 ;
+	] ,	[
 		a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 3 ;
-		lv2:symbol "frequency" ;
-		lv2:name "Frequency" ;
-		lv2:default 5.0 ;
-		lv2:minimum 0.001 ;
-		lv2:maximum 100.0 ;
-	] , [
-		a lv2:InputPort, atom:AtomPort ;
-		atom:bufferType atom:Sequence ;
-		atom:supports time:Position ;
-		lv2:index 4 ;
-		lv2:symbol "control" ;
-		lv2:name "Control" ;
-	] ,	[
-		a lv2:InputPort, lv2:ControlPort ;
-		lv2:index 5 ;
-		lv2:symbol "temp_mul" ;
-		lv2:name "Tempo Division-Multiplier" ;
-		lv2:default 1.0 ;
-		lv2:minimum 0.0 ;
-		lv2:maximum 100.0 ;
-	] ,	[
-		a lv2:InputPort, lv2:ControlPort ;
-		lv2:index 6 ;
 		lv2:symbol "phi0" ;
 		lv2:name "Phi0" ;
 		lv2:default 0 ;
@@ -103,7 +73,7 @@
 		lv2:maximum 6.28 ;
 	] ,	[
 		a lv2:OutputPort, lv2:CVPort ;
-		lv2:index 7 ;
+		lv2:index 4 ;
 		lv2:symbol "output" ;
 		lv2:name "Output" ;
 		lv2:default 0.0 ;

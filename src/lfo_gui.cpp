@@ -32,25 +32,15 @@ LfoGUI::LfoGUI(const std::string& URI)
 
 	p_mainWidget->pack_start(*m_comboWaveForm);
 
-	m_checkSync = manage(new CheckButton("Sync with Tempo"));
-	slot<void> p_slotSyncWithTemp = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_sync), mem_fun(*m_checkSync, &CheckButton::get_active));
-	m_checkSync->signal_toggled().connect(p_slotSyncWithTemp);
-
-	p_mainWidget->pack_start(*m_checkSync);
-
-	slot<void> p_slotFrequency = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_frequency), mem_fun(*this,  &LfoGUI::get_freq));
-	m_dialFreq = new LabeledDial("Frequency", p_slotFrequency, p_frequency, 0.001, 100, true, 0.001, 3);
-	p_mainWidget->pack_start(*m_dialFreq);
-
-	slot<void> p_slotDivider = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_temp_mul), mem_fun(*this, &LfoGUI::get_div));
-	m_dialTempoDiv = new LabeledDial("Tempo Division", p_slotDivider, p_temp_mul, 0, 8, false, 0.25, 2);
-	p_mainWidget->pack_start(*m_dialTempoDiv);
+	slot<void> p_slotTempo = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_tempo), mem_fun(*this, &LfoGUI::get_tempo));
+	m_dialTempo = new LabeledDial("Tempo", p_slotTempo, p_tempo, 1, 320, false, 1, 0);
+	p_mainWidget->pack_start(*m_dialTempo);
 
 	slot<void> p_slotPhi0 = compose(bind<0> (mem_fun(*this, &LfoGUI::write_control), p_phi0), mem_fun(*this, &LfoGUI::get_phi0));
 	m_dialPhi0 = new LabeledDial("Phi0", p_slotPhi0, p_phi0, 0, 6.28, false, 0.01, 2);
 	p_mainWidget->pack_start(*m_dialPhi0);
 
-	p_mainWidget->set_size_request(160, 320);
+	p_mainWidget->set_size_request(160, 260);
 
 	p_background->add(*p_mainWidget);
 	add(*p_background);
@@ -58,8 +48,7 @@ LfoGUI::LfoGUI(const std::string& URI)
 	Gtk::manage(p_mainWidget);
 }
 
-float LfoGUI::get_freq() 	{ return m_dialFreq->get_value(); }
-float LfoGUI::get_div() 	{ return m_dialTempoDiv->get_value(); }
+float LfoGUI::get_tempo() 	{ return m_dialTempo->get_value(); }
 float LfoGUI::get_phi0() 	{ return m_dialPhi0->get_value(); }
 
 void LfoGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
@@ -72,17 +61,9 @@ void LfoGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, co
 			m_comboWaveForm->set_active((int) p_waveFormValue);
 		}
 	}
-	else if (port == p_sync)
+	else if (port == p_tempo)
 	{
-		m_checkSync->set_active(*static_cast<const float*> (buffer) == 1);
-	}
-	else if (port == p_temp_mul)
-	{
-		m_dialTempoDiv->set_value(*static_cast<const float*> (buffer));
-	}
-	else if (port == p_frequency)
-	{
-		m_dialFreq->set_value(*static_cast<const float*> (buffer));
+		m_dialTempo->set_value(*static_cast<const float*> (buffer));
 	}
 	else if (port == p_phi0)
 	{
