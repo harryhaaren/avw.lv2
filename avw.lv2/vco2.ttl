@@ -1,14 +1,35 @@
 @prefix doap: 	<http://usefulinc.com/ns/doap#> .
 @prefix foaf: 	<http://xmlns.com/foaf/0.1/> .
-@prefix lv2: 	<http://lv2plug.in/ns/lv2core#> .
 @prefix rdf: 	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: 	<http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ll: 	<http://ll-plugins.nongnu.org/lv2/namespace#> .
+@prefix lv2: 	<http://lv2plug.in/ns/lv2core#> .
 @prefix guiext: <http://lv2plug.in/ns/extensions/ui#> .
+@prefix pg:     <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix ll: 	<http://ll-plugins.nongnu.org/lv2/namespace#> .
 
 <http://avwlv2.sourceforge.net/plugins/avw/vco2/gui>
   a guiext:GtkUI ;
   guiext:binary <vco2_gui.so> .
+  
+<http://avwlv2.sourceforge.net/plugins/avw/vco2#group_frequency>
+    a param:OscillatorControls ;
+    lv2:name "Frequency" ;
+    lv2:symbol "grp_frequency" .
+    
+<http://avwlv2.sourceforge.net/plugins/avw/vco2#group_pw_phase>
+    a param:OscillatorControls ;
+    lv2:name "Pulse Width - Phase" ;
+    lv2:symbol "grp_pw_phase" .
+    
+<http://avwlv2.sourceforge.net/plugins/avw/vco2#group_modulation>
+    a param:OscillatorControls ;
+    lv2:name "Modulation" ;
+    lv2:symbol "grp_modulation" .
+    
+<http://avwlv2.sourceforge.net/plugins/avw/vco2#group_input>
+    a param:OscillatorControls, pg:InputGroup ;
+    lv2:name "Input" ;
+    lv2:symbol "grp_input" .
 
 <http://avwlv2.sourceforge.net/plugins/avw/vco2>
 	a lv2:Plugin ,
@@ -23,22 +44,26 @@
 		a lv2:CVPort, lv2:InputPort ;
 		lv2:index 0 ;
 		lv2:symbol "freq" ;
-		lv2:name "Frequency" 
+		lv2:name "Frequency";
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_input> ;
 	] ,	[
 		a lv2:CVPort, lv2:InputPort ;
 		lv2:index 1 ;
 		lv2:symbol "expFM" ;
-		lv2:name "Exp FM"  
+		lv2:name "Exp FM" ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_input> ;
 	] ,	[
 		a lv2:CVPort, lv2:InputPort ;
 		lv2:index 2 ;
 		lv2:symbol "linFM" ;
-		lv2:name "Lin FM"  
+		lv2:name "Lin FM" ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_input> ;
 	] ,	[
 	  	a lv2:CVPort, lv2:InputPort ;
 		lv2:index 3 ;
 		lv2:symbol "pwPort" ;
-		lv2:name "PW" 
+		lv2:name "PW" ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_input> ;
 	] , [
 		a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 4 ;
@@ -78,7 +103,8 @@
 		lv2:name "Octave" ; 
 		lv2:default 3 ;
 		lv2:minimum 0 ;
-		lv2:maximum 6
+		lv2:maximum 6 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_frequency> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 6 ;
@@ -86,7 +112,8 @@
 		lv2:name "Tune" ;
 		lv2:default 0 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_frequency> ;
 	] , [
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 7 ;
@@ -94,7 +121,8 @@
 		lv2:name "Harmonic" ;
 		lv2:default 1 ;
 		lv2:minimum 1 ;
-		lv2:maximum 16
+		lv2:maximum 16 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_frequency> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 8 ;
@@ -102,7 +130,8 @@
 		lv2:name "Subharmonic" ;
 		lv2:default 1 ;
 		lv2:minimum 1 ;
-		lv2:maximum 16
+		lv2:maximum 16 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_frequency> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 9 ;
@@ -110,7 +139,8 @@
 		lv2:name "PW0" ;
 		lv2:default 0.5 ;
 		lv2:minimum 0.1 ;
-		lv2:maximum 0.9
+		lv2:maximum 0.9 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_pw_phase> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 10 ;
@@ -118,7 +148,8 @@
 		lv2:name "PW Gain" ;
 		lv2:default 0 ;
 		lv2:minimum 0 ;
-		lv2:maximum 1
+		lv2:maximum 1 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_pw_phase> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 11 ;
@@ -126,7 +157,8 @@
 		lv2:name "Phi0" ;
 		lv2:default 0 ;
 		lv2:minimum 0 ;
-		lv2:maximum 6.283
+		lv2:maximum 6.283 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_pw_phase> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 12 ;
@@ -134,7 +166,8 @@
 		lv2:name "Exp FM Gain" ;
 		lv2:default 0 ;
 		lv2:minimum 0 ;
-		lv2:maximum 10
+		lv2:maximum 10 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_modulation> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 13 ;
@@ -142,7 +175,8 @@
 		lv2:name "Lin FM Gain" ;
 		lv2:default 0 ;
 		lv2:minimum 0 ;
-		lv2:maximum 10
+		lv2:maximum 10 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_modulation> ;
 	] ,	[
 		a lv2:AudioPort , lv2:OutputPort ;
 		lv2:index 14 ;

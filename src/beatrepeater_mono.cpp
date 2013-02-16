@@ -71,10 +71,12 @@ void BeatRepeaterMono::run(uint32_t nframes)
 	attack = m_rate / 1000 * attack;
 	release = m_rate / 1000 * release;
 
+	/*
 	if(beatSize != m_beatSize || tempo != m_tempo)
 	{
 		m_sampleFullSize = int(60 * m_rate * beatSize / tempo + 0.5);
 	}
+	*/
 
 	if(release + attack > m_sampleFullSize)
 	{
@@ -93,6 +95,8 @@ void BeatRepeaterMono::run(uint32_t nframes)
 		m_envelope = gen_full_envelope(m_sampleFullSize, m_attack, m_release);
 		m_envelopeRec = gen_long_release(m_sampleFullSize, m_release);
 		m_attackEnv = gen_attack(m_attack);
+
+		m_sampleFullSize = int(60 * m_rate * beatSize / tempo + 0.5);
 	}
 
 	for (unsigned int n = 0; n < nframes; n++)
