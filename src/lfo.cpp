@@ -40,7 +40,7 @@ Lfo::Lfo(double rate)
 
 void Lfo::run(uint32_t nframes)
 {
-	freq = *p(p_tempo) / 60;
+	freq = *p(p_tempo) / 60 * *p(p_tempoMultiplier);
 
 	int l2, k, len, phi0i, l2_out;
 	double ldsi, ldsa, ldt, ldr, ldsh, dt0, dsa;

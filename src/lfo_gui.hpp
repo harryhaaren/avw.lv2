@@ -19,9 +19,11 @@ class LfoGUI: public UI<LfoGUI, GtkUI<true>>
 	protected:
 		Gtk::ComboBoxText* m_comboWaveForm;
 		LabeledDial* m_dialTempo;
+		LabeledDial* m_dialTempoMultiplier;
 		LabeledDial* m_dialPhi0;
 
 		float get_tempo();
+		float get_tempoMultiplier();
 		float get_phi0();
 };
 
