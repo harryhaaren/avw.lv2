@@ -1,31 +1,26 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix atom: <http://lv2plug.in/ns/ext/atom#> .
 @prefix patch: <http://lv2plug.in/ns/ext/patch#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix ingen: <http://drobilla.net/ns/ingen#> .
 @prefix lv2: <http://lv2plug.in/ns/lv2core#> .
-@prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
 @prefix midi: <http://lv2plug.in/ns/ext/midi#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <>
-	ingen:block <mixer_audio> ,
-		<vco2> ,
-		<vco2_2> ;
-	ingen:edge [
+	ingen:arc [
 		ingen:head <vco2_2/linFM> ;
 		ingen:tail <cv_in_2>
+	] , [
+		ingen:head <audio_out_1> ;
+		ingen:tail <mixer_audio/out>
 	] , [
 		ingen:head <mixer_audio/in1> ;
 		ingen:tail <vco2/out>
 	] , [
 		ingen:head <mixer_audio/in2> ;
 		ingen:tail <vco2_2/out>
-	] , [
-		ingen:head <audio_out_1> ;
-		ingen:tail <mixer_audio/out>
 	] , [
 		ingen:head <vco2/freq> ;
 		ingen:tail <cv_in_1>
@@ -36,8 +31,12 @@
 		ingen:head <vco2/linFM> ;
 		ingen:tail <cv_in_2>
 	] ;
+	ingen:block <mixer_audio> ,
+		<vco2> ,
+		<vco2_2> ;
 	ingen:enabled true ;
 	ingen:polyphony 1 ;
+	ingen:prototype <../VCOs_2.ingen> ;
 	<http://lv2plug.in/ns/extensions/ui#ui> ingen:GraphUIGtk2 ;
 	lv2:extensionData <http://lv2plug.in/ns/ext/state#interface> ;
 	lv2:port <audio_out_1> ,
@@ -63,7 +62,7 @@
 	ingen:canvasX 8.0 ;
 	ingen:canvasY 84.0 ;
 	ingen:polyphonic false ;
-	ingen:value 0.9999752 ;
+	ingen:value 0.74997568 ;
 	lv2:index 0 ;
 	lv2:maximum 1.0 ;
 	lv2:minimum 0.0 ;
@@ -76,7 +75,7 @@
 	ingen:canvasX 8.0 ;
 	ingen:canvasY 224.0 ;
 	ingen:polyphonic false ;
-	ingen:value 0.99481112 ;
+	ingen:value -0.95754516 ;
 	lv2:index 1 ;
 	lv2:maximum 1.0 ;
 	lv2:minimum 0.0 ;
@@ -224,7 +223,7 @@
 		lv2:InputPort .
 
 <vco2/freq>
-	ingen:value 0.0 ;
+	ingen:value 0.74997568 ;
 	lv2:index 0 ;
 	lv2:maximum 1.0 ;
 	lv2:minimum 0.0 ;
@@ -242,7 +241,7 @@
 		lv2:InputPort .
 
 <vco2/linFM>
-	ingen:value 0.0 ;
+	ingen:value -0.95812923 ;
 	lv2:index 2 ;
 	lv2:maximum 1.0 ;
 	lv2:minimum 0.0 ;
@@ -380,7 +379,7 @@
 		lv2:InputPort .
 
 <vco2_2/freq>
-	ingen:value 0.0 ;
+	ingen:value 0.74997568 ;
 	lv2:index 0 ;
 	lv2:maximum 1.0 ;
 	lv2:minimum 0.0 ;
@@ -398,7 +397,7 @@
 		lv2:InputPort .
 
 <vco2_2/linFM>
-	ingen:value 0.0 ;
+	ingen:value -0.95725161 ;
 	lv2:index 2 ;
 	lv2:maximum 1.0 ;
 	lv2:minimum 0.0 ;

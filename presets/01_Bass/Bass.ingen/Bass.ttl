@@ -1,16 +1,60 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix atom: <http://lv2plug.in/ns/ext/atom#> .
 @prefix patch: <http://lv2plug.in/ns/ext/patch#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix ingen: <http://drobilla.net/ns/ingen#> .
 @prefix lv2: <http://lv2plug.in/ns/lv2core#> .
-@prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
 @prefix midi: <http://lv2plug.in/ns/ext/midi#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <>
+	ingen:arc [
+		ingen:head <Note/input> ;
+		ingen:tail <control_in>
+	] , [
+		ingen:head <env/retrigger> ;
+		ingen:tail <Note/trigger>
+	] , [
+		ingen:head <hztovc/input> ;
+		ingen:tail <Note/frequency>
+	] , [
+		ingen:head <audio_out_2> ;
+		ingen:tail <Delay/out>
+	] , [
+		ingen:head <env/gate> ;
+		ingen:tail <Note/gate>
+	] , [
+		ingen:head <vcf/in> ;
+		ingen:tail <VCOs/audio_out_1>
+	] , [
+		ingen:head <vcalin/gain1Data> ;
+		ingen:tail <env/out>
+	] , [
+		ingen:head <slew/in> ;
+		ingen:tail <hztovc/output>
+	] , [
+		ingen:head <slew_2/in> ;
+		ingen:tail <noise2_cv/out>
+	] , [
+		ingen:head <VCOs/cv_in_1> ;
+		ingen:tail <slew/out>
+	] , [
+		ingen:head <vcf/expFM> ;
+		ingen:tail <slew_2/out>
+	] , [
+		ingen:head <vcf/resonancePort> ;
+		ingen:tail <slew_2/out>
+	] , [
+		ingen:head <Delay/in> ;
+		ingen:tail <vcalin/out>
+	] , [
+		ingen:head <audio_out_1> ;
+		ingen:tail <vcalin/out>
+	] , [
+		ingen:head <vcalin/in1Data> ;
+		ingen:tail <vcf/out>
+	] ;
 	ingen:block <Delay> ,
 		<Note> ,
 		<VCOs> ,
@@ -21,52 +65,6 @@
 		<slew_2> ,
 		<vcalin> ,
 		<vcf> ;
-	ingen:edge [
-		ingen:head <Note/input> ;
-		ingen:tail <control_in>
-	] , [
-		ingen:head <vcf/in> ;
-		ingen:tail <VCOs/audio_out_1>
-	] , [
-		ingen:head <hztovc/input> ;
-		ingen:tail <Note/frequency>
-	] , [
-		ingen:head <env/retrigger> ;
-		ingen:tail <Note/trigger>
-	] , [
-		ingen:head <env/gate> ;
-		ingen:tail <Note/gate>
-	] , [
-		ingen:head <VCOs/cv_in_1> ;
-		ingen:tail <slew/out>
-	] , [
-		ingen:head <slew/in> ;
-		ingen:tail <hztovc/output>
-	] , [
-		ingen:head <vcalin/in1Data> ;
-		ingen:tail <vcf/out>
-	] , [
-		ingen:head <vcalin/gain1Data> ;
-		ingen:tail <env/out>
-	] , [
-		ingen:head <audio_out_1> ;
-		ingen:tail <vcalin/out>
-	] , [
-		ingen:head <Delay/in> ;
-		ingen:tail <vcalin/out>
-	] , [
-		ingen:head <slew_2/in> ;
-		ingen:tail <noise2_cv/out>
-	] , [
-		ingen:head <vcf/expFM> ;
-		ingen:tail <slew_2/out>
-	] , [
-		ingen:head <vcf/resonancePort> ;
-		ingen:tail <slew_2/out>
-	] , [
-		ingen:head <audio_out_2> ;
-		ingen:tail <Delay/out>
-	] ;
 	ingen:polyphony 1 ;
 	<http://lv2plug.in/ns/extensions/ui#ui> ingen:GraphUIGtk2 ;
 	lv2:extensionData <http://lv2plug.in/ns/ext/state#interface> ;
@@ -181,16 +179,35 @@
 		lv2:OutputPort .
 
 <VCOs>
+	ingen:block <VCOs.ingen/mixer_audio> ,
+		<VCOs.ingen/mixer_audio_2> ,
+		<VCOs.ingen/vco2> ,
+		<VCOs.ingen/vco2_2> ,
+		<VCOs.ingen/vco2_3> ,
+		<VCOs.ingen/vco2_4> ,
+		<VCOs.ingen/vco2_5> ,
+		<VCOs.ingen/vco2_6> ,
+		<VCOs.ingen/vco2_7> ,
+		<VCOs.ingen/vco2_8> ,
+		<VCOs.ingen/vcswitch_audio> ;
 	ingen:canvasX 796.0 ;
 	ingen:canvasY 65.0 ;
+	ingen:enabled true ;
+	ingen:polyphony 1 ;
 	ingen:prototype <VCOs.ingen> ;
+	<http://lv2plug.in/ns/extensions/ui#ui> ingen:GraphUIGtk2 ;
+	lv2:extensionData <http://lv2plug.in/ns/ext/state#interface> ;
 	lv2:port <VCOs/audio_out_1> ,
 		<VCOs/cv_in_1> ;
 	lv2:symbol "VCOs" ;
+	doap:name "VCOs" ;
 	a ingen:Block ,
-		ingen:Graph .
+		ingen:Graph ,
+		lv2:Plugin .
 
 <VCOs/audio_out_1>
+	ingen:canvasX 863.5 ;
+	ingen:canvasY 1694.5 ;
 	ingen:polyphonic false ;
 	lv2:index 1 ;
 	lv2:name "Audio Out 1" ;
@@ -199,6 +216,8 @@
 		lv2:OutputPort .
 
 <VCOs/cv_in_1>
+	ingen:canvasX 8.0 ;
+	ingen:canvasY 1194.0 ;
 	ingen:polyphonic false ;
 	ingen:value -1.00002432 ;
 	lv2:index 0 ;
@@ -306,7 +325,9 @@
 	ingen:value 0.0 ;
 	lv2:index 0 ;
 	lv2:maximum 1.0 ;
-	lv2:minimum -1.0 ;
+	lv2:minimum -1.0 ,
+		0.0 ;
+	lv2:portProperty lv2:toggled ;
 	lv2:symbol "gate" ;
 	a lv2:CVPort ,
 		lv2:InputPort .
@@ -345,7 +366,9 @@
 	ingen:value 0.0 ;
 	lv2:index 1 ;
 	lv2:maximum 1.0 ;
-	lv2:minimum -1.0 ;
+	lv2:minimum -1.0 ,
+		0.0 ;
+	lv2:portProperty lv2:toggled ;
 	lv2:symbol "retrigger" ;
 	a lv2:CVPort ,
 		lv2:InputPort .

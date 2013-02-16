@@ -1,54 +1,17 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix atom: <http://lv2plug.in/ns/ext/atom#> .
 @prefix patch: <http://lv2plug.in/ns/ext/patch#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix ingen: <http://drobilla.net/ns/ingen#> .
 @prefix lv2: <http://lv2plug.in/ns/lv2core#> .
-@prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
 @prefix midi: <http://lv2plug.in/ns/ext/midi#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <>
-	ingen:block <mixer_audio> ,
-		<mixer_audio_2> ,
-		<vco2> ,
-		<vco2_2> ,
-		<vco2_3> ,
-		<vco2_4> ,
-		<vco2_5> ,
-		<vco2_6> ,
-		<vco2_7> ,
-		<vco2_8> ,
-		<vcswitch_audio> ;
-	ingen:edge [
-		ingen:head <vco2/freq> ;
-		ingen:tail <cv_in_1>
-	] , [
-		ingen:head <vco2_2/freq> ;
-		ingen:tail <cv_in_1>
-	] , [
-		ingen:head <mixer_audio/in3> ;
-		ingen:tail <vco2_3/out>
-	] , [
-		ingen:head <mixer_audio/in4> ;
-		ingen:tail <vco2_4/out>
-	] , [
+	ingen:arc [
 		ingen:head <vcswitch_audio/in1> ;
 		ingen:tail <mixer_audio/out>
-	] , [
-		ingen:head <mixer_audio_2/in1> ;
-		ingen:tail <vco2_5/out>
-	] , [
-		ingen:head <mixer_audio_2/in2> ;
-		ingen:tail <vco2_6/out>
-	] , [
-		ingen:head <mixer_audio_2/in3> ;
-		ingen:tail <vco2_7/out>
-	] , [
-		ingen:head <mixer_audio_2/in4> ;
-		ingen:tail <vco2_8/out>
 	] , [
 		ingen:head <vcswitch_audio/in2> ;
 		ingen:tail <mixer_audio_2/out>
@@ -56,10 +19,16 @@
 		ingen:head <audio_out_1> ;
 		ingen:tail <vcswitch_audio/outmix>
 	] , [
-		ingen:head <vco2_3/freq> ;
+		ingen:head <vco2/freq> ;
 		ingen:tail <cv_in_1>
 	] , [
 		ingen:head <vco2_4/freq> ;
+		ingen:tail <cv_in_1>
+	] , [
+		ingen:head <vco2_2/freq> ;
+		ingen:tail <cv_in_1>
+	] , [
+		ingen:head <vco2_3/freq> ;
 		ingen:tail <cv_in_1>
 	] , [
 		ingen:head <vco2_5/freq> ;
@@ -79,9 +48,41 @@
 	] , [
 		ingen:head <mixer_audio/in2> ;
 		ingen:tail <vco2_2/out>
+	] , [
+		ingen:head <mixer_audio/in3> ;
+		ingen:tail <vco2_3/out>
+	] , [
+		ingen:head <mixer_audio/in4> ;
+		ingen:tail <vco2_4/out>
+	] , [
+		ingen:head <mixer_audio_2/in1> ;
+		ingen:tail <vco2_5/out>
+	] , [
+		ingen:head <mixer_audio_2/in2> ;
+		ingen:tail <vco2_6/out>
+	] , [
+		ingen:head <mixer_audio_2/in3> ;
+		ingen:tail <vco2_7/out>
+	] , [
+		ingen:head <mixer_audio_2/in4> ;
+		ingen:tail <vco2_8/out>
 	] ;
+	ingen:block <mixer_audio> ,
+		<mixer_audio_2> ,
+		<vco2> ,
+		<vco2_2> ,
+		<vco2_3> ,
+		<vco2_4> ,
+		<vco2_5> ,
+		<vco2_6> ,
+		<vco2_7> ,
+		<vco2_8> ,
+		<vcswitch_audio> ;
+	ingen:canvasX 796.0 ;
+	ingen:canvasY 65.0 ;
 	ingen:enabled true ;
 	ingen:polyphony 1 ;
+	ingen:prototype <../VCOs.ingen> ;
 	<http://lv2plug.in/ns/extensions/ui#ui> ingen:GraphUIGtk2 ;
 	lv2:extensionData <http://lv2plug.in/ns/ext/state#interface> ;
 	lv2:port <audio_out_1> ,
