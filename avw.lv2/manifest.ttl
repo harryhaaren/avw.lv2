@@ -205,3 +205,8 @@
 	a lv2:Plugin ;
 	lv2:binary <beatslicer_stereo.so>  ;
 	rdfs:seeAlso <beatslicer_stereo.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/controltovc>
+	a lv2:Plugin ;
+	lv2:binary <controltovc.so>  ;
+	rdfs:seeAlso <controltovc.ttl> .

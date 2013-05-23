@@ -1,0 +1,33 @@
+#ifndef controltovc_peg
+#define controltovc_peg
+
+
+#ifndef PEG_STRUCT
+#define PEG_STRUCT
+typedef struct {
+  float min;
+  float max;
+  float default_value;
+  char toggled;
+  char integer;
+  char logarithmic;
+} peg_data_t;
+#endif
+
+/* <http://avwlv2.sourceforge.net/plugins/avw/controltovc> */
+
+static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/controltovc";
+
+enum p_port_enum {
+  p_input,
+  p_output,
+  p_n_ports
+};
+
+static const peg_data_t p_ports[] = {
+  { 0, 1, 0, 0, 0, 0 }, 
+  { -1, 1, 0, 0, 0, 0 }, 
+};
+
+
+#endif /* controltovc_peg */
