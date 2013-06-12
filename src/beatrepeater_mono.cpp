@@ -3,9 +3,6 @@
 #include <unistd.h>
 #include <math.h>
 
-#include <jack/jack.h>
-#include <jack/types.h>
-
 #include <lvtk-1/lvtk/plugin.hpp>
 
 #include "envgen.hpp"
@@ -105,7 +102,7 @@ void BeatRepeaterMono::run(uint32_t nframes)
 		{
 			m_gate = true;
 			m_repeating = true;
-			m_sample = new jack_default_audio_sample_t[m_sampleFullSize];
+			m_sample = new float[m_sampleFullSize];
 			m_repeatingPosition = 0;
 			m_sampleFull = false;
 		}

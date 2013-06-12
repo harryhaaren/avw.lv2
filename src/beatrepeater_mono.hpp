@@ -1,7 +1,6 @@
 #ifndef BEATSLICER_MONO_H
 #define BEATSLICER_MONO_H
 
-#include <jack/jack.h>
 #include <lvtk-1/lvtk/plugin.hpp>
 
 #include "beatrepeater_mono.peg"
@@ -19,7 +18,7 @@ class BeatRepeaterMono: public Plugin<BeatRepeaterMono>
 		float* m_attackEnv;
 		float* m_releaseEnv;
 
-		jack_default_audio_sample_t* m_sample;
+		float* m_sample;
 		int m_sampleFullSize;
 		bool m_sampleFull;
 

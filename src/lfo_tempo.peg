@@ -1,5 +1,5 @@
-#ifndef avw_lv__lfo_peg
-#define avw_lv__lfo_peg
+#ifndef avw_lv__lfo_tempo_peg
+#define avw_lv__lfo_tempo_peg
 
 
 #ifndef PEG_STRUCT
@@ -14,9 +14,9 @@ typedef struct {
 } peg_data_t;
 #endif
 
-/* <http://avwlv2.sourceforge.net/plugins/avw/lfo> */
+/* <http://avwlv2.sourceforge.net/plugins/avw/lfo_tempo> */
 
-static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/lfo";
+static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/lfo_tempo";
 
 enum p_port_enum {
   p_reset,
@@ -38,4 +38,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* avw_lv__lfo_peg */
+#endif /* avw_lv__lfo_tempo_peg */

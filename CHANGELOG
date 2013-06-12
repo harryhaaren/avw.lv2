@@ -1,3 +1,8 @@
+0.1.5:
+	* A small plugin to convert Ingen Control to VC ('0 to 1' to '-1 to 1') REMOVED because it is now possible in Ingen
+	* A new LFO to be controlled via Freq, not Tempo
+	* Removed usage of Jack library
+
 0.1.4:
 	* LFO frequency now represented as Tempo and Multiplier
 	* Beat Repeater doesn't crash if parameters changed while repeating

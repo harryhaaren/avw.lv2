@@ -7,7 +7,7 @@ from waflib.extras import autowaf as autowaf
 
 # Variables for 'waf dist'
 APPNAME = 'avw.lv2'
-VERSION = '0.1.4'
+VERSION = '0.1.5'
 
 # Mandatory variables
 top = '.'
@@ -29,10 +29,9 @@ def configure(conf):
     autowaf.check_pkg(conf, 'gtk+-2.0', uselib_store='GTK2', atleast_version='2.24.0')
     autowaf.check_pkg(conf, 'cairo', uselib_store='CAIRO', atleast_version='1.0.0')
     autowaf.check_pkg(conf, 'lv2', uselib_store='LV2', atleast_version='1.2.0')
-    autowaf.check_pkg(conf, 'lvtk-plugin-1', uselib_store='LVTK_PLUGIN', atleast_version='1.0.3')
-    autowaf.check_pkg(conf, 'lvtk-ui-1', uselib_store='LVTK_UI', atleast_version='1.0.3')
-    autowaf.check_pkg(conf, 'lvtk-gtkui-1', uselib_store='LVTK_GTKGUI', atleast_version='1.0.3')
-    autowaf.check_pkg(conf, 'jack', uselib_store='JACK', atleast_version='0.120.0')	
+    autowaf.check_pkg(conf, 'lvtk-plugin-1', uselib_store='LVTK_PLUGIN', atleast_version='1.1.1')
+    autowaf.check_pkg(conf, 'lvtk-ui-1', uselib_store='LVTK_UI', atleast_version='1.1.1')
+    autowaf.check_pkg(conf, 'lvtk-gtkui-1', uselib_store='LVTK_GTKGUI', atleast_version='1.1.1')
 
     check = 'Extended Initializer Lists'
     conf.check_cxx(
@@ -114,7 +113,8 @@ def build(bld):
 	amp
 	env
 	hztovc
-	lfo
+	lfo_tempo
+	lfo_freq
 	mixer_4ch_audio
 	mixer_4ch_cv
 	mixer_2ch_audio
@@ -138,7 +138,6 @@ def build(bld):
 	mooglpf
 	downsampler_mono
 	downsampler_stereo
-	controltovc
 	'''.split()
 
 	for i in plugins:
@@ -148,7 +147,7 @@ def build(bld):
             '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
             '-DPLUGIN_URI_SUFFIX="%s"' % i,
             '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-		  	['LV2', 'LVTK_PLUGIN', 'JACK'],
+		  	['LV2', 'LVTK_PLUGIN'],
 		  	[])
 		  	
 	plugins = '''
@@ -167,7 +166,7 @@ def build(bld):
             '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
             '-DPLUGIN_URI_SUFFIX="%s"' % i,
             '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-		  	['LV2', 'LVTK_PLUGIN', 'JACK'],
+		  	['LV2', 'LVTK_PLUGIN'],
 		  	['src/envgen.cpp'])
 
 	plugins = '''
@@ -184,7 +183,7 @@ def build(bld):
             '-DURI_PREFIX=\"http://lv2plug.in/plugins/avw/\"',
             '-DPLUGIN_URI_SUFFIX="%s"' % i,
             '-DPLUGIN_HEADER="src/%s.hpp"' % i],
-		  	['LV2', 'LVTK_PLUGIN', 'JACK'],
+		  	['LV2', 'LVTK_PLUGIN'],
 		  	['src/synthdata.cpp'])
 		  
 	plugins_gui = '''
@@ -192,7 +191,8 @@ def build(bld):
 	ad_gui
 	vcf_gui
 	vcpanning_gui
-	lfo_gui
+	lfo_freq_gui
+	lfo_tempo_gui
 	slew_gui
 	amp_gui
 	cvs_gui

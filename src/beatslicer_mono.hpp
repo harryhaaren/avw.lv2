@@ -2,7 +2,6 @@
 #define BEATSLICER_MONO_H
 
 #include <deque>
-#include <jack/jack.h>
 #include <lvtk-1/lvtk/plugin.hpp>
 
 #include "beatslicer_mono.peg"
@@ -22,8 +21,8 @@ class BeatSlicerMono: public Plugin<BeatSlicerMono>
 		float *m_fadeOut;
 		int m_fadePosition;
 
-		deque<jack_default_audio_sample_t> m_sample;
-		deque<jack_default_audio_sample_t> m_readingSample;
+		deque<float> m_sample;
+		deque<float> m_readingSample;
 		int m_sampleFullSize;
 		bool m_sampleFull;
 

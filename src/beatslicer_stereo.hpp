@@ -2,7 +2,6 @@
 #define BEATSLICER_STEREO_H
 
 #include <deque>
-#include <jack/jack.h>
 #include <lvtk-1/lvtk/plugin.hpp>
 
 #include "beatslicer_stereo.peg"
@@ -22,10 +21,10 @@ class BeatSlicerStereo: public Plugin<BeatSlicerStereo>
 		float *m_fadeOut;
 		int m_fadePosition;
 
-		deque<jack_default_audio_sample_t> m_sampleL;
-		deque<jack_default_audio_sample_t> m_sampleR;
-		deque<jack_default_audio_sample_t> m_readingSampleL;
-		deque<jack_default_audio_sample_t> m_readingSampleR;
+		deque<float> m_sampleL;
+		deque<float> m_sampleR;
+		deque<float> m_readingSampleL;
+		deque<float> m_readingSampleR;
 		int m_sampleFullSize;
 		bool m_sampleFull;
 

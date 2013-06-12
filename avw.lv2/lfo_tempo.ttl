@@ -6,17 +6,17 @@
 @prefix ll: 	<http://ll-plugins.nongnu.org/lv2/namespace#> .
 @prefix guiext: <http://lv2plug.in/ns/extensions/ui#> .
 
-<http://avwlv2.sourceforge.net/plugins/avw/lfo/gui>
+<http://avwlv2.sourceforge.net/plugins/avw/lfo_tempo/gui>
   a guiext:GtkUI ;
-  guiext:binary <lfo_gui.so> .
+  guiext:binary <lfo_tempo_gui.so> .
 
-<http://avwlv2.sourceforge.net/plugins/avw/lfo>
+<http://avwlv2.sourceforge.net/plugins/avw/lfo_tempo>
 	a lv2:Plugin, lv2:OscillatorPlugin ;
 	lv2:project <http://avwlv2.sourceforge.net/plugins/avw/> ;        
-	doap:name "AMS LFO" ;
+	doap:name "AMS LFO - Tempo" ;
 	doap:license <http://opensource.org/licenses/isc> ;
 	ll:pegName "p" ;
-	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/lfo/gui> ;
+	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/lfo_tempo/gui> ;
 	lv2:optionalFeature lv2:hardRTCapable ;
 	lv2:port [
 		a lv2:InputPort, lv2:CVPort ;

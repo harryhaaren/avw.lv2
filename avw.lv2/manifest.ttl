@@ -36,10 +36,15 @@
 	lv2:binary <noise2_cv.so>  ;
 	rdfs:seeAlso <noise2_cv.ttl> .
 
-<http://avwlv2.sourceforge.net/plugins/avw/lfo>
+<http://avwlv2.sourceforge.net/plugins/avw/lfo_tempo>
 	a lv2:Plugin ;
-	lv2:binary <lfo.so>  ;
-	rdfs:seeAlso <lfo.ttl> .
+	lv2:binary <lfo_tempo.so>  ;
+	rdfs:seeAlso <lfo_tempo.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/lfo_freq>
+	a lv2:Plugin ;
+	lv2:binary <lfo_freq.so>  ;
+	rdfs:seeAlso <lfo_freq.ttl> .
 
 <http://avwlv2.sourceforge.net/plugins/avw/vco2>
 	a lv2:Plugin ;
@@ -205,8 +210,4 @@
 	a lv2:Plugin ;
 	lv2:binary <beatslicer_stereo.so>  ;
 	rdfs:seeAlso <beatslicer_stereo.ttl> .
-	
-<http://avwlv2.sourceforge.net/plugins/avw/controltovc>
-	a lv2:Plugin ;
-	lv2:binary <controltovc.so>  ;
-	rdfs:seeAlso <controltovc.ttl> .
+

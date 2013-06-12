@@ -4,10 +4,10 @@
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>
 
-#include "lfo_gui.hpp"
-#include "lfo.hpp"
+#include "lfo_freq_gui.hpp"
+#include "lfo_freq.hpp"
 
-LfoGUI::LfoGUI(const std::string& URI)
+LfoFreqGUI::LfoFreqGUI(const std::string& URI)
 {
 	EventBox *p_background = manage (new EventBox());
 	Gdk::Color* color = new  Gdk::Color();
@@ -27,27 +27,23 @@ LfoGUI::LfoGUI(const std::string& URI)
 	m_comboWaveForm->append_text("Rectangle");
 	m_comboWaveForm->append_text("S & H");
 
-	slot<void> p_slotWaveForm = compose(bind<0> (mem_fun(*this, &LfoGUI::write_control), p_waveForm), mem_fun(*m_comboWaveForm, &ComboBoxText::get_active_row_number));
+	slot<void> p_slotWaveForm = compose(bind<0> (mem_fun(*this, &LfoFreqGUI::write_control), p_waveForm), mem_fun(*m_comboWaveForm, &ComboBoxText::get_active_row_number));
 	m_comboWaveForm->signal_changed().connect(p_slotWaveForm);
 
 	p_mainWidget->pack_start(*m_comboWaveForm);
 
-	Frame *p_freqFrame = manage(new Frame("Tempo"));
+	Frame *p_freqFrame = manage(new Frame("Freq"));
 
 	HBox *p_freqBox = manage(new HBox(true));
 
-	slot<void> p_slotTempo = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_tempo), mem_fun(*this, &LfoGUI::get_tempo));
-	m_dialTempo = new LabeledDial("Tempo", p_slotTempo, p_tempo, 1, 320, false, 1, 0);
+	slot<void> p_slotTempo = compose(bind<0>(mem_fun(*this, &LfoFreqGUI::write_control), p_freq), mem_fun(*this, &LfoFreqGUI::get_tempo));
+	m_dialTempo = new LabeledDial("Freq", p_slotTempo, p_freq, 0.0001, 100, true, 1, 0);
 	p_freqBox->pack_start(*m_dialTempo);
-
-	slot<void> p_slotTempoMultiplier = compose(bind<0>(mem_fun(*this, &LfoGUI::write_control), p_tempoMultiplier), mem_fun(*this, &LfoGUI::get_tempoMultiplier));
-	m_dialTempoMultiplier = new LabeledDial("Tempo Multiplier", p_slotTempoMultiplier, p_tempoMultiplier, 1, 8, false, 1, 0);
-	p_freqBox->pack_start(*m_dialTempoMultiplier);
 
 	p_freqFrame->add(*p_freqBox);
 	p_mainWidget->pack_start(*p_freqFrame);
 
-	slot<void> p_slotPhi0 = compose(bind<0> (mem_fun(*this, &LfoGUI::write_control), p_phi0), mem_fun(*this, &LfoGUI::get_phi0));
+	slot<void> p_slotPhi0 = compose(bind<0> (mem_fun(*this, &LfoFreqGUI::write_control), p_phi0), mem_fun(*this, &LfoFreqGUI::get_phi0));
 	m_dialPhi0 = new LabeledDial("Phi0", p_slotPhi0, p_phi0, 0, 6.28, false, 0.01, 2);
 	p_mainWidget->pack_start(*m_dialPhi0);
 
@@ -59,11 +55,10 @@ LfoGUI::LfoGUI(const std::string& URI)
 	Gtk::manage(p_mainWidget);
 }
 
-float LfoGUI::get_tempo() 			{ return m_dialTempo->get_value(); }
-float LfoGUI::get_tempoMultiplier() { return m_dialTempoMultiplier->get_value(); }
-float LfoGUI::get_phi0() 			{ return m_dialPhi0->get_value(); }
+float LfoFreqGUI::get_tempo() 			{ return m_dialTempo->get_value(); }
+float LfoFreqGUI::get_phi0() 			{ return m_dialPhi0->get_value(); }
 
-void LfoGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
+void LfoFreqGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
 {
 	if (port == p_waveForm)
 	{
@@ -73,13 +68,9 @@ void LfoGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, co
 			m_comboWaveForm->set_active((int) p_waveFormValue);
 		}
 	}
-	else if (port == p_tempo)
+	else if (port == p_freq)
 	{
 		m_dialTempo->set_value(*static_cast<const float*> (buffer));
-	}
-	else if (port == p_tempoMultiplier)
-	{
-		m_dialTempoMultiplier->set_value(*static_cast<const float*> (buffer));
 	}
 	else if (port == p_phi0)
 	{
@@ -87,4 +78,4 @@ void LfoGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, co
 	}
 }
 
-static int _ = LfoGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/lfo/gui");
+static int _ = LfoFreqGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/lfo_freq/gui");

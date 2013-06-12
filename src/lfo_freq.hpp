@@ -1,9 +1,9 @@
-#ifndef LFO_H
-#define LFO_H
+#ifndef LFO_FREQ_H
+#define LFO_FREQ_H
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "lfo.peg"
+#include "lfo_freq.peg"
 
 using namespace lvtk;
 
@@ -12,10 +12,10 @@ enum WaveFormType
 	SINUS, TRIANGLE, SAWTOOTHUP, SAWTOOTHDOWN, RECTANGLE, SAMPLEANDHOLD
 };
 
-class Lfo: public Plugin<Lfo>
+class LfoFreq: public Plugin<LfoFreq>
 {
 	private:
-		float freq, phi0;
+		float phi0;
 		double si, old_si;
 		double sa, old_sa;
 		double t, old_t;
@@ -30,7 +30,7 @@ class Lfo: public Plugin<Lfo>
 		double m_rate;
 
 	public:
-		Lfo(double rate);
+		LfoFreq(double rate);
 		void run(uint32_t nframes);
 };
 

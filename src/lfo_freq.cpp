@@ -4,18 +4,17 @@
 #include <math.h>
 #include <time.h>
 
-#include "lfo.hpp"
+#include "lfo_freq.hpp"
 
 using namespace lvtk;
 
-Lfo::Lfo(double rate)
-: Plugin<Lfo>(p_n_ports)
+LfoFreq::LfoFreq(double rate)
+: Plugin<LfoFreq>(p_n_ports)
   {
 	long tm;
 
-	freq = 5;
 	phi0 = 0;
-	wave_period = rate / (16.0 * freq);
+	wave_period = rate / (16.0 * 5);
 	m_rate = rate;
 
 	trigger = false;
@@ -38,10 +37,8 @@ Lfo::Lfo(double rate)
 	srand(abs(tm - 10000 * (tm % 100)));
   }
 
-void Lfo::run(uint32_t nframes)
+void LfoFreq::run(uint32_t nframes)
 {
-	freq = *p(p_tempo) / 60 * *p(p_tempoMultiplier);
-
 	int l2, k, len, phi0i, l2_out;
 	double ldsi, ldsa, ldt, ldr, ldsh, dt0, dsa;
 
@@ -51,7 +48,7 @@ void Lfo::run(uint32_t nframes)
 
 	float *triggerData = p(p_reset);
 
-	wave_period = m_rate / (16.0 * freq);
+	wave_period = m_rate / (16.0 * *p(p_freq));
 	dsa = 2.0 / wave_period;
 	dt0 = 4.0 / wave_period;
 	phi0i = (int)(phi0 / 6.283 * wave_period);
@@ -145,4 +142,4 @@ void Lfo::run(uint32_t nframes)
 	} while(len);
 }
 
-static int _ = Lfo::register_class("http://avwlv2.sourceforge.net/plugins/avw/lfo");
+static int _ = LfoFreq::register_class("http://avwlv2.sourceforge.net/plugins/avw/lfo_freq");

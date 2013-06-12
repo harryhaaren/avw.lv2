@@ -1,7 +1,6 @@
 #ifndef BEATSLICER_STEREO_H
 #define BEATSLICER_STEREO_H
 
-#include <jack/jack.h>
 #include <lvtk-1/lvtk/plugin.hpp>
 
 #include "beatrepeater_stereo.peg"
@@ -19,8 +18,8 @@ class BeatRepeaterStereo: public Plugin<BeatRepeaterStereo>
 		float* m_attackEnv;
 		float* m_releaseEnv;
 
-		jack_default_audio_sample_t* m_sampleL;
-		jack_default_audio_sample_t* m_sampleR;
+		float* m_sampleL;
+		float* m_sampleR;
 		int m_sampleFullSize;
 		bool m_sampleFull;
 

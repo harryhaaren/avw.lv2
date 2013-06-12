@@ -3,9 +3,6 @@
 #include <unistd.h>
 #include <math.h>
 
-#include <jack/jack.h>
-#include <jack/types.h>
-
 #include <lvtk-1/lvtk/plugin.hpp>
 
 #include "envgen.hpp"
