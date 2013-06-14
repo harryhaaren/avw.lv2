@@ -6,6 +6,7 @@
 
 #include "ringmodulator_audio_gui.hpp"
 #include "ringmodulator_audio.hpp"
+#include "dial.hpp"
 
 RindModulatorAudioGUI::RindModulatorAudioGUI(const std::string& URI)
 {
@@ -15,7 +16,7 @@ RindModulatorAudioGUI::RindModulatorAudioGUI(const std::string& URI)
 	p_background->modify_bg(Gtk::STATE_NORMAL, *color);
 
 	slot<void> p_slotGain = compose(bind<0>(mem_fun(*this, &RindModulatorAudioGUI::write_control), p_gain), mem_fun(*this,  &RindModulatorAudioGUI::get_gain));
-	m_dialGain = new LabeledDial("Gain", p_slotGain, p_gain, -10, 10, false, 0.01, 2);
+	m_dialGain = new LabeledDial("Gain", p_slotGain, p_gain, -10, 10, NORMAL, 0.01, 2);
 	p_background->add(*m_dialGain);
 
 	p_background->set_size_request(100, 80);
@@ -35,4 +36,4 @@ void RindModulatorAudioGUI::port_event(uint32_t port, uint32_t buffer_size, uint
 	}
 }
 
-static int _ = RindModulatorAudioGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/amp/ringmodulator_audio");
+static int _ = RindModulatorAudioGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/ringmodulator_audio/gui");

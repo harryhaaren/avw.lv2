@@ -6,6 +6,7 @@
 
 #include "samplehold_gui.hpp"
 #include "samplehold.hpp"
+#include "dial.hpp"
 
 SampleHoldGUI::SampleHoldGUI(const std::string& URI)
 {
@@ -15,7 +16,7 @@ SampleHoldGUI::SampleHoldGUI(const std::string& URI)
 	p_background->modify_bg(Gtk::STATE_NORMAL, *color);
 
 	slot<void> p_slotTriggerLevel = compose(bind<0>(mem_fun(*this, &SampleHoldGUI::write_control), p_triggerlevel), mem_fun(*this,  &SampleHoldGUI::get_triggerLevel));
-	m_dialTriggerLevel = new LabeledDial("Trigger Level", p_slotTriggerLevel, p_triggerlevel, 0, 10, true, 0.0001, 4);
+	m_dialTriggerLevel = new LabeledDial("Trigger Level", p_slotTriggerLevel, p_triggerlevel, 0, 10, LOG, 0.0001, 4);
 	p_background->add(*m_dialTriggerLevel);
 
 	p_background->set_size_request(100, 80);

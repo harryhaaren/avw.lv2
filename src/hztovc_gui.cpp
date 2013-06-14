@@ -6,6 +6,7 @@
 
 #include "hztovc_gui.hpp"
 #include "hztovc.hpp"
+#include "dial.hpp"
 
 HzToVCGUI::HzToVCGUI(const std::string& URI)
 {
@@ -15,7 +16,7 @@ HzToVCGUI::HzToVCGUI(const std::string& URI)
 	p_background->modify_bg(Gtk::STATE_NORMAL, *color);
 
 	slot<void> p_sloOctave = compose(bind<0>(mem_fun(*this, &HzToVCGUI::write_control), p_octaveOffset), mem_fun(*this,  &HzToVCGUI::get_octaveOffset));
-	m_dialOctaveOffset = new LabeledDial("Octave Offset", p_sloOctave, p_octaveOffset, -3, 3, false, 0.01, 2);
+	m_dialOctaveOffset = new LabeledDial("Octave Offset", p_sloOctave, p_octaveOffset, -3, 3, NORMAL, 0.01, 2);
 	p_background->add(*m_dialOctaveOffset);
 
 	p_background->set_size_request(100, 80);

@@ -6,6 +6,7 @@
 
 #include "downsampler_stereo_gui.hpp"
 #include "downsampler_stereo.hpp"
+#include "dial.hpp"
 
 DownsamplerStereoGUI::DownsamplerStereoGUI(const std::string& URI)
 {
@@ -15,7 +16,7 @@ DownsamplerStereoGUI::DownsamplerStereoGUI(const std::string& URI)
 	p_background->modify_bg(Gtk::STATE_NORMAL, *color);
 
 	slot<void> p_slotRatio = compose(bind<0>(mem_fun(*this, &DownsamplerStereoGUI::write_control), p_ratio), mem_fun(*this,  &DownsamplerStereoGUI::get_ratio));
-	m_dialRatio = new LabeledDial("Ratio", p_slotRatio, p_ratio, 1, 10, false, 1, 1);
+	m_dialRatio = new LabeledDial("Ratio", p_slotRatio, p_ratio, 1, 10, NORMAL, 1, 1);
 	p_background->add(*m_dialRatio);
 
 	p_background->set_size_request(100, 80);

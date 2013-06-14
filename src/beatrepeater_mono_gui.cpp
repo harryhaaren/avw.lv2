@@ -6,6 +6,7 @@
 
 #include "beatrepeater_mono_gui.hpp"
 #include "beatrepeater_mono.hpp"
+#include "dial.hpp"
 
 BeatRepeaterMonoGUI::BeatRepeaterMonoGUI(const std::string& URI)
 {
@@ -25,11 +26,11 @@ BeatRepeaterMonoGUI::BeatRepeaterMonoGUI(const std::string& URI)
 	HBox *p_beatDials = manage(new HBox(true));
 
 	slot<void> p_slotBeatSize = compose(bind<0>(mem_fun(*this, &BeatRepeaterMonoGUI::write_control), p_beatSize), mem_fun(*this,  &BeatRepeaterMonoGUI::get_beatSize));
-	m_dialBeatSize = new LabeledDial("Beat Size", p_slotBeatSize, p_beatSize, 0.03125, 32, false, 0.03125, 5);
+	m_dialBeatSize = new LabeledDial("Beat Size", p_slotBeatSize, p_beatSize, 0.03125, 32, NORMAL, 0.03125, 5);
 	p_beatDials->pack_start(*m_dialBeatSize);
 
 	slot<void> p_slotTempo = compose(bind<0>(mem_fun(*this, &BeatRepeaterMonoGUI::write_control), p_tempo), mem_fun(*this,  &BeatRepeaterMonoGUI::get_tempo));
-	m_dialTempo = new LabeledDial("Tempo", p_slotTempo, p_tempo, 40, 320, false, 1, 0);
+	m_dialTempo = new LabeledDial("Tempo", p_slotTempo, p_tempo, 40, 320, NORMAL, 1, 0);
 	p_beatDials->pack_start(*m_dialTempo);
 
 	p_beatBox->pack_start(*p_beatDials);
@@ -48,11 +49,11 @@ BeatRepeaterMonoGUI::BeatRepeaterMonoGUI(const std::string& URI)
 	HBox *p_envelopeDials = manage(new HBox(true));
 
 	slot<void> p_slotAttack = compose(bind<0>(mem_fun(*this, &BeatRepeaterMonoGUI::write_control), p_attack), mem_fun(*this,  &BeatRepeaterMonoGUI::get_attack));
-	m_dialAttack = new LabeledDial("Attack", p_slotAttack, p_attack, 3, 25, false, 1, 0);
+	m_dialAttack = new LabeledDial("Attack", p_slotAttack, p_attack, 3, 25, NORMAL, 1, 0);
 	p_envelopeDials->pack_start(*m_dialAttack);
 
 	slot<void> p_slotRelease = compose(bind<0>(mem_fun(*this, &BeatRepeaterMonoGUI::write_control), p_release), mem_fun(*this,  &BeatRepeaterMonoGUI::get_release));
-	m_dialRelease = new LabeledDial("Release", p_slotRelease, p_release, 3, 25, false, 1, 0);
+	m_dialRelease = new LabeledDial("Release", p_slotRelease, p_release, 3, 25, NORMAL, 1, 0);
 	p_envelopeDials->pack_start(*m_dialRelease);
 
 	p_envelopeFrame->add(*p_envelopeDials);

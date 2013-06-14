@@ -5,6 +5,7 @@
 
 #include "mixer_2ch_cv_gui.hpp"
 #include "mixer_2ch_cv.hpp"
+#include "dial.hpp"
 
 Mixer2ChCVGUI::Mixer2ChCVGUI(const std::string& URI)
 {
@@ -20,7 +21,7 @@ Mixer2ChCVGUI::Mixer2ChCVGUI(const std::string& URI)
 
 
 	slot<void> p_slotGain = compose(bind<0>(mem_fun(*this, &Mixer2ChCVGUI::write_control), p_gain), mem_fun(*this,  &Mixer2ChCVGUI::get_gain));
-	m_dialGain = new LabeledDial("Gain", p_slotGain, p_gain, 0, 2, false, 0.01, 2);
+	m_dialGain = new LabeledDial("Gain", p_slotGain, p_gain, 0, 2, NORMAL, 0.01, 2);
 	p_mainWidget->pack_start(*m_dialGain);
 
 
@@ -30,11 +31,11 @@ Mixer2ChCVGUI::Mixer2ChCVGUI(const std::string& URI)
 	HBox *p_volumesBox = manage(new HBox(true));
 
 	slot<void> p_slotVolume1 = compose(bind<0>(mem_fun(*this, &Mixer2ChCVGUI::write_control), p_volume1), mem_fun(*this,  &Mixer2ChCVGUI::get_volume1));
-	m_dialVolume1 = new LabeledDial("Volume 1", p_slotVolume1, p_volume1, 0, 2, false, 0.01, 2);
+	m_dialVolume1 = new LabeledDial("Volume 1", p_slotVolume1, p_volume1, 0, 2, NORMAL, 0.01, 2);
 	p_volumesBox->pack_start(*m_dialVolume1);
 
 	slot<void> p_slotVolume2 = compose(bind<0>(mem_fun(*this, &Mixer2ChCVGUI::write_control), p_volume2), mem_fun(*this,  &Mixer2ChCVGUI::get_volume2));
-	m_dialVolume2 = new LabeledDial("Volume 2", p_slotVolume2, p_volume2, 0, 2, false, 0.01, 2);
+	m_dialVolume2 = new LabeledDial("Volume 2", p_slotVolume2, p_volume2, 0, 2, NORMAL, 0.01, 2);
 	p_volumesBox->pack_start(*m_dialVolume2);
 
 	p_volumesFrame->add(*p_volumesBox);

@@ -5,8 +5,9 @@
 
 using namespace std;
 
-LabeledDial::LabeledDial(const std::string TextLabel, const sigc::slot<void> toggle_slot, double Value, double Min, double Max, bool Log, double Step, int NbDigit)
+LabeledDial::LabeledDial(const std::string TextLabel, const sigc::slot<void> toggle_slot, double Value, double Min, double Max, DialType Type, double Step, int NbDigit)
 {
+	m_type = Type;
 	Gdk::Color* color = new  Gdk::Color();
 	color->set_rgb(7710, 8738, 9252);
 	this->modify_bg(Gtk::STATE_NORMAL, *color);
@@ -16,7 +17,7 @@ LabeledDial::LabeledDial(const std::string TextLabel, const sigc::slot<void> tog
 	Label *p_label = manage (new Label(TextLabel));
 	p_mainWidget->pack_start(*p_label);
 
-	m_dial = new Dial(toggle_slot, Value, Min, Max, Log, Step, NbDigit);
+	m_dial = new Dial(toggle_slot, Value, Min, Max, Type, Step, NbDigit);
 
 	p_mainWidget->pack_start(*m_dial);
 
@@ -45,9 +46,7 @@ bool LabeledDial::Redraw()
 void LabeledDial::value_changed()
 {
 	m_dial->Redraw();
-	std::stringstream out;
-	out << m_dial->get_value();
-	m_label->set_text(out.str());
+	m_label->set_text(float_to_fraction(m_dial->get_value()));
 }
 
 float LabeledDial::get_value()
@@ -58,10 +57,41 @@ float LabeledDial::get_value()
 void LabeledDial::set_value(float Value)
 {
 	m_dial->set_value(Value);
-	std::stringstream out;
-	out << m_dial->get_value();
-	m_label->set_text(out.str());
+	m_label->set_text(float_to_fraction(Value));
 	m_dial->Redraw();
+}
+
+Glib::ustring LabeledDial::float_to_fraction(float value)
+{
+	if(m_type != DIVIDER)
+	{
+		std::stringstream out;
+		out << value;
+		return out.str();
+	}
+	else
+	{
+		if(value == 0.0078125)
+			return "1/128";
+		else if(value == 0.015625)
+			return "1/64";
+		else if(value == 0.03125)
+			return "1/32";
+		else if(value == 0.0625)
+			return "1/16";
+		else if(value == 0.125)
+			return "1/8";
+		else if(value == 0.25)
+			return "1/4";
+		else if(value == 0.5)
+			return "1/2";
+		else
+		{
+			std::stringstream out;
+			out << value;
+			return out.str();
+		}
+	}
 }
 
 

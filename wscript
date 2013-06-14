@@ -188,6 +188,7 @@ def build(bld):
 		  	['src/synthdata.cpp'])
 		  
 	plugins_gui = '''
+	samplehold_gui
 	vco2_audio_gui
 	vco2_cv_gui
 	ad_gui

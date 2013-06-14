@@ -5,6 +5,7 @@
 
 #include "mooglpf_gui.hpp"
 #include "mooglpf.hpp"
+#include "dial.hpp"
 
 MoogLPFGUI::MoogLPFGUI(const std::string& URI)
 {
@@ -23,11 +24,11 @@ MoogLPFGUI::MoogLPFGUI(const std::string& URI)
 	HBox *p_gainBox = manage(new HBox(false));
 
 	slot<void> p_slotInputGain = compose(bind<0>(mem_fun(*this, &MoogLPFGUI::write_control), p_inputGain), mem_fun(*this,  &MoogLPFGUI::get_inputGain));
-	m_dialInputGain = new LabeledDial("Input Gain", p_slotInputGain, p_inputGain, -60, 10, false, 0.01, 2);
+	m_dialInputGain = new LabeledDial("Input Gain", p_slotInputGain, p_inputGain, -60, 10, NORMAL, 0.01, 2);
 	p_gainBox->pack_start(*m_dialInputGain);
 
 	slot<void> p_slotOutputGain = compose(bind<0>(mem_fun(*this, &MoogLPFGUI::write_control), p_outputGain), mem_fun(*this,  &MoogLPFGUI::get_outputGain));
-	m_dialOutputGain = new LabeledDial("Output Gain", p_slotOutputGain, p_outputGain, -15, 15, false, 0.01, 2);
+	m_dialOutputGain = new LabeledDial("Output Gain", p_slotOutputGain, p_outputGain, -15, 15, NORMAL, 0.01, 2);
 	p_gainBox->pack_start(*m_dialOutputGain);
 
 	p_gainFrame->add(*p_gainBox);
@@ -39,11 +40,11 @@ MoogLPFGUI::MoogLPFGUI(const std::string& URI)
 	HBox *p_freqBox = manage(new HBox(false));
 
 	slot<void> p_slotFrequency = compose(bind<0>(mem_fun(*this, &MoogLPFGUI::write_control), p_frequency), mem_fun(*this,  &MoogLPFGUI::get_frequency));
-	m_dialFrequency = new LabeledDial("Frequency", p_slotFrequency, p_frequency, -6, 6, false, 0.01, 2);
+	m_dialFrequency = new LabeledDial("Frequency", p_slotFrequency, p_frequency, -6, 6, NORMAL, 0.01, 2);
 	p_freqBox->pack_start(*m_dialFrequency);
 
 	slot<void> p_slotExpFMGain = compose(bind<0>(mem_fun(*this, &MoogLPFGUI::write_control), p_expfmgain), mem_fun(*this,  &MoogLPFGUI::get_expFMGain));
-	m_dialExpFMGain = new LabeledDial("Exp FM Gain", p_slotExpFMGain, p_expfmgain, 0, 10, true, 0.001, 3);
+	m_dialExpFMGain = new LabeledDial("Exp FM Gain", p_slotExpFMGain, p_expfmgain, 0, 10, LOG, 0.001, 3);
 	p_freqBox->pack_start(*m_dialExpFMGain);
 
 	p_freqFrame->add(*p_freqBox);
@@ -55,11 +56,11 @@ MoogLPFGUI::MoogLPFGUI(const std::string& URI)
 	HBox *p_resonanceBox = manage(new HBox(false));
 
 	slot<void> p_slotResonance = compose(bind<0>(mem_fun(*this, &MoogLPFGUI::write_control), p_resonance), mem_fun(*this,  &MoogLPFGUI::get_resonance));
-	m_dialResonance = new LabeledDial("Resonance", p_slotResonance, p_resonance, 0, 1, false, 0.01, 2);
+	m_dialResonance = new LabeledDial("Resonance", p_slotResonance, p_resonance, 0, 1, NORMAL, 0.01, 2);
 	p_resonanceBox->pack_start(*m_dialResonance);
 
 	slot<void> p_slotResonanceGain = compose(bind<0>(mem_fun(*this, &MoogLPFGUI::write_control), p_resonanceGain), mem_fun(*this,  &MoogLPFGUI::get_resonanceGain));
-	m_dialResonanceGain = new LabeledDial("ResonanceGain", p_slotResonanceGain, p_resonanceGain, 0, 1, false, 0.01, 2);
+	m_dialResonanceGain = new LabeledDial("ResonanceGain", p_slotResonanceGain, p_resonanceGain, 0, 1, NORMAL, 0.01, 2);
 	p_resonanceBox->pack_start(*m_dialResonanceGain);
 
 	p_resonanceFrame->add(*p_resonanceBox);

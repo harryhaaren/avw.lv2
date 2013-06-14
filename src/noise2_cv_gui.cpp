@@ -6,6 +6,7 @@
 
 #include "noise2_cv_gui.hpp"
 #include "noise2_cv.hpp"
+#include "dial.hpp"
 
 Noise2CVGUI::Noise2CVGUI(const std::string& URI)
 {
@@ -30,11 +31,11 @@ Noise2CVGUI::Noise2CVGUI(const std::string& URI)
 	p_mainWidget->pack_start(*m_comboNoiseForm);
 
 	slot<void> p_slotRandomRate = compose(bind<0>(mem_fun(*this, &Noise2CVGUI::write_control), p_rate), mem_fun(*this,  &Noise2CVGUI::get_randomRate));
-	m_dialRandomRate = new LabeledDial("Random Rate", p_slotRandomRate, p_rate, 0, 10, false, 0.01, 2);
+	m_dialRandomRate = new LabeledDial("Random Rate", p_slotRandomRate, p_rate, 0, 10, NORMAL, 0.01, 2);
 	p_mainWidget->pack_start(*m_dialRandomRate);
 
 	slot<void> p_slotRandomLevel = compose(bind<0>(mem_fun(*this, &Noise2CVGUI::write_control), p_level), mem_fun(*this, &Noise2CVGUI::get_randomLevel));
-	m_dialRandomLevel = new LabeledDial("Random Level", p_slotRandomLevel, p_level, 0, 1, true, 0.0001, 4);
+	m_dialRandomLevel = new LabeledDial("Random Level", p_slotRandomLevel, p_level, 0, 1, LOG, 0.0001, 4);
 	p_mainWidget->pack_start(*m_dialRandomLevel);
 
 	p_mainWidget->set_size_request(150, 200);

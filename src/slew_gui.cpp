@@ -6,6 +6,7 @@
 
 #include "slew_gui.hpp"
 #include "slew.hpp"
+#include "dial.hpp"
 
 SlewGUI::SlewGUI(const std::string& URI)
 {
@@ -17,11 +18,11 @@ SlewGUI::SlewGUI(const std::string& URI)
 	VBox *p_mainWidget = manage (new VBox(false));
 
 	slot<void> p_slotTimeUp = compose(bind<0>(mem_fun(*this, &SlewGUI::write_control), p_timeUp), mem_fun(*this,  &SlewGUI::get_timeUp));
-	m_dialTimeUp = new LabeledDial("Time Up", p_slotTimeUp, p_timeUp, 0, 10, false, 0.1, 1);
+	m_dialTimeUp = new LabeledDial("Time Up", p_slotTimeUp, p_timeUp, 0, 10, NORMAL, 0.1, 1);
 	p_mainWidget->pack_start(*m_dialTimeUp);
 
 	slot<void> p_slotTimeDown = compose(bind<0>(mem_fun(*this, &SlewGUI::write_control), p_timeDown), mem_fun(*this, &SlewGUI::get_timeDown));
-	m_dialTimeDown = new LabeledDial("Time Down", p_slotTimeDown, p_timeDown,0, 10, false, 0.1, 1);
+	m_dialTimeDown = new LabeledDial("Time Down", p_slotTimeDown, p_timeDown,0, 10, NORMAL, 0.1, 1);
 	p_mainWidget->pack_start(*m_dialTimeDown);
 
 	p_mainWidget->set_size_request(256, 320);

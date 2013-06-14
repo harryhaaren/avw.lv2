@@ -5,9 +5,9 @@
 
 using namespace std;
 
-Dial::Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double Max, bool Log, double Step, int NbDigit)
+Dial::Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double Max,  DialType Type, double Step, int NbDigit)
 {
-	m_log = Log;
+	m_type = Type;
 	m_adj = new Gtk::Adjustment(Value, Min, Max, Step, Step);
 	this->m_mouseDelta = 0;
 	this->m_mouseDown = false;
@@ -132,10 +132,24 @@ bool Dial::onMouseScroll(GdkEventScroll * e)
 	if (e->direction == GDK_SCROLL_UP)
 	{
 		ChangeValueUp();
+		if(m_type != DIVIDER)
+		{
+			ChangeValueUp();
+			ChangeValueUp();
+			ChangeValueUp();
+			ChangeValueUp();
+		}
 	}
 	else if (e->direction == GDK_SCROLL_DOWN)
 	{
 		ChangeValueDown();
+		if(m_type != DIVIDER)
+		{
+			ChangeValueDown();
+			ChangeValueDown();
+			ChangeValueDown();
+			ChangeValueDown();
+		}
 	}
 
 	return true;
@@ -166,24 +180,32 @@ bool Dial::onMouseMove(GdkEventMotion* event)
 
 void Dial::ChangeValueUp()
 {
-	if(!m_log)
+	switch(m_type)
 	{
-		set_value(RoundValue(m_adj->get_value()+m_adj->get_step_increment()));
-	}
-	else
-	{
-		set_value(RoundValue(m_adj->get_value()+CalculateLogStep()));
+		case NORMAL:
+			set_value(RoundValue(m_adj->get_value()+m_adj->get_step_increment()));
+			break;
+		case LOG:
+			set_value(RoundValue(m_adj->get_value()+CalculateLogStep()));
+			break;
+		case DIVIDER:
+			set_value(RoundValue(m_adj->get_value()*2));
+			break;
 	}
 }
 void Dial::ChangeValueDown()
 {
-	if(!m_log)
+	switch(m_type)
 	{
-		set_value(RoundValue(m_adj->get_value()-m_adj->get_step_increment()));
-	}
-	else
-	{
-		set_value(RoundValue(m_adj->get_value()-CalculateLogStep()));
+		case NORMAL:
+			set_value(RoundValue(m_adj->get_value()-m_adj->get_step_increment()));
+			break;
+		case LOG:
+			set_value(RoundValue(m_adj->get_value()-CalculateLogStep()));
+			break;
+		case DIVIDER:
+			set_value(RoundValue(m_adj->get_value()/2));
+			break;
 	}
 }
 

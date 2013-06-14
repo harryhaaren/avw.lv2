@@ -6,6 +6,7 @@
 
 #include "beatslicer_mono_gui.hpp"
 #include "beatslicer_mono.hpp"
+#include "dial.hpp"
 
 BeatSlicerMonoGUI::BeatSlicerMonoGUI(const std::string& URI)
 {
@@ -25,15 +26,15 @@ BeatSlicerMonoGUI::BeatSlicerMonoGUI(const std::string& URI)
 	HBox *p_beatDials = manage(new HBox(true));
 
 	slot<void> p_slotTempo = compose(bind<0>(mem_fun(*this, &BeatSlicerMonoGUI::write_control), p_tempo), mem_fun(*this,  &BeatSlicerMonoGUI::get_tempo));
-	m_dialTempo = new LabeledDial("Tempo", p_slotTempo, p_tempo, 40, 320, false, 1, 0);
+	m_dialTempo = new LabeledDial("Tempo", p_slotTempo, p_tempo, 40, 320, NORMAL, 1, 0);
 	p_beatDials->pack_start(*m_dialTempo);
 
 	slot<void> p_slotBeatSize = compose(bind<0>(mem_fun(*this, &BeatSlicerMonoGUI::write_control), p_sliceSize), mem_fun(*this,  &BeatSlicerMonoGUI::get_sliceSize));
-	m_dialSliceSize = new LabeledDial("Slice Size", p_slotBeatSize, p_sliceSize, 0.03125, 0.5, false, 0.03125, 5);
+	m_dialSliceSize = new LabeledDial("Slice Size", p_slotBeatSize, p_sliceSize, 0.03125, 0.5, NORMAL, 0.03125, 5);
 	p_beatDials->pack_start(*m_dialSliceSize);
 
 	slot<void> p_slotSampleSize = compose(bind<0>(mem_fun(*this, &BeatSlicerMonoGUI::write_control), p_sampleSize), mem_fun(*this,  &BeatSlicerMonoGUI::get_sampleSize));
-	m_dialSampleSize = new LabeledDial("Sample Size", p_slotSampleSize, p_sampleSize, 2, 16, false, 1, 0);
+	m_dialSampleSize = new LabeledDial("Sample Size", p_slotSampleSize, p_sampleSize, 2, 16, NORMAL, 1, 0);
 	p_beatDials->pack_start(*m_dialSampleSize);
 
 	p_beatBox->pack_start(*p_beatDials);
@@ -60,11 +61,11 @@ BeatSlicerMonoGUI::BeatSlicerMonoGUI(const std::string& URI)
 	HBox *p_envelopeDials = manage(new HBox(true));
 
 	slot<void> p_slotAttack = compose(bind<0>(mem_fun(*this, &BeatSlicerMonoGUI::write_control), p_attack), mem_fun(*this,  &BeatSlicerMonoGUI::get_attack));
-	m_dialAttack = new LabeledDial("Attack", p_slotAttack, p_attack, 3, 25, false, 1, 0);
+	m_dialAttack = new LabeledDial("Attack", p_slotAttack, p_attack, 3, 25, NORMAL, 1, 0);
 	p_envelopeDials->pack_start(*m_dialAttack);
 
 	slot<void> p_slotRelease = compose(bind<0>(mem_fun(*this, &BeatSlicerMonoGUI::write_control), p_release), mem_fun(*this,  &BeatSlicerMonoGUI::get_release));
-	m_dialRelease = new LabeledDial("Release", p_slotRelease, p_release, 3, 25, false, 1, 0);
+	m_dialRelease = new LabeledDial("Release", p_slotRelease, p_release, 3, 25, NORMAL, 1, 0);
 	p_envelopeDials->pack_start(*m_dialRelease);
 
 	p_envelopeFrame->add(*p_envelopeDials);

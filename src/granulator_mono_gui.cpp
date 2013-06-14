@@ -6,6 +6,7 @@
 
 #include "granulator_mono_gui.hpp"
 #include "granulator_mono.hpp"
+#include "dial.hpp"
 
 GranulatorMonoGUI::GranulatorMonoGUI(const std::string& URI)
 {
@@ -25,11 +26,11 @@ GranulatorMonoGUI::GranulatorMonoGUI(const std::string& URI)
 	HBox *p_gainBox = manage(new HBox(true));
 
 	slot<void> p_slotInputGain = compose(bind<0>(mem_fun(*this, &GranulatorMonoGUI::write_control), p_inputGain), mem_fun(*this,  &GranulatorMonoGUI::get_inputGain));
-	m_dialInputGain = new LabeledDial("Input Gain", p_slotInputGain, p_inputGain, -10, 10, false, 0.01, 2);
+	m_dialInputGain = new LabeledDial("Input Gain", p_slotInputGain, p_inputGain, -10, 10, NORMAL, 0.01, 2);
 	p_gainBox->pack_start(*m_dialInputGain);
 
 	slot<void> p_slotOutputGain = compose(bind<0>(mem_fun(*this, &GranulatorMonoGUI::write_control), p_outputGain), mem_fun(*this,  &GranulatorMonoGUI::get_outputGain));
-	m_dialOutputGain = new LabeledDial("Output Gain", p_slotOutputGain, p_outputGain, -10, 10, false, 0.01, 2);
+	m_dialOutputGain = new LabeledDial("Output Gain", p_slotOutputGain, p_outputGain, -10, 10, NORMAL, 0.01, 2);
 	p_gainBox->pack_start(*m_dialOutputGain);
 
 	p_gainFrame->add(*p_gainBox);
@@ -42,15 +43,15 @@ GranulatorMonoGUI::GranulatorMonoGUI(const std::string& URI)
 	HBox *p_grainBox = manage(new HBox(true));
 
 	slot<void> p_slotGrainSize = compose(bind<0>(mem_fun(*this, &GranulatorMonoGUI::write_control), p_grainSize), mem_fun(*this,  &GranulatorMonoGUI::get_grainSize));
-	m_dialGrainSize = new LabeledDial("Grain Size (ms)", p_slotGrainSize, p_grainSize, 6, 10000, true, 1, 0);
+	m_dialGrainSize = new LabeledDial("Grain Size (ms)", p_slotGrainSize, p_grainSize, 6, 10000, LOG, 1, 0);
 	p_grainBox->pack_start(*m_dialGrainSize);
 
 	slot<void> p_slotAttack = compose(bind<0>(mem_fun(*this, &GranulatorMonoGUI::write_control), p_attack), mem_fun(*this,  &GranulatorMonoGUI::get_attack));
-	m_dialAttack = new LabeledDial("Attack (ms)", p_slotAttack, p_attack, 3, 100, false, 1, 0);
+	m_dialAttack = new LabeledDial("Attack (ms)", p_slotAttack, p_attack, 3, 100, NORMAL, 1, 0);
 	p_grainBox->pack_start(*m_dialAttack);
 
 	slot<void> p_slotRelease = compose(bind<0>(mem_fun(*this, &GranulatorMonoGUI::write_control), p_release), mem_fun(*this,  &GranulatorMonoGUI::get_release));
-	m_dialRelease = new LabeledDial("Release (ms)", p_slotRelease, p_release, 3, 100, false, 1, 0);
+	m_dialRelease = new LabeledDial("Release (ms)", p_slotRelease, p_release, 3, 100, NORMAL, 1, 0);
 	p_grainBox->pack_start(*m_dialRelease);
 
 	p_grainFrame->add(*p_grainBox);
@@ -63,11 +64,11 @@ GranulatorMonoGUI::GranulatorMonoGUI(const std::string& URI)
 	HBox *p_textureBox = manage(new HBox(true));
 
 	slot<void> p_slotGrainDensity = compose(bind<0>(mem_fun(*this, &GranulatorMonoGUI::write_control), p_grainDensity), mem_fun(*this,  &GranulatorMonoGUI::get_grainDensity));
-	m_dialGrainDensity = new LabeledDial("Grain Spacing (ms)", p_slotGrainDensity, p_grainDensity, 1, 10000, true, 1, 0);
+	m_dialGrainDensity = new LabeledDial("Grain Spacing (ms)", p_slotGrainDensity, p_grainDensity, 1, 10000, LOG, 1, 0);
 	p_textureBox->pack_start(*m_dialGrainDensity);
 
 	slot<void> p_slotGrainSpread = compose(bind<0>(mem_fun(*this, &GranulatorMonoGUI::write_control), p_grainSpread), mem_fun(*this,  &GranulatorMonoGUI::get_grainSpread));
-	m_dialGrainSpread = new LabeledDial("Grain Spread", p_slotGrainSpread, p_grainSpread, 2, 10000, true, 1, 0);
+	m_dialGrainSpread = new LabeledDial("Grain Spread", p_slotGrainSpread, p_grainSpread, 2, 10000, LOG, 1, 0);
 	p_textureBox->pack_start(*m_dialGrainSpread);
 
 	p_textureFrame->add(*p_textureBox);

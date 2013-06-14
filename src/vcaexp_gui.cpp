@@ -5,6 +5,7 @@
 
 #include "vcaexp_gui.hpp"
 #include "vcaexp.hpp"
+#include "dial.hpp"
 
 VCAExpGUI::VCAExpGUI(const std::string& URI)
 {
@@ -24,11 +25,11 @@ VCAExpGUI::VCAExpGUI(const std::string& URI)
 	HBox *p_gainBox = manage(new HBox(true));
 
 	slot<void> p_slotGain1 = compose(bind<0>(mem_fun(*this, &VCAExpGUI::write_control), p_gain1), mem_fun(*this,  &VCAExpGUI::get_gain1));
-	m_dialGain1 = new LabeledDial("Gain 1", p_slotGain1, p_gain1, 0, 1, true, 0.0001, 4);
+	m_dialGain1 = new LabeledDial("Gain 1", p_slotGain1, p_gain1, 0, 1, LOG, 0.0001, 4);
 	p_gainBox->pack_start(*m_dialGain1);
 
 	slot<void> p_slotGain2 = compose(bind<0>(mem_fun(*this, &VCAExpGUI::write_control), p_gain2), mem_fun(*this,  &VCAExpGUI::get_gain2));
-	m_dialGain2 = new LabeledDial("Gain 2", p_slotGain2, p_gain1, 0, 1, true, 0.0001, 4);
+	m_dialGain2 = new LabeledDial("Gain 2", p_slotGain2, p_gain1, 0, 1, LOG, 0.0001, 4);
 	p_gainBox->pack_start(*m_dialGain2);
 
 	p_gainFrame->add(*p_gainBox);
@@ -41,11 +42,11 @@ VCAExpGUI::VCAExpGUI(const std::string& URI)
 	HBox *p_volumeBox = manage(new HBox(true));
 
 	slot<void> p_slotIn1 = compose(bind<0>(mem_fun(*this, &VCAExpGUI::write_control), p_in1), mem_fun(*this,  &VCAExpGUI::get_in1));
-	m_dialIn1 = new LabeledDial("In 1", p_slotIn1, p_in1, 0, 2, true, 0.0001, 4);
+	m_dialIn1 = new LabeledDial("In 1", p_slotIn1, p_in1, 0, 2, LOG, 0.0001, 4);
 	p_volumeBox->pack_start(*m_dialIn1);
 
 	slot<void> p_slotIn2 = compose(bind<0>(mem_fun(*this, &VCAExpGUI::write_control), p_in2), mem_fun(*this,  &VCAExpGUI::get_in2));
-	m_dialIn2 = new LabeledDial("In 2", p_slotIn2, p_in2, 0, 2, true, 0.0001, 4);
+	m_dialIn2 = new LabeledDial("In 2", p_slotIn2, p_in2, 0, 2, LOG, 0.0001, 4);
 	p_volumeBox->pack_start(*m_dialIn2);
 
 	p_inFrame->add(*p_volumeBox);
@@ -54,7 +55,7 @@ VCAExpGUI::VCAExpGUI(const std::string& URI)
 
 
 	slot<void> p_slotOutputLevel = compose(bind<0>(mem_fun(*this, &VCAExpGUI::write_control), p_outputLevel), mem_fun(*this,  &VCAExpGUI::get_outputLevel));
-	m_dialOutputLevel = new LabeledDial("Output Level", p_slotOutputLevel, p_outputLevel, 0, 2, true, 0.0001, 4);
+	m_dialOutputLevel = new LabeledDial("Output Level", p_slotOutputLevel, p_outputLevel, 0, 2, LOG, 0.0001, 4);
 	p_mainWidget->pack_start(*m_dialOutputLevel);
 
 
