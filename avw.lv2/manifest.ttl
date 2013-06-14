@@ -46,10 +46,15 @@
 	lv2:binary <lfo_freq.so>  ;
 	rdfs:seeAlso <lfo_freq.ttl> .
 
-<http://avwlv2.sourceforge.net/plugins/avw/vco2>
+<http://avwlv2.sourceforge.net/plugins/avw/vco2_audio>
 	a lv2:Plugin ;
-	lv2:binary <vco2.so>  ;
-	rdfs:seeAlso <vco2.ttl> .
+	lv2:binary <vco2_audio.so>  ;
+	rdfs:seeAlso <vco2_audio.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/vco2_cv>
+	a lv2:Plugin ;
+	lv2:binary <vco2_cv.so>  ;
+	rdfs:seeAlso <vco2_cv.ttl> .
 	
 <http://avwlv2.sourceforge.net/plugins/avw/vcf>
 	a lv2:Plugin ;

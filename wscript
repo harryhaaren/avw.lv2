@@ -170,7 +170,8 @@ def build(bld):
 		  	['src/envgen.cpp'])
 
 	plugins = '''
-	vco2
+	vco2_audio
+	vco2_cv
 	ad
 	vcf
 	vcaexp
@@ -187,7 +188,8 @@ def build(bld):
 		  	['src/synthdata.cpp'])
 		  
 	plugins_gui = '''
-	vco2_gui
+	vco2_audio_gui
+	vco2_cv_gui
 	ad_gui
 	vcf_gui
 	vcpanning_gui

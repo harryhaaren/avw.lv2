@@ -7,63 +7,75 @@
 @prefix pg:     <http://lv2plug.in/ns/ext/port-groups#> .
 @prefix ll: 	<http://ll-plugins.nongnu.org/lv2/namespace#> .
 
-<http://avwlv2.sourceforge.net/plugins/avw/vco2/gui>
+<http://avwlv2.sourceforge.net/plugins/avw/vco2_cv/gui>
   a guiext:GtkUI ;
-  guiext:binary <vco2_gui.so> .
+  guiext:binary <vco2_cv_gui.so> .
   
-<http://avwlv2.sourceforge.net/plugins/avw/vco2#group_frequency>
+<http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_frequency>
     a param:OscillatorControls ;
     lv2:name "Frequency" ;
     lv2:symbol "grp_frequency" .
     
-<http://avwlv2.sourceforge.net/plugins/avw/vco2#group_pw_phase>
+<http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_pw_phase>
     a param:OscillatorControls ;
     lv2:name "Pulse Width - Phase" ;
     lv2:symbol "grp_pw_phase" .
     
-<http://avwlv2.sourceforge.net/plugins/avw/vco2#group_modulation>
+<http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_modulation>
     a param:OscillatorControls ;
     lv2:name "Modulation" ;
     lv2:symbol "grp_modulation" .
     
-<http://avwlv2.sourceforge.net/plugins/avw/vco2#group_input>
+<http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_input>
     a param:OscillatorControls, pg:InputGroup ;
     lv2:name "Input" ;
     lv2:symbol "grp_input" .
 
-<http://avwlv2.sourceforge.net/plugins/avw/vco2>
+<http://avwlv2.sourceforge.net/plugins/avw/vco2_cv>
 	a lv2:Plugin ,
 		lv2:OscillatorPlugin ;
 	lv2:project <http://avwlv2.sourceforge.net/plugins/avw/> ;        
-	doap:name "AMS VCO2" ;
+	doap:name "AMS VCO2 - CV" ;
 	doap:license <http://opensource.org/licenses/isc> ;
 	ll:pegName "p" ;
-	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/vco2/gui> ;
+	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv/gui> ;
 	lv2:optionalFeature lv2:hardRTCapable ;
 	lv2:port [
 		a lv2:CVPort, lv2:InputPort ;
 		lv2:index 0 ;
 		lv2:symbol "freq" ;
 		lv2:name "Frequency";
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_input> ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_input> ;
 	] ,	[
 		a lv2:CVPort, lv2:InputPort ;
 		lv2:index 1 ;
 		lv2:symbol "expFM" ;
 		lv2:name "Exp FM" ;
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_input> ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_input> ;
 	] ,	[
 		a lv2:CVPort, lv2:InputPort ;
 		lv2:index 2 ;
 		lv2:symbol "linFM" ;
 		lv2:name "Lin FM" ;
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_input> ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_input> ;
 	] ,	[
 	  	a lv2:CVPort, lv2:InputPort ;
 		lv2:index 3 ;
 		lv2:symbol "pwPort" ;
 		lv2:name "PW" ;
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_input> ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_input> ;
 	] , [
 		a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 4 ;
@@ -104,7 +116,7 @@
 		lv2:default 3 ;
 		lv2:minimum 0 ;
 		lv2:maximum 6 ;
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_frequency> ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_frequency> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 6 ;
@@ -113,7 +125,7 @@
 		lv2:default 0 ;
 		lv2:minimum 0 ;
 		lv2:maximum 1 ;
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_frequency> ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_frequency> ;
 	] , [
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 7 ;
@@ -122,7 +134,7 @@
 		lv2:default 1 ;
 		lv2:minimum 1 ;
 		lv2:maximum 16 ;
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_frequency> ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_frequency> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 8 ;
@@ -131,7 +143,7 @@
 		lv2:default 1 ;
 		lv2:minimum 1 ;
 		lv2:maximum 16 ;
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_frequency> ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_frequency> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 9 ;
@@ -140,7 +152,7 @@
 		lv2:default 0.5 ;
 		lv2:minimum 0.1 ;
 		lv2:maximum 0.9 ;
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_pw_phase> ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_pw_phase> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 10 ;
@@ -149,7 +161,7 @@
 		lv2:default 0 ;
 		lv2:minimum 0 ;
 		lv2:maximum 1 ;
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_pw_phase> ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_pw_phase> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 11 ;
@@ -158,7 +170,7 @@
 		lv2:default 0 ;
 		lv2:minimum 0 ;
 		lv2:maximum 6.283 ;
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_pw_phase> ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_pw_phase> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 12 ;
@@ -167,7 +179,7 @@
 		lv2:default 0 ;
 		lv2:minimum 0 ;
 		lv2:maximum 10 ;
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_modulation> ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_modulation> ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
 		lv2:index 13 ;
@@ -176,10 +188,13 @@
 		lv2:default 0 ;
 		lv2:minimum 0 ;
 		lv2:maximum 10 ;
-		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2#group_modulation> ;
+		pg:group <http://avwlv2.sourceforge.net/plugins/avw/vco2_cv#group_modulation> ;
 	] ,	[
-		a lv2:AudioPort , lv2:OutputPort ;
+		a lv2:CVPort, lv2:OutputPort ;
 		lv2:index 14 ;
 		lv2:symbol "out" ;
-		lv2:name "Out"
+		lv2:name "Out" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
 	] .

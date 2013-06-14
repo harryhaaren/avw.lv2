@@ -5,10 +5,10 @@
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "vco2.hpp"
+#include "vco2_cv.hpp"
 
-Vco2::Vco2(double rate) :
-	Plugin<Vco2> (p_n_ports)
+Vco2CV::Vco2CV(double rate) :
+	Plugin<Vco2CV> (p_n_ports)
 {
 	synthdata = new SynthData(1);
 
@@ -34,7 +34,7 @@ Vco2::Vco2(double rate) :
 	m_rate = rate;
 }
 
-void Vco2::run(uint32_t nframes)
+void Vco2CV::run(uint32_t nframes)
 {
 	unsigned int l2;
 	unsigned phint;
@@ -308,5 +308,5 @@ void Vco2::run(uint32_t nframes)
 	}
 }
 
-static int _ = Vco2::register_class("http://avwlv2.sourceforge.net/plugins/avw/vco2");
+static int _ = Vco2CV::register_class("http://avwlv2.sourceforge.net/plugins/avw/vco2_cv");
 

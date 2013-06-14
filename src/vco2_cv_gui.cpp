@@ -3,10 +3,10 @@
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>
 
-#include "vco2_gui.hpp"
-#include "vco2.hpp"
+#include "vco2_cv_gui.hpp"
+#include "vco2_cv.hpp"
 
-Vco2GUI::Vco2GUI(const char* plugin_uri)
+Vco2CVGUI::Vco2CVGUI(const char* plugin_uri)
 {
 	EventBox *p_background = manage(new EventBox());
 	Gdk::Color* color = new  Gdk::Color();
@@ -31,7 +31,7 @@ Vco2GUI::Vco2GUI(const char* plugin_uri)
 	m_comboWaveForm->append_text("Aux Saw 2");
 	m_comboWaveForm->append_text("Aux Saw 3");
 
-	slot<void> p_slotWaveForm = compose(bind<0> (mem_fun(*this, &Vco2GUI::write_control), p_waveForm), mem_fun(*m_comboWaveForm, &ComboBoxText::get_active_row_number));
+	slot<void> p_slotWaveForm = compose(bind<0> (mem_fun(*this, &Vco2CVGUI::write_control), p_waveForm), mem_fun(*m_comboWaveForm, &ComboBoxText::get_active_row_number));
 	m_comboWaveForm->signal_changed().connect(p_slotWaveForm);
 	p_mainWidget->pack_start(*m_comboWaveForm);
 
@@ -41,19 +41,19 @@ Vco2GUI::Vco2GUI(const char* plugin_uri)
 	//p_gainFrame->set_shadow_type(Gtk::SHADOW_NONE);
 	HBox *p_freqBox = manage(new HBox(true));
 
-	slot<void> p_slotOctave = compose(bind<0>(mem_fun(*this, &Vco2GUI::write_control), p_octave), mem_fun(*this,  &Vco2GUI::get_octave));
+	slot<void> p_slotOctave = compose(bind<0>(mem_fun(*this, &Vco2CVGUI::write_control), p_octave), mem_fun(*this,  &Vco2CVGUI::get_octave));
 	m_scaleOctave = new LabeledDial("Octave", p_slotOctave, p_octave, 0, 6, false, 1, 0);
 	p_freqBox->pack_start(*m_scaleOctave);
 
-	slot<void> p_slotTune = compose(bind<0>(mem_fun(*this, &Vco2GUI::write_control), p_tune), mem_fun(*this,  &Vco2GUI::get_tune));
+	slot<void> p_slotTune = compose(bind<0>(mem_fun(*this, &Vco2CVGUI::write_control), p_tune), mem_fun(*this,  &Vco2CVGUI::get_tune));
 	m_scaleTune = new LabeledDial("Tune", p_slotTune, p_tune, 0, 1, true, 0.0001, 4);
 	p_freqBox->pack_start(*m_scaleTune);
 
-	slot<void> p_slotHarmonic = compose(bind<0>(mem_fun(*this, &Vco2GUI::write_control), p_harmonic), mem_fun(*this,  &Vco2GUI::get_harmonic));
+	slot<void> p_slotHarmonic = compose(bind<0>(mem_fun(*this, &Vco2CVGUI::write_control), p_harmonic), mem_fun(*this,  &Vco2CVGUI::get_harmonic));
 	m_scaleHarmonic = new LabeledDial("Harmonic", p_slotHarmonic, p_harmonic, 1, 16, false, 1, 0);
 	p_freqBox->pack_start(*m_scaleHarmonic);
 
-	slot<void> p_slotSubharmonic = compose(bind<0>(mem_fun(*this, &Vco2GUI::write_control), p_subharmonic), mem_fun(*this,  &Vco2GUI::get_subharmonic));
+	slot<void> p_slotSubharmonic = compose(bind<0>(mem_fun(*this, &Vco2CVGUI::write_control), p_subharmonic), mem_fun(*this,  &Vco2CVGUI::get_subharmonic));
 	m_scaleSubHarmonic = new LabeledDial("Subharmonic", p_slotSubharmonic, p_subharmonic, 1, 16, false, 1, 0);
 	p_freqBox->pack_start(*m_scaleSubHarmonic);
 
@@ -66,15 +66,15 @@ Vco2GUI::Vco2GUI(const char* plugin_uri)
 	//p_gainFrame->set_shadow_type(Gtk::SHADOW_NONE);
 	HBox *p_pwpBox = manage(new HBox(true));
 
-	slot<void> p_slotPw0 = compose(bind<0>(mem_fun(*this, &Vco2GUI::write_control), p_pw0), mem_fun(*this,  &Vco2GUI::get_pw));
+	slot<void> p_slotPw0 = compose(bind<0>(mem_fun(*this, &Vco2CVGUI::write_control), p_pw0), mem_fun(*this,  &Vco2CVGUI::get_pw));
 	m_scalePW = new LabeledDial("PW", p_slotPw0, p_pw0, 0.1, 0.9, false, 0.001, 3);
 	p_pwpBox->pack_start(*m_scalePW);
 
-	slot<void> p_slotPwGain = compose(bind<0>(mem_fun(*this, &Vco2GUI::write_control), p_pwGain), mem_fun(*this,  &Vco2GUI::get_pwGain));
+	slot<void> p_slotPwGain = compose(bind<0>(mem_fun(*this, &Vco2CVGUI::write_control), p_pwGain), mem_fun(*this,  &Vco2CVGUI::get_pwGain));
 	m_scalePWGain = new LabeledDial("PW Gain", p_slotPwGain, p_pwGain, 0, 1, true, 0.0001, 4);
 	p_pwpBox->pack_start(*m_scalePWGain);
 
-	slot<void> p_slotPhi0 = compose(bind<0>(mem_fun(*this, &Vco2GUI::write_control), p_phi0), mem_fun(*this,  &Vco2GUI::get_phi0));
+	slot<void> p_slotPhi0 = compose(bind<0>(mem_fun(*this, &Vco2CVGUI::write_control), p_phi0), mem_fun(*this,  &Vco2CVGUI::get_phi0));
 	m_scalePhi0 = new LabeledDial("Phi0", p_slotPhi0, p_phi0, 0, 6.28, true, 0.0001, 4);
 	p_pwpBox->pack_start(*m_scalePhi0);
 
@@ -87,11 +87,11 @@ Vco2GUI::Vco2GUI(const char* plugin_uri)
 	//p_gainFrame->set_shadow_type(Gtk::SHADOW_NONE);
 	HBox *p_modulationBox = manage(new HBox(true));
 
-	slot<void> p_slotExpFMGain = compose(bind<0>(mem_fun(*this, &Vco2GUI::write_control), p_expFMGain), mem_fun(*this,  &Vco2GUI::get_expFMGain));
+	slot<void> p_slotExpFMGain = compose(bind<0>(mem_fun(*this, &Vco2CVGUI::write_control), p_expFMGain), mem_fun(*this,  &Vco2CVGUI::get_expFMGain));
 	m_scaleExpFMGain = new LabeledDial("Exp FM Gain", p_slotExpFMGain, p_expFMGain, 0, 10, true, 0.001, 3);
 	p_modulationBox->pack_start(*m_scaleExpFMGain);
 
-	slot<void> p_slotLinFMGain = compose(bind<0>(mem_fun(*this, &Vco2GUI::write_control), p_linFMGain), mem_fun(*this,  &Vco2GUI::get_linFMGain));
+	slot<void> p_slotLinFMGain = compose(bind<0>(mem_fun(*this, &Vco2CVGUI::write_control), p_linFMGain), mem_fun(*this,  &Vco2CVGUI::get_linFMGain));
 	m_scaleLinFMGain = new LabeledDial("Lin FM Gain", p_slotLinFMGain, p_linFMGain, 0, 10, true, 0.001, 3);
 	p_modulationBox->pack_start(*m_scaleLinFMGain);
 
@@ -108,17 +108,17 @@ Vco2GUI::Vco2GUI(const char* plugin_uri)
 	Gtk::manage(p_mainWidget);
 }
 
-float Vco2GUI::get_octave() 		{ return m_scaleOctave->get_value(); }
-float Vco2GUI::get_tune() 			{ return m_scaleTune->get_value(); }
-float Vco2GUI::get_harmonic() 		{ return m_scaleHarmonic->get_value(); }
-float Vco2GUI::get_subharmonic() 	{ return m_scaleSubHarmonic->get_value(); }
-float Vco2GUI::get_pw() 			{ return m_scalePW->get_value(); }
-float Vco2GUI::get_pwGain() 		{ return m_scalePWGain->get_value(); }
-float Vco2GUI::get_phi0() 			{ return m_scalePhi0->get_value(); }
-float Vco2GUI::get_expFMGain() 		{ return m_scaleExpFMGain->get_value(); }
-float Vco2GUI::get_linFMGain()		{ return m_scaleLinFMGain->get_value(); }
+float Vco2CVGUI::get_octave() 		{ return m_scaleOctave->get_value(); }
+float Vco2CVGUI::get_tune() 			{ return m_scaleTune->get_value(); }
+float Vco2CVGUI::get_harmonic() 		{ return m_scaleHarmonic->get_value(); }
+float Vco2CVGUI::get_subharmonic() 	{ return m_scaleSubHarmonic->get_value(); }
+float Vco2CVGUI::get_pw() 			{ return m_scalePW->get_value(); }
+float Vco2CVGUI::get_pwGain() 		{ return m_scalePWGain->get_value(); }
+float Vco2CVGUI::get_phi0() 			{ return m_scalePhi0->get_value(); }
+float Vco2CVGUI::get_expFMGain() 		{ return m_scaleExpFMGain->get_value(); }
+float Vco2CVGUI::get_linFMGain()		{ return m_scaleLinFMGain->get_value(); }
 
-void Vco2GUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
+void Vco2CVGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer)
 {
 	if (port == p_waveForm)
 	{
@@ -166,4 +166,4 @@ void Vco2GUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t format, c
 	}
 }
 
-static int _ = Vco2GUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/vco2/gui");
+static int _ = Vco2CVGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/vco2_cv/gui");
