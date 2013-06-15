@@ -1,7 +1,6 @@
 #ifndef GRANULATOR_MONO_H
 #define GRANULATOR_MONO_H
 
-#include <jack/jack.h>
 #include <lvtk-1/lvtk/plugin.hpp>
 
 #include "granulator_mono.peg"
@@ -23,16 +22,16 @@ class GranulatorMono: public Plugin<GranulatorMono>
 		float* m_envelope;
 
 		int m_recordingGrainPosition;
-		jack_default_audio_sample_t *m_recordingGrain;
+		float *m_recordingGrain;
 
 		bool m_playingGrainMode;
 
 		int m_grainIndex, m_grainPosition;
-		jack_default_audio_sample_t *m_playingGrain;
+		float *m_playingGrain;
 
 		int m_silencePosition;
 
-		std::vector<jack_default_audio_sample_t*> m_grains;
+		std::vector<float*> m_grains;
 		std::vector<int> m_sizeGrains;
 };
 

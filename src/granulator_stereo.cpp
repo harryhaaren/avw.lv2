@@ -23,11 +23,11 @@ GranulatorStereo::GranulatorStereo(double rate)
 	m_lastRelease = -1;
 	m_lastGrainSize = -1;
 
-	m_recordingGrainL = new jack_default_audio_sample_t[10];
-	m_recordingGrainR = new jack_default_audio_sample_t[10];
+	m_recordingGrainL = new float[10];
+	m_recordingGrainR = new float[10];
 	m_envelope = new float[10];
-	m_playingGrainL = new jack_default_audio_sample_t[10];
-	m_playingGrainR = new jack_default_audio_sample_t[10];
+	m_playingGrainL = new float[10];
+	m_playingGrainR = new float[10];
 	m_grainsL.insert(m_grainsL.begin(), m_recordingGrainL);
 	m_grainsR.insert(m_grainsR.begin(), m_recordingGrainR);
 	m_sizeGrains.insert(m_sizeGrains.begin(), 10);
@@ -89,8 +89,8 @@ void GranulatorStereo::run(uint32_t nframes)
 		m_lastRelease = release;
 		m_lastGrainSize = grainSize;
 
-		m_recordingGrainL = new jack_default_audio_sample_t[m_lastGrainSize];
-		m_recordingGrainR = new jack_default_audio_sample_t[m_lastGrainSize];
+		m_recordingGrainL = new float[m_lastGrainSize];
+		m_recordingGrainR = new float[m_lastGrainSize];
 		m_envelope = gen_full_envelope(m_lastGrainSize, m_lastAttack, m_lastRelease);
 		m_recordingGrainPosition = 0;
 	}
@@ -111,8 +111,8 @@ void GranulatorStereo::run(uint32_t nframes)
 			m_recordingGrainPosition = 0;
 			if(m_lastGrainSize > 0)
 			{
-				m_recordingGrainL = new jack_default_audio_sample_t[m_lastGrainSize];
-				m_recordingGrainR = new jack_default_audio_sample_t[m_lastGrainSize];
+				m_recordingGrainL = new float[m_lastGrainSize];
+				m_recordingGrainR = new float[m_lastGrainSize];
 			}
 		}
 		m_recordingGrainPosition++;
