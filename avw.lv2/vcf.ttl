@@ -127,8 +127,8 @@
 		lv2:index 10 ;
 		lv2:symbol "resonance" ;
 		lv2:name "Resonance" ;
-		lv2:default 0.01 ;
-		lv2:minimum 0.8 ;
+		lv2:default 0.8 ;
+		lv2:minimum 0.01 ;
 		lv2:maximum 1.0 ;
 	] ,	[
 	  	a lv2:InputPort, lv2:ControlPort ;
