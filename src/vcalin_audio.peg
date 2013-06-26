@@ -1,5 +1,5 @@
-#ifndef avw_lv__vcalin_peg
-#define avw_lv__vcalin_peg
+#ifndef avw_lv__vcalin_audio_peg
+#define avw_lv__vcalin_audio_peg
 
 
 #ifndef PEG_STRUCT
@@ -14,9 +14,9 @@ typedef struct {
 } peg_data_t;
 #endif
 
-/* <http://avwlv2.sourceforge.net/plugins/avw/vcalin> */
+/* <http://avwlv2.sourceforge.net/plugins/avw/vcalin_audio> */
 
-static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/vcalin";
+static const char p_uri[] = "http://avwlv2.sourceforge.net/plugins/avw/vcalin_audio";
 
 enum p_port_enum {
   p_gain1Data,
@@ -46,4 +46,4 @@ static const peg_data_t p_ports[] = {
 };
 
 
-#endif /* avw_lv__vcalin_peg */
+#endif /* avw_lv__vcalin_audio_peg */

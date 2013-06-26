@@ -1,22 +1,22 @@
-#ifndef VCAEXP_H
-#define VCAEXP_H
+#ifndef VCAEXP_AUDIO_H
+#define VCAEXP_AUDIO_H
 
 #include "synthdata.hpp"
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "vcaexp.peg"
+#include "vcaexp_audio.peg"
 
 using namespace lvtk;
 
-class VcaExp: public Plugin<VcaExp>
+class VcaExpAudio: public Plugin<VcaExpAudio>
 {
 	private:
 		float gain1, gain2, in1, in2, out;
 		SynthData *synthdata;
 
 	public:
-		VcaExp(double rate);
+		VcaExpAudio(double rate);
 		void run(uint32_t nframes);
 };
 

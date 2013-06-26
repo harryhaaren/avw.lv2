@@ -6,17 +6,17 @@
 @prefix ll: 	<http://ll-plugins.nongnu.org/lv2/namespace#> .
 @prefix guiext: <http://lv2plug.in/ns/extensions/ui#> .
 
-<http://avwlv2.sourceforge.net/plugins/avw/vcaexp/gui>
+<http://avwlv2.sourceforge.net/plugins/avw/vcaexp_audio/gui>
   a guiext:GtkUI ;
-  guiext:binary <vcaexp_gui.so> .
+  guiext:binary <vcaexp_audio_gui.so> .
 
-<http://avwlv2.sourceforge.net/plugins/avw/vcaexp>
+<http://avwlv2.sourceforge.net/plugins/avw/vcaexp_audio>
 	a lv2:Plugin, lv2:AmplifierPlugin ;
 	lv2:project <http://avwlv2.sourceforge.net/plugins/avw/> ;        
-	doap:name "AMS VCA Exp" ;
+	doap:name "AMS VCA Exp - Audio" ;
 	doap:license <http://opensource.org/licenses/isc> ;
 	ll:pegName "p" ;
-	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/vcaexp/gui> ;
+	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/vcaexp_audio/gui> ;
 	lv2:optionalFeature lv2:hardRTCapable ;
 	lv2:port [
 		a lv2:InputPort, lv2:CVPort ;

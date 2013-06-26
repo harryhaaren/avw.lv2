@@ -1,5 +1,5 @@
-#ifndef VCAEXP_GUI_H
-#define VCAEXP_GUI_H
+#ifndef VCALIN_AUDIO_GUI_H
+#define VCALIN_AUDIO_GUI_H
 
 #include <lvtk-1/lvtk/plugin.hpp>
 #include <lvtk-1/lvtk/gtkui.hpp>
@@ -10,10 +10,10 @@ using namespace lvtk;
 using namespace sigc;
 using namespace Gtk;
 
-class VCAExpGUI: public UI<VCAExpGUI, GtkUI<true>>
+class VCALinAudioGUI: public UI<VCALinAudioGUI, GtkUI<true>>
 {
 	public:
-		VCAExpGUI(const std::string& URI);
+		VCALinAudioGUI(const std::string& URI);
 		void port_event(uint32_t port, uint32_t buffer_size, uint32_t format, const void* buffer);
 
 	protected:

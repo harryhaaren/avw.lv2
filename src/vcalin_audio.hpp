@@ -1,19 +1,19 @@
-#ifndef VCALIN_H
-#define VCALIN_H
+#ifndef VCALIN_AUDIO_H
+#define VCALIN_AUDIO_H
 
 #include <lvtk-1/lvtk/plugin.hpp>
 
-#include "vcalin.peg"
+#include "vcalin_audio.peg"
 
 using namespace lvtk;
 
-class VcaLin: public Plugin<VcaLin>
+class VcaLinAudio: public Plugin<VcaLinAudio>
 {
 	private:
 		float gain1, gain2, in1, in2, out;
 
 	public:
-		VcaLin(double rate);
+		VcaLinAudio(double rate);
 		void run(uint32_t nframes);
 };
 

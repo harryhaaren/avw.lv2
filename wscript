@@ -122,7 +122,8 @@ def build(bld):
 	noise2_audio
 	noise2_cv
 	slew
-	vcalin
+	vcalin_audio
+	vcalin_cv
 	vctohz
 	cvs
 	delay
@@ -174,7 +175,8 @@ def build(bld):
 	vco2_cv
 	ad
 	vcf
-	vcaexp
+	vcaexp_audio
+	vcaexp_cv
 	'''.split()
 	
 	for i in plugins:
@@ -210,8 +212,10 @@ def build(bld):
 	noise2_cv_gui
 	ringmodulator_audio_gui
 	ringmodulator_cv_gui
-	vcaexp_gui
-	vcalin_gui
+	vcaexp_audio_gui
+	vcaexp_cv_gui
+	vcalin_audio_gui
+	vcalin_cv_gui
 	vcswitch_audio_gui
 	vcswitch_cv_gui
 	vctohz_gui

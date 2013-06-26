@@ -8,6 +8,7 @@
 	* New examples
 	* Bug fix: default resonance value in vcf.ttl
 	* VC to HZ and HZ to VC: all input/output as VC
+	* VCA for CV
 
 0.1.4:
 	* LFO frequency now represented as Tempo and Multiplier
