@@ -76,16 +76,27 @@
 	lv2:binary <env.so>  ;
 	rdfs:seeAlso <env.ttl> .
 	
-<http://avwlv2.sourceforge.net/plugins/avw/vcalin>
+<http://avwlv2.sourceforge.net/plugins/avw/vcalin_audio>
 	a lv2:Plugin ;
-	lv2:binary <vcalin.so>  ;
-	rdfs:seeAlso <vcalin.ttl> .
+	lv2:binary <vcalin_audio.so>  ;
+	rdfs:seeAlso <vcalin_audio.ttl> .
 	
-<http://avwlv2.sourceforge.net/plugins/avw/vcaexp>
+<http://avwlv2.sourceforge.net/plugins/avw/vcalin_cv>
 	a lv2:Plugin ;
-	lv2:binary <vcaexp.so>  ;
-	rdfs:seeAlso <vcaexp.ttl> .
+	lv2:binary <vcalin_cv.so>  ;
+	rdfs:seeAlso <vcalin_cv.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/vcaexp_audio>
+	a lv2:Plugin ;
+	lv2:binary <vcaexp_audio.so>  ;
+	rdfs:seeAlso <vcaexp_audio.ttl> .
 	
+
+<http://avwlv2.sourceforge.net/plugins/avw/vcaexp_cv>
+	a lv2:Plugin ;
+	lv2:binary <vcaexp_cv.so>  ;
+	rdfs:seeAlso <vcaexp_cv.ttl> .
+
 <http://avwlv2.sourceforge.net/plugins/avw/mixer_4ch_audio>
 	a lv2:Plugin ;
 	lv2:binary <mixer_4ch_audio.so>  ;
