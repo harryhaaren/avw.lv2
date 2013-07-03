@@ -40,7 +40,7 @@
 		lv2:symbol "in1Data" ;
 		lv2:name "In 1 Mod" ;
 	] ,	[
-	  	a lv2:InputPort, lv2:AudioPort ;
+	  	a lv2:InputPort, lv2:CVPort ;
 		lv2:index 3 ;
 		lv2:symbol "in2Data" ;
 		lv2:name "In 2 Mod" ;
