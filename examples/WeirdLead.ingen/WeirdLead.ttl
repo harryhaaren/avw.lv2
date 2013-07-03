@@ -87,13 +87,13 @@
 		ingen:head <vcf/in> ;
 		ingen:tail <mixer_2ch_audio/out>
 	] , [
-		ingen:head <vcalin_2/in1Data> ;
-		ingen:tail <vcalin/out>
+		ingen:head <vcalin_audio_2/in1Data> ;
+		ingen:tail <vcalin_audio/out>
 	] , [
 		ingen:head <audio_out_1> ;
-		ingen:tail <vcalin_2/out>
+		ingen:tail <vcalin_audio_2/out>
 	] , [
-		ingen:head <vcalin/in1Data> ;
+		ingen:head <vcalin_audio/in1Data> ;
 		ingen:tail <vcf/out>
 	] , [
 		ingen:head <mixer_2ch_audio/in1> ;
@@ -102,7 +102,7 @@
 		ingen:head <mixer_2ch_audio/in2> ;
 		ingen:tail <vco2_audio_2/out>
 	] , [
-		ingen:head <vcalin/gain1Data> ;
+		ingen:head <vcalin_audio/gain1Data> ;
 		ingen:tail <vco2_cv/out>
 	] , [
 		ingen:head <env/gate> ;
@@ -111,7 +111,7 @@
 		ingen:head <env/retrigger> ;
 		ingen:tail <Note/trigger>
 	] , [
-		ingen:head <vcalin_2/gain1Data> ;
+		ingen:head <vcalin_audio_2/gain1Data> ;
 		ingen:tail <env/out>
 	] , [
 		ingen:head <vcf/resonancePort> ;
@@ -133,8 +133,8 @@
 		<env> ,
 		<hztovc> ,
 		<mixer_2ch_audio> ,
-		<vcalin> ,
-		<vcalin_2> ,
+		<vcalin_audio> ,
+		<vcalin_audio_2> ,
 		<vcf> ,
 		<vco2_audio> ,
 		<vco2_audio_2> ,
@@ -391,25 +391,25 @@
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
-<vcalin>
+<vcalin_audio>
 	ingen:canvasX 1334.0 ;
 	ingen:canvasY 516.5 ;
 	ingen:polyphonic false ;
-	ingen:prototype <http://avwlv2.sourceforge.net/plugins/avw/vcalin> ;
-	lv2:port <vcalin/gain1> ,
-		<vcalin/gain1Data> ,
-		<vcalin/gain2> ,
-		<vcalin/gain2Data> ,
-		<vcalin/in1> ,
-		<vcalin/in1Data> ,
-		<vcalin/in2> ,
-		<vcalin/in2Data> ,
-		<vcalin/out> ,
-		<vcalin/outputLevel> ;
-	lv2:symbol "vcalin" ;
+	ingen:prototype <http://avwlv2.sourceforge.net/plugins/avw/vcalin_audio> ;
+	lv2:port <vcalin_audio/gain1> ,
+		<vcalin_audio/gain1Data> ,
+		<vcalin_audio/gain2> ,
+		<vcalin_audio/gain2Data> ,
+		<vcalin_audio/in1> ,
+		<vcalin_audio/in1Data> ,
+		<vcalin_audio/in2> ,
+		<vcalin_audio/in2Data> ,
+		<vcalin_audio/out> ,
+		<vcalin_audio/outputLevel> ;
+	lv2:symbol "vcalin_audio" ;
 	a ingen:Block .
 
-<vcalin/gain1>
+<vcalin_audio/gain1>
 	ingen:value 1.0 ;
 	lv2:index 4 ;
 	lv2:maximum 1.0 ;
@@ -418,7 +418,7 @@
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
-<vcalin/gain1Data>
+<vcalin_audio/gain1Data>
 	ingen:value -1.0 ;
 	lv2:index 0 ;
 	lv2:maximum 1.0 ;
@@ -427,7 +427,7 @@
 	a lv2:CVPort ,
 		lv2:InputPort .
 
-<vcalin/gain2>
+<vcalin_audio/gain2>
 	ingen:value 0.0 ;
 	lv2:index 5 ;
 	lv2:maximum 1.0 ;
@@ -436,7 +436,7 @@
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
-<vcalin/gain2Data>
+<vcalin_audio/gain2Data>
 	ingen:value 0.0 ;
 	lv2:index 1 ;
 	lv2:maximum 1.0 ;
@@ -445,7 +445,7 @@
 	a lv2:CVPort ,
 		lv2:InputPort .
 
-<vcalin/in1>
+<vcalin_audio/in1>
 	ingen:value 1.0 ;
 	lv2:index 6 ;
 	lv2:maximum 2.0 ;
@@ -454,13 +454,13 @@
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
-<vcalin/in1Data>
+<vcalin_audio/in1Data>
 	lv2:index 2 ;
 	lv2:symbol "in1Data" ;
 	a lv2:AudioPort ,
 		lv2:InputPort .
 
-<vcalin/in2>
+<vcalin_audio/in2>
 	ingen:value 1.0 ;
 	lv2:index 7 ;
 	lv2:maximum 2.0 ;
@@ -469,19 +469,19 @@
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
-<vcalin/in2Data>
+<vcalin_audio/in2Data>
 	lv2:index 3 ;
 	lv2:symbol "in2Data" ;
 	a lv2:AudioPort ,
 		lv2:InputPort .
 
-<vcalin/out>
+<vcalin_audio/out>
 	lv2:index 9 ;
 	lv2:symbol "out" ;
 	a lv2:AudioPort ,
 		lv2:OutputPort .
 
-<vcalin/outputLevel>
+<vcalin_audio/outputLevel>
 	ingen:value 0.152 ;
 	lv2:index 8 ;
 	lv2:maximum 2.0 ;
@@ -490,25 +490,25 @@
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
-<vcalin_2>
+<vcalin_audio_2>
 	ingen:canvasX 1534.0 ;
 	ingen:canvasY 689.5 ;
 	ingen:polyphonic false ;
-	ingen:prototype <http://avwlv2.sourceforge.net/plugins/avw/vcalin> ;
-	lv2:port <vcalin_2/gain1> ,
-		<vcalin_2/gain1Data> ,
-		<vcalin_2/gain2> ,
-		<vcalin_2/gain2Data> ,
-		<vcalin_2/in1> ,
-		<vcalin_2/in1Data> ,
-		<vcalin_2/in2> ,
-		<vcalin_2/in2Data> ,
-		<vcalin_2/out> ,
-		<vcalin_2/outputLevel> ;
-	lv2:symbol "vcalin_2" ;
+	ingen:prototype <http://avwlv2.sourceforge.net/plugins/avw/vcalin_audio> ;
+	lv2:port <vcalin_audio_2/gain1> ,
+		<vcalin_audio_2/gain1Data> ,
+		<vcalin_audio_2/gain2> ,
+		<vcalin_audio_2/gain2Data> ,
+		<vcalin_audio_2/in1> ,
+		<vcalin_audio_2/in1Data> ,
+		<vcalin_audio_2/in2> ,
+		<vcalin_audio_2/in2Data> ,
+		<vcalin_audio_2/out> ,
+		<vcalin_audio_2/outputLevel> ;
+	lv2:symbol "vcalin_audio_2" ;
 	a ingen:Block .
 
-<vcalin_2/gain1>
+<vcalin_audio_2/gain1>
 	ingen:value 0.0 ;
 	lv2:index 4 ;
 	lv2:maximum 1.0 ;
@@ -517,7 +517,7 @@
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
-<vcalin_2/gain1Data>
+<vcalin_audio_2/gain1Data>
 	ingen:value 0.55000001 ;
 	lv2:index 0 ;
 	lv2:maximum 1.0 ;
@@ -526,7 +526,7 @@
 	a lv2:CVPort ,
 		lv2:InputPort .
 
-<vcalin_2/gain2>
+<vcalin_audio_2/gain2>
 	ingen:value 0.0 ;
 	lv2:index 5 ;
 	lv2:maximum 1.0 ;
@@ -535,7 +535,7 @@
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
-<vcalin_2/gain2Data>
+<vcalin_audio_2/gain2Data>
 	ingen:value 0.0 ;
 	lv2:index 1 ;
 	lv2:maximum 1.0 ;
@@ -544,7 +544,7 @@
 	a lv2:CVPort ,
 		lv2:InputPort .
 
-<vcalin_2/in1>
+<vcalin_audio_2/in1>
 	ingen:value 1.0 ;
 	lv2:index 6 ;
 	lv2:maximum 2.0 ;
@@ -553,13 +553,13 @@
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
-<vcalin_2/in1Data>
+<vcalin_audio_2/in1Data>
 	lv2:index 2 ;
 	lv2:symbol "in1Data" ;
 	a lv2:AudioPort ,
 		lv2:InputPort .
 
-<vcalin_2/in2>
+<vcalin_audio_2/in2>
 	ingen:value 1.0 ;
 	lv2:index 7 ;
 	lv2:maximum 2.0 ;
@@ -568,19 +568,19 @@
 	a lv2:ControlPort ,
 		lv2:InputPort .
 
-<vcalin_2/in2Data>
+<vcalin_audio_2/in2Data>
 	lv2:index 3 ;
 	lv2:symbol "in2Data" ;
 	a lv2:AudioPort ,
 		lv2:InputPort .
 
-<vcalin_2/out>
+<vcalin_audio_2/out>
 	lv2:index 9 ;
 	lv2:symbol "out" ;
 	a lv2:AudioPort ,
 		lv2:OutputPort .
 
-<vcalin_2/outputLevel>
+<vcalin_audio_2/outputLevel>
 	ingen:value 1.0 ;
 	lv2:index 8 ;
 	lv2:maximum 2.0 ;
