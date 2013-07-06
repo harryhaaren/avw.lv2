@@ -12,7 +12,6 @@ using namespace lvtk;
 class VcaExpCV: public Plugin<VcaExpCV>
 {
 	private:
-		float gain1, gain2, in1, in2, out;
 		SynthData *synthdata;
 
 	public:

@@ -17,7 +17,6 @@ class Noise2Audio: public Plugin<Noise2Audio>
 	private:
 		int NoiseType;
 		unsigned int count;
-		float rate, level;
 		float buf[3], r;
 		float randmax;
 

@@ -15,7 +15,6 @@ enum WaveFormType
 class LfoFreq: public Plugin<LfoFreq>
 {
 	private:
-		float phi0;
 		double si, old_si;
 		double sa, old_sa;
 		double t, old_t;

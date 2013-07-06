@@ -13,8 +13,6 @@ LfoFreq::LfoFreq(double rate)
   {
 	long tm;
 
-	phi0 = 0;
-	wave_period = rate / (16.0 * 5);
 	m_rate = rate;
 
 	trigger = false;
@@ -42,16 +40,12 @@ void LfoFreq::run(uint32_t nframes)
 	int l2, k, len, phi0i, l2_out;
 	double ldsi, ldsa, ldt, ldr, ldsh, dt0, dsa;
 
-
-	phi0 = *p(p_phi0);
-	waveForm = *p(p_waveForm);
-
-	float *triggerData = p(p_reset);
+	waveForm = floor(*p(p_waveForm));
 
 	wave_period = m_rate / (16.0 * *p(p_freq));
 	dsa = 2.0 / wave_period;
 	dt0 = 4.0 / wave_period;
-	phi0i = (int)(phi0 / 6.283 * wave_period);
+	phi0i = (int)(*p(p_phi0) / 6.283 * wave_period);
 
 	len = nframes;
 	l2 = -1;
@@ -60,7 +54,7 @@ void LfoFreq::run(uint32_t nframes)
 	{
 		k = (len > 24) ? 16 : len;
 		l2 += k;
-		if (!trigger && (triggerData[l2] > 0.5))
+		if (!trigger && (p(p_reset)[l2] > 0.5))
 		{
 			trigger = true;
 			t = 0;
@@ -69,7 +63,7 @@ void LfoFreq::run(uint32_t nframes)
 			r = -1;
 			si = 0;
 		}
-		if (trigger && (triggerData[l2] < 0.5))
+		if (trigger && (p(p_reset)[l2] < 0.5))
 		{
 			trigger = false;
 		}

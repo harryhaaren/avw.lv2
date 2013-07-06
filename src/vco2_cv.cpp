@@ -8,7 +8,7 @@
 #include "vco2_cv.hpp"
 
 Vco2CV::Vco2CV(double rate) :
-	Plugin<Vco2CV> (p_n_ports)
+Plugin<Vco2CV> (p_n_ports)
 {
 	synthdata = new SynthData();
 
@@ -20,7 +20,6 @@ Vco2CV::Vco2CV(double rate) :
 
 	semitone = 0;
 	octave = 3;
-	edge = 0.95;
 	phi = 0;
 	waveForm = SINUS;
 
@@ -31,21 +30,24 @@ void Vco2CV::run(uint32_t nframes)
 {
 	unsigned int l2;
 	unsigned phint;
-	float dphi, phi1, phi_const, pw, d, dd, dsaw, half_wave, third_wave;
+	float edge, dphi, phi1, phi_const, pw, d, dd, dsaw, half_wave, third_wave;
 	float freq_const, freq_tune, gain_linfm, pw_low, pw_high;
 
 	waveForm = floor(*p(p_waveForm));
 	octave = floor(*p(p_octave));
 	semitone = floor(*p(p_semitone));
 
-	edge = 0.01f + 1.8f * *p(p_edge);
-
 	freq_const = wave_period / (float) m_rate;
 	freq_tune = 4.0313842f + octave + *p(p_tune) + (float) semitone / 12.0f;
 	gain_linfm = 1000.0f * *p(p_linFMGain);
 	phi_const = *p(p_phi0) * PKonst;
-	pw_low = 0.1f * wave_period;
-	pw_high = 0.9f * wave_period;
+
+	if(waveForm == SAWTOOTH || waveForm == RECTANGLE)
+	{
+		edge = 0.01f + 1.8f * *p(p_edge);
+		pw_low = 0.1f * wave_period;
+		pw_high = 0.9f * wave_period;
+	}
 
 	if (*p(p_phi0) > 0.0f)
 	{
@@ -121,7 +123,7 @@ void Vco2CV::run(uint32_t nframes)
 						}
 					}
 				}
-					break;
+				break;
 				case RECTANGLE:
 				{
 					pw = (*p(p_pw0) + *p(p_pwGain) * p(p_pwPort)[l2]) * wave_period;
@@ -161,7 +163,7 @@ void Vco2CV::run(uint32_t nframes)
 						}
 					}
 				}
-					break;
+				break;
 			} // end of case
 			phi += dphi;
 			while (phi < 0.0f)
@@ -238,7 +240,7 @@ void Vco2CV::run(uint32_t nframes)
 						}
 					}
 				}
-					break;
+				break;
 				case RECTANGLE:
 				{
 					pw = (*p(p_pw0) + *p(p_pwGain) * p(p_pwPort)[l2]) * wave_period;
@@ -278,7 +280,7 @@ void Vco2CV::run(uint32_t nframes)
 						}
 					}
 				}
-					break;
+				break;
 			}// end of case
 			phi += dphi;
 			while (phi < 0.0f)

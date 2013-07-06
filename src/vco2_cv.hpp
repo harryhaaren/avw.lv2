@@ -16,7 +16,6 @@ enum WaveFormType
 class Vco2CV: public Plugin<Vco2CV>
 {
 	private:
-		float edge;
 		float wave_period;
 		float phi;
 		float wave_period_2, wave_period_3, Pi2Times, PKonst;

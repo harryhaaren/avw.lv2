@@ -15,19 +15,11 @@ Mixer2ChCV::Mixer2ChCV(double rate)
 
 void Mixer2ChCV::run(uint32_t nframes)
 {
-	unsigned int l2;
-	float mixgain;
-
-	mixgain = *p(p_gain) * *p(p_volume1);
-	for (l2 = 0; l2 < nframes; l2++)
+	float mixgain1 = *p(p_gain) * *p(p_volume1);
+	float mixgain2 = *p(p_gain) * *p(p_volume2);
+	for (unsigned int l2 = 0; l2 < nframes; l2++)
 	{
-		p(p_out)[l2] = mixgain * p(p_in1)[l2];
-	}
-
-	mixgain = *p(p_gain) * *p(p_volume2);
-	for (l2 = 0; l2 < nframes; l2++)
-	{
-		p(p_out)[l2] += mixgain * p(p_in2)[l2];
+		p(p_out)[l2]  = mixgain1 * p(p_in1)[l2] + mixgain2 * p(p_in2)[l2];
 	}
 }
 

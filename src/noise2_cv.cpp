@@ -11,17 +11,14 @@
 Noise2CV::Noise2CV(double rate)
 : Plugin<Noise2CV>(p_n_ports)
   {
-	int l2;
 	long t;
 
-	rate = 5;
-	level = 0.5;
 	count = 0;
-	NoiseType=WHITE;
+	NoiseType = WHITE;
 	randmax = 2.0f / (float)RAND_MAX;
 
 	r = 0;
-	for (l2 = 0; l2 < 3; ++l2)
+	for (int l2 = 0; l2 < 3; ++l2)
 	{
 		buf[l2] = 0;
 	}
@@ -31,34 +28,28 @@ Noise2CV::Noise2CV(double rate)
 
 void Noise2CV::run(uint32_t nframes)
 {
-	unsigned int l2;
-	float white_noise;
-
 	NoiseType = floor(*p(p_noiseType));
-	rate = *p(p_rate);
-	level = *p(p_level);
 
 	switch (NoiseType)
 	{
 		case WHITE:
 		{
-			for (l2 = 0; l2 < nframes; ++l2)
+			for (unsigned int l2 = 0; l2 < nframes; ++l2)
 			{
-				white_noise = rand() * randmax - 1.0f;
-				p(p_out)[l2] = white_noise;
+				p(p_out)[l2] = rand() * randmax - 1.0f;
 			}
 		}
 		break;
 		case RAND:
 		{
-			unsigned int random_rate = (unsigned int)(5000.0 * (double)rate + 100.0);
-			for (l2 = 0; l2 < nframes; ++l2)
+			unsigned int random_rate = (unsigned int)(5000.0 * (double)*p(p_rate) + 100.0);
+			for (unsigned int l2 = 0; l2 < nframes; ++l2)
 			{
 				count++;
 				if (count > random_rate)
 				{
 					count = 0;
-					r = level * rand() * randmax - 1.0f;
+					r = *p(p_level) * rand() * randmax - 1.0f;
 				}
 				p(p_out)[l2] = r;
 			}
@@ -66,9 +57,9 @@ void Noise2CV::run(uint32_t nframes)
 		break;
 		case PINK:
 		{
-			for (l2 = 0; l2 < nframes; ++l2)
+			for (unsigned int l2 = 0; l2 < nframes; ++l2)
 			{
-				white_noise = rand() * randmax - 1.0f;
+				float white_noise = rand() * randmax - 1.0f;
 
 				buf[0] = 0.99765f * buf[0] + white_noise * 0.099046f;
 				buf[1] = 0.963f * buf[1] + white_noise * 0.2965164f;

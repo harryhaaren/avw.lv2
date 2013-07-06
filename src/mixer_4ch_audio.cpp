@@ -15,31 +15,13 @@ Mixer4ChAudio::Mixer4ChAudio(double rate)
 
 void Mixer4ChAudio::run(uint32_t nframes)
 {
-	unsigned int l2;
-	float mixgain;
-
-	mixgain = *p(p_gain) * *p(p_volume1);
-	for (l2 = 0; l2 < nframes; l2++)
+	float mixgain1 = *p(p_gain) * *p(p_volume1);
+	float mixgain2 = *p(p_gain) * *p(p_volume2);
+	float mixgain3 = *p(p_gain) * *p(p_volume3);
+	float mixgain4 = *p(p_gain) * *p(p_volume4);
+	for (unsigned int l2 = 0; l2 < nframes; l2++)
 	{
-		p(p_out)[l2]  = mixgain * p(p_in1)[l2];
-	}
-
-	mixgain = *p(p_gain) * *p(p_volume2);
-	for (l2 = 0; l2 < nframes; l2++)
-	{
-		p(p_out)[l2]  += mixgain * p(p_in2)[l2];
-	}
-
-	mixgain = *p(p_gain) * *p(p_volume3);
-	for (l2 = 0; l2 < nframes; l2++)
-	{
-		p(p_out)[l2]  += mixgain * p(p_in3)[l2];
-	}
-
-	mixgain = *p(p_gain) * *p(p_volume4);
-	for (l2 = 0; l2 < nframes; l2++)
-	{
-		p(p_out)[l2]  += mixgain * p(p_in4)[l2];
+		p(p_out)[l2]  = mixgain1 * p(p_in1)[l2] + mixgain2 * p(p_in2)[l2] + mixgain3 * p(p_in3)[l2] + mixgain4 * p(p_in4)[l2];
 	}
 }
 

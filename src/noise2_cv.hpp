@@ -17,7 +17,6 @@ class Noise2CV: public Plugin<Noise2CV>
 	private:
 		int NoiseType;
 		unsigned int count;
-		float rate, level;
 		float buf[3], r;
 		float randmax;
 

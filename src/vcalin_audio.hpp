@@ -9,9 +9,6 @@ using namespace lvtk;
 
 class VcaLinAudio: public Plugin<VcaLinAudio>
 {
-	private:
-		float gain1, gain2, in1, in2, out;
-
 	public:
 		VcaLinAudio(double rate);
 		void run(uint32_t nframes);

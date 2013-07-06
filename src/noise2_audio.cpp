@@ -11,17 +11,14 @@
 Noise2Audio::Noise2Audio(double rate)
 : Plugin<Noise2Audio>(p_n_ports)
   {
-	int l2;
 	long t;
 
-	rate = 5;
-	level = 0.5;
 	count = 0;
-	NoiseType=WHITE;
+	NoiseType = WHITE;
 	randmax = 2.0f / (float)RAND_MAX;
 
 	r = 0;
-	for (l2 = 0; l2 < 3; ++l2)
+	for (int l2 = 0; l2 < 3; ++l2)
 	{
 		buf[l2] = 0;
 	}
@@ -31,54 +28,47 @@ Noise2Audio::Noise2Audio(double rate)
 
 void Noise2Audio::run(uint32_t nframes)
 {
-	unsigned int l2;
-	float white_noise;
-
 	NoiseType = floor(*p(p_noiseType));
-	rate = *p(p_rate);
-	level = *p(p_level);
 
 	switch (NoiseType)
 	{
-	case WHITE:
-	{
-		for (l2 = 0; l2 < nframes; ++l2)
+		case WHITE:
 		{
-			white_noise = rand() * randmax - 1.0f;
-			p(p_out)[l2] = white_noise;
-		}
-	}
-	break;
-	case RAND:
-	{
-		unsigned int random_rate = (unsigned int)(5000.0 * (double)rate + 100.0);
-		for (l2 = 0; l2 < nframes; ++l2)
-		{
-			count++;
-			if (count > random_rate)
+			for (unsigned int l2 = 0; l2 < nframes; ++l2)
 			{
-				count = 0;
-				r = level * rand() * randmax - 1.0f;
+				p(p_out)[l2] = rand() * randmax - 1.0f;
 			}
-			p(p_out)[l2] = r;
 		}
-	}
-	break;
-	case PINK:
-	{
-
-		for (l2 = 0; l2 < nframes; ++l2)
+		break;
+		case RAND:
 		{
-			white_noise = rand() * randmax - 1.0f;
-
-			buf[0] = 0.99765f * buf[0] + white_noise * 0.099046f;
-			buf[1] = 0.963f * buf[1] + white_noise * 0.2965164f;
-			buf[2] = 0.57f * buf[2] + white_noise * 1.0526913f;
-
-			p(p_out)[l2] = buf[0] + buf[1] + buf[2] + white_noise * 0.1848f;
+			unsigned int random_rate = (unsigned int)(5000.0 * (double)*p(p_rate) + 100.0);
+			for (unsigned int l2 = 0; l2 < nframes; ++l2)
+			{
+				count++;
+				if (count > random_rate)
+				{
+					count = 0;
+					r = *p(p_level) * rand() * randmax - 1.0f;
+				}
+				p(p_out)[l2] = r;
+			}
 		}
-	}
-	break;
+		break;
+		case PINK:
+		{
+			for (unsigned int l2 = 0; l2 < nframes; ++l2)
+			{
+				float white_noise = rand() * randmax - 1.0f;
+
+				buf[0] = 0.99765f * buf[0] + white_noise * 0.099046f;
+				buf[1] = 0.963f * buf[1] + white_noise * 0.2965164f;
+				buf[2] = 0.57f * buf[2] + white_noise * 1.0526913f;
+
+				p(p_out)[l2] = buf[0] + buf[1] + buf[2] + white_noise * 0.1848f;
+			}
+		}
+		break;
 	}
 }
 

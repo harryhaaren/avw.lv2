@@ -9,8 +9,6 @@ using namespace lvtk;
 
 class Amp: public Plugin<Amp>
 {
-	private:
-		float gain;
 	public:
 		Amp(double rate);
 		void run(uint32_t nframes);
