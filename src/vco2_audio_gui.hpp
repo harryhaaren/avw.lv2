@@ -21,20 +21,20 @@ protected:
 
 	LabeledDial* m_scaleOctave;
 	LabeledDial* m_scaleTune;
-	LabeledDial* m_scaleHarmonic;
-	LabeledDial* m_scaleSubHarmonic;
+	LabeledDial* m_scaleSemitone;
 	LabeledDial* m_scalePW;
 	LabeledDial* m_scalePWGain;
+	LabeledDial* m_scaleEdge;
 	LabeledDial* m_scalePhi0;
 	LabeledDial* m_scaleExpFMGain;
 	LabeledDial* m_scaleLinFMGain;
 
 	float get_octave();
 	float get_tune();
-	float get_harmonic();
-	float get_subharmonic();
+	float get_semitone();
 	float get_pw();
 	float get_pwGain();
+	float get_edge();
 	float get_phi0();
 	float get_expFMGain();
 	float get_linFMGain();

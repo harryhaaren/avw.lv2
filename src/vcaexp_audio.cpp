@@ -16,7 +16,7 @@ Plugin<VcaExpAudio>(p_n_ports)
 	in2 = 1.0;
 	out = 1.0;
 
-	synthdata = new SynthData(1);
+	synthdata = new SynthData();
 }
 
 void VcaExpAudio::run(uint32_t nframes)

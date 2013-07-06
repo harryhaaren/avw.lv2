@@ -23,7 +23,7 @@ Ad::Ad(double rate) :
 	driftCount = 0;
 
 	m_rate = rate;
-	synthdata = new SynthData(1);
+	synthdata = new SynthData();
 }
 
 void Ad::run(uint32_t nframes)

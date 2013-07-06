@@ -10,7 +10,7 @@
 Vco2CV::Vco2CV(double rate) :
 	Plugin<Vco2CV> (p_n_ports)
 {
-	synthdata = new SynthData(1);
+	synthdata = new SynthData();
 
 	wave_period = (float) WAVE_PERIOD;
 	wave_period_2 = wave_period * 0.5f;
@@ -18,17 +18,10 @@ Vco2CV::Vco2CV(double rate) :
 	Pi2Times = (2.0f * M_PI);
 	PKonst = wave_period / Pi2Times;
 
-	freq = 0;
-	vcoExpFMGain = 0;
-	vcoLinFMGain = 0;
-	pwGain = 0;
-	phi0 = 0;
-	harmonic = 1;
-	subharmonic = 1;
+	semitone = 0;
 	octave = 3;
 	edge = 0.95;
 	phi = 0;
-	pw0 = 0.5;
 	waveForm = SINUS;
 
 	m_rate = rate;
@@ -43,34 +36,22 @@ void Vco2CV::run(uint32_t nframes)
 
 	waveForm = floor(*p(p_waveForm));
 	octave = floor(*p(p_octave));
-	freq = *p(p_tune);
-	harmonic = *p(p_harmonic);
-	subharmonic = *p(p_subharmonic);
-	pw0 = *p(p_pw0);
-	pwGain = *p(p_pwGain);
-	phi0 = *p(p_phi0);
-	vcoExpFMGain = *p(p_expFMGain);
-	vcoLinFMGain = *p(p_linFMGain);
+	semitone = floor(*p(p_semitone));
 
-	edge = 0.01f + 1.8f * synthdata->edge;
+	edge = 0.01f + 1.8f * *p(p_edge);
 
-	//freqData = p(p_freq); //port_M_freq->getinputdata();
-	//expFMData = p(p_expFM); //port_M_exp->getinputdata();
-	//linFMData = p(p_linFM); //port_M_lin->getinputdata();
-	//pwData = p(p_pwPort); //port_M_pw->getinputdata();
-
-	freq_const = wave_period / (float) m_rate * (float) harmonic / (float) subharmonic;
-	freq_tune = 4.0313842f + octave + freq;
-	gain_linfm = 1000.0f * vcoLinFMGain;
-	phi_const = phi0 * PKonst;
+	freq_const = wave_period / (float) m_rate;
+	freq_tune = 4.0313842f + octave + *p(p_tune) + (float) semitone / 12.0f;
+	gain_linfm = 1000.0f * *p(p_linFMGain);
+	phi_const = *p(p_phi0) * PKonst;
 	pw_low = 0.1f * wave_period;
 	pw_high = 0.9f * wave_period;
 
-	if (phi0 > 0.0f)
+	if (*p(p_phi0) > 0.0f)
 	{
 		for (l2 = 0; l2 < nframes; ++l2)
 		{
-			dphi = freq_const * (synthdata->exp2_table(freq_tune + p(p_freq)[l2] + vcoExpFMGain * p(p_expFM)[l2]) + gain_linfm * p(p_linFM)[l2]);
+			dphi = freq_const * (synthdata->exp2_table(freq_tune + p(p_freq)[l2] + *p(p_expFMGain) * p(p_expFM)[l2]) + gain_linfm * p(p_linFM)[l2]);
 			if (dphi > wave_period_2)
 				dphi = wave_period_2;
 			phi1 = phi + phi_const;
@@ -102,7 +83,7 @@ void Vco2CV::run(uint32_t nframes)
 
 				case SAWTOOTH:
 				{
-					pw = (pw0 + pwGain * p(p_pwPort)[l2]) * wave_period;
+					pw = (*p(p_pw0) + *p(p_pwGain) * p(p_pwPort)[l2]) * wave_period;
 					if (pw < pw_low)
 						pw = pw_low;
 					else if (pw > pw_high)
@@ -143,7 +124,7 @@ void Vco2CV::run(uint32_t nframes)
 					break;
 				case RECTANGLE:
 				{
-					pw = (pw0 + pwGain * p(p_pwPort)[l2]) * wave_period;
+					pw = (*p(p_pw0) + *p(p_pwGain) * p(p_pwPort)[l2]) * wave_period;
 					if (pw < pw_low)
 						pw = pw_low;
 					else if (pw > pw_high)
@@ -193,7 +174,7 @@ void Vco2CV::run(uint32_t nframes)
 	{
 		for (l2 = 0; l2 < nframes; ++l2)
 		{
-			dphi = freq_const * (synthdata->exp2_table(freq_tune + p(p_freq)[l2] + vcoExpFMGain * p(p_expFM)[l2]) + gain_linfm * p(p_linFM)[l2]);
+			dphi = freq_const * (synthdata->exp2_table(freq_tune + p(p_freq)[l2] + *p(p_expFMGain) * p(p_expFM)[l2]) + gain_linfm * p(p_linFM)[l2]);
 			if (dphi > wave_period_2)
 				dphi = wave_period_2;
 			phint = (int) phi;
@@ -219,7 +200,7 @@ void Vco2CV::run(uint32_t nframes)
 
 				case SAWTOOTH:
 				{
-					pw = (pw0 + pwGain * p(p_pwPort)[l2]) * wave_period;
+					pw = (*p(p_pw0) + *p(p_pwGain) * p(p_pwPort)[l2]) * wave_period;
 					if (pw < pw_low)
 						pw = pw_low;
 					else if (pw > pw_high)
@@ -260,7 +241,7 @@ void Vco2CV::run(uint32_t nframes)
 					break;
 				case RECTANGLE:
 				{
-					pw = (pw0 + pwGain * p(p_pwPort)[l2]) * wave_period;
+					pw = (*p(p_pw0) + *p(p_pwGain) * p(p_pwPort)[l2]) * wave_period;
 					if (pw < pw_low)
 						pw = pw_low;
 					else if (pw > pw_high)

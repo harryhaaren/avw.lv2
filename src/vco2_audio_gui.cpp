@@ -50,13 +50,9 @@ Vco2AudioGUI::Vco2AudioGUI(const char* plugin_uri)
 	m_scaleTune = new LabeledDial("Tune", p_slotTune, p_tune, 0, 1, LOG, 0.0001, 4);
 	p_freqBox->pack_start(*m_scaleTune);
 
-	slot<void> p_slotHarmonic = compose(bind<0>(mem_fun(*this, &Vco2AudioGUI::write_control), p_harmonic), mem_fun(*this,  &Vco2AudioGUI::get_harmonic));
-	m_scaleHarmonic = new LabeledDial("Harmonic", p_slotHarmonic, p_harmonic, 1, 16, NORMAL, 1, 0);
-	p_freqBox->pack_start(*m_scaleHarmonic);
-
-	slot<void> p_slotSubharmonic = compose(bind<0>(mem_fun(*this, &Vco2AudioGUI::write_control), p_subharmonic), mem_fun(*this,  &Vco2AudioGUI::get_subharmonic));
-	m_scaleSubHarmonic = new LabeledDial("Subharmonic", p_slotSubharmonic, p_subharmonic, 1, 16, NORMAL, 1, 0);
-	p_freqBox->pack_start(*m_scaleSubHarmonic);
+	slot<void> p_slotSubharmonic = compose(bind<0>(mem_fun(*this, &Vco2AudioGUI::write_control), p_semitone), mem_fun(*this,  &Vco2AudioGUI::get_semitone));
+	m_scaleSemitone = new LabeledDial("Semitone", p_slotSubharmonic, p_semitone, 0, 12, NORMAL, 1, 0);
+	p_freqBox->pack_start(*m_scaleSemitone);
 
 	p_freqFrame->add(*p_freqBox);
 	p_mainWidget->pack_start(*p_freqFrame);
@@ -74,6 +70,10 @@ Vco2AudioGUI::Vco2AudioGUI(const char* plugin_uri)
 	slot<void> p_slotPwGain = compose(bind<0>(mem_fun(*this, &Vco2AudioGUI::write_control), p_pwGain), mem_fun(*this,  &Vco2AudioGUI::get_pwGain));
 	m_scalePWGain = new LabeledDial("PW Gain", p_slotPwGain, p_pwGain, 0, 1, LOG, 0.0001, 4);
 	p_pwpBox->pack_start(*m_scalePWGain);
+
+	slot<void> p_slotEdge = compose(bind<0>(mem_fun(*this, &Vco2AudioGUI::write_control), p_edge), mem_fun(*this,  &Vco2AudioGUI::get_edge));
+	m_scaleEdge = new LabeledDial("Edge", p_slotEdge, p_edge, 1, 10, NORMAL, 0.05, 2);
+	p_pwpBox->pack_start(*m_scaleEdge);
 
 	slot<void> p_slotPhi0 = compose(bind<0>(mem_fun(*this, &Vco2AudioGUI::write_control), p_phi0), mem_fun(*this,  &Vco2AudioGUI::get_phi0));
 	m_scalePhi0 = new LabeledDial("Phi0", p_slotPhi0, p_phi0, 0, 6.28, LOG, 0.0001, 4);
@@ -111,10 +111,10 @@ Vco2AudioGUI::Vco2AudioGUI(const char* plugin_uri)
 
 float Vco2AudioGUI::get_octave() 		{ return m_scaleOctave->get_value(); }
 float Vco2AudioGUI::get_tune() 			{ return m_scaleTune->get_value(); }
-float Vco2AudioGUI::get_harmonic() 		{ return m_scaleHarmonic->get_value(); }
-float Vco2AudioGUI::get_subharmonic() 	{ return m_scaleSubHarmonic->get_value(); }
+float Vco2AudioGUI::get_semitone() 		{ return m_scaleSemitone->get_value(); }
 float Vco2AudioGUI::get_pw() 			{ return m_scalePW->get_value(); }
 float Vco2AudioGUI::get_pwGain() 		{ return m_scalePWGain->get_value(); }
+float Vco2AudioGUI::get_edge() 			{ return m_scaleEdge->get_value(); }
 float Vco2AudioGUI::get_phi0() 			{ return m_scalePhi0->get_value(); }
 float Vco2AudioGUI::get_expFMGain() 	{ return m_scaleExpFMGain->get_value(); }
 float Vco2AudioGUI::get_linFMGain()		{ return m_scaleLinFMGain->get_value(); }
@@ -137,13 +137,9 @@ void Vco2AudioGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t form
 	{
 		m_scaleTune->set_value(*static_cast<const float*> (buffer));
 	}
-	else if (port == p_harmonic)
+	else if (port == p_semitone)
 	{
-		m_scaleHarmonic->set_value(*static_cast<const float*> (buffer));
-	}
-	else if (port == p_subharmonic)
-	{
-		m_scaleSubHarmonic->set_value(*static_cast<const float*> (buffer));
+		m_scaleSemitone->set_value(*static_cast<const float*> (buffer));
 	}
 	else if (port == p_pw0)
 	{
@@ -152,6 +148,10 @@ void Vco2AudioGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t form
 	else if (port == p_pwGain)
 	{
 		m_scalePWGain->set_value(*static_cast<const float*> (buffer));
+	}
+	else if (port == p_edge)
+	{
+		m_scaleEdge->set_value(*static_cast<const float*> (buffer));
 	}
 	else if (port == p_phi0)
 	{

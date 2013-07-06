@@ -20,9 +20,8 @@ class SynthData
 		float wave_tri[WAVE_PERIOD];
 		float exp_data[EXP_TABLE_LEN];
 		float exp2_data[EXP2_BUF_LEN];
-		float edge;
 
-		SynthData(float p_edge);
+		SynthData();
 
 		float exp_table(float x);
 		float exp2_table(float);

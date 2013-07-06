@@ -9,6 +9,8 @@
 	* Bug fix: default resonance value in vcf.ttl
 	* VC to HZ and HZ to VC: all input/output as VC
 	* VCA for CV
+	* VCO Edge is controllable (for Square and Triangle)
+	* VCO has now a semitone parameter (no harmonic/subharmonic no more)
 
 0.1.4:
 	* LFO frequency now represented as Tempo and Multiplier

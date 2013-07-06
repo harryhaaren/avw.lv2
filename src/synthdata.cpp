@@ -18,8 +18,7 @@ union uf
 		unsigned u;
 };
 
-SynthData::SynthData(float edge) :
-		edge(edge)
+SynthData::SynthData()
 {
 	int l1, l2;
 	double dphi, phi, dy, dyd;

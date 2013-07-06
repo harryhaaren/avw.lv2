@@ -12,7 +12,7 @@ using namespace lvtk;
 Vcf::Vcf(double rate):
 		Plugin<Vcf>(p_n_ports)
 		{
-	synthdata = new SynthData(1);
+	synthdata = new SynthData();
 	//QString qs;
 
 	//setGeometry(MODULE_NEW_X, MODULE_NEW_Y, MODULE_VCF_WIDTH, MODULE_VCF_HEIGHT);
