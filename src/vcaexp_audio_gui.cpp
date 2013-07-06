@@ -99,4 +99,4 @@ void VCAExpAudioGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t fo
 	}
 }
 
-static int _ = VCAExpAudioGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/vcaexp/gui");
+static int _ = VCAExpAudioGUI::register_class("http://avwlv2.sourceforge.net/plugins/avw/vcaexp_audio/gui");
