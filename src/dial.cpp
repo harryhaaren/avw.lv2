@@ -159,15 +159,16 @@ bool Dial::onMouseMove(GdkEventMotion* event)
 {
 	if (m_mouseDown)
 	{
-		if(m_adj->get_value()<m_adj->get_upper() && m_mouseDelta>event->y)
+		if(m_adj->get_value()<m_adj->get_upper() && m_mouseDelta>(event->y + 5))
 		{
 			ChangeValueUp();
+			m_mouseDelta = event->y;
 		}
-		else if(m_adj->get_value()>m_adj->get_lower() && m_mouseDelta<event->y)
+		else if(m_adj->get_value()>m_adj->get_lower() && m_mouseDelta<(event->y - 5))
 		{
 			ChangeValueDown();
+			m_mouseDelta = event->y;
 		}
-		m_mouseDelta = event->y;
 		Redraw();
 
 		return true;
@@ -214,7 +215,7 @@ bool Dial::on_button_press_event(GdkEventButton* event)
 	if( event->type == GDK_BUTTON_PRESS  ) // && event->button == 3
 	{
 		m_mouseDown = true; // for pointer motion "drag" operations
-		m_mouseDelta = event->x;
+		m_mouseDelta = event->y;
 
 		return true;
 	}
