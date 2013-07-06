@@ -25,11 +25,11 @@ VCAExpCVGUI::VCAExpCVGUI(const std::string& URI)
 	HBox *p_gainBox = manage(new HBox(true));
 
 	slot<void> p_slotGain1 = compose(bind<0>(mem_fun(*this, &VCAExpCVGUI::write_control), p_gain1), mem_fun(*this,  &VCAExpCVGUI::get_gain1));
-	m_dialGain1 = new LabeledDial("Gain 1", p_slotGain1, p_gain1, 0, 1, NORMAL, 0.01, 2);
+	m_dialGain1 = new LabeledDial("Gain Offset", p_slotGain1, p_gain1, 0, 1, NORMAL, 0.01, 2);
 	p_gainBox->pack_start(*m_dialGain1);
 
 	slot<void> p_slotGain2 = compose(bind<0>(mem_fun(*this, &VCAExpCVGUI::write_control), p_gain2), mem_fun(*this,  &VCAExpCVGUI::get_gain2));
-	m_dialGain2 = new LabeledDial("Gain 2", p_slotGain2, p_gain2, 0, 1, NORMAL, 0.01, 2);
+	m_dialGain2 = new LabeledDial("2nd Gain Boost", p_slotGain2, p_gain2, 0, 1, NORMAL, 0.01, 2);
 	p_gainBox->pack_start(*m_dialGain2);
 
 	p_gainFrame->add(*p_gainBox);
