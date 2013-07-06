@@ -29,6 +29,7 @@ protected:
 	LabeledDial* m_scaleExpFMGain;
 	LabeledDial* m_scaleLinFMGain;
 
+	int get_waveform();
 	float get_octave();
 	float get_tune();
 	float get_semitone();

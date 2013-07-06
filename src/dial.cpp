@@ -5,8 +5,9 @@
 
 using namespace std;
 
-Dial::Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double Max,  DialType Type, double Step, int NbDigit)
+Dial::Dial(const sigc::slot<void> toggle_slot, double Value, double Min, double Max, DialType Type, double Step, int NbDigit)
 {
+	m_enabled = true;
 	m_type = Type;
 	m_adj = new Gtk::Adjustment(Value, Min, Max, Step, Step);
 	this->m_mouseDelta = 0;
@@ -34,6 +35,24 @@ Dial::~Dial()
 {
 }
 
+void Dial::enable()
+{
+	if(!m_enabled)
+	{
+		m_enabled = true;
+		Redraw();
+	}
+}
+
+void Dial::disable()
+{
+	if(m_enabled)
+	{
+		m_enabled = false;
+		Redraw();
+	}
+}
+
 void Dial::value_changed()
 {
 	Redraw();
@@ -57,7 +76,7 @@ bool Dial::on_expose_event(GdkEventExpose* event)
 	{
 		Cairo::RefPtr<Cairo::Context> cr = window->create_cairo_context();
 
-		cr->set_source_rgb(0.118,0.133, 0.141);
+		cr->set_source_rgb(0.118, 0.133, 0.141);
 		cr->paint();
 
 		cr->set_source_rgb(0.0, 0.8, 0.0);
@@ -70,8 +89,8 @@ bool Dial::on_expose_event(GdkEventExpose* event)
 
 		float radius = 14;
 
-		cr->set_line_cap( Cairo::LINE_CAP_ROUND );
-		cr->set_line_join( Cairo::LINE_JOIN_ROUND);
+		cr->set_line_cap(Cairo::LINE_CAP_ROUND);
+		cr->set_line_join(Cairo::LINE_JOIN_ROUND);
 		cr->set_line_width(2.8);
 
 		// Arc Angle Value
@@ -89,7 +108,10 @@ bool Dial::on_expose_event(GdkEventExpose* event)
 		cr->set_line_width(2.8);
 		float angle= 2.46 + (4.54 * ((m_adj->get_value()-m_adj->get_lower()) / (m_adj->get_upper()-m_adj->get_lower())));
 
-		cr->set_source_rgba( 255 / 255.f, 104 / 255.f ,   0 / 255.f , 1.f );
+		if(m_enabled)
+			cr->set_source_rgba( 255 / 255.f, 104 / 255.f , 0 / 255.f , 1.f );
+		else
+			cr->set_source_rgba( 66 / 255.f, 66 / 255.f , 66 / 255.f , 1.f );
 
 		cr->set_line_width(1.7);
 		cr->arc(xc,yc, 13, 2.46, angle );
@@ -129,35 +151,36 @@ double Dial::RoundValue(double Value)
 
 bool Dial::onMouseScroll(GdkEventScroll * e)
 {
-	if (e->direction == GDK_SCROLL_UP)
+	if(m_enabled)
 	{
-		ChangeValueUp();
-		if(m_type != DIVIDER)
+		if (e->direction == GDK_SCROLL_UP)
 		{
 			ChangeValueUp();
-			ChangeValueUp();
-			ChangeValueUp();
-			ChangeValueUp();
+			if(m_type != DIVIDER)
+			{
+				for(int i = 0 ; i<4 ; i++)
+					ChangeValueUp();
+			}
 		}
-	}
-	else if (e->direction == GDK_SCROLL_DOWN)
-	{
-		ChangeValueDown();
-		if(m_type != DIVIDER)
+		else if (e->direction == GDK_SCROLL_DOWN)
 		{
 			ChangeValueDown();
-			ChangeValueDown();
-			ChangeValueDown();
-			ChangeValueDown();
+			if(m_type != DIVIDER)
+			{
+				for(int i = 0 ; i<4 ; i++)
+					ChangeValueDown();
+			}
 		}
-	}
 
-	return true;
+		return true;
+	}
+	else
+		return false;
 }
 
 bool Dial::onMouseMove(GdkEventMotion* event)
 {
-	if (m_mouseDown)
+	if (m_mouseDown && m_enabled)
 	{
 		if(m_adj->get_value()<m_adj->get_upper() && m_mouseDelta>(event->y + 5))
 		{

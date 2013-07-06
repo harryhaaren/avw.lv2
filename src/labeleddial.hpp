@@ -22,6 +22,8 @@ class LabeledDial: public Gtk::EventBox
 		void value_changed();
 		float get_value();
 		void set_value(float value);
+		void disable();
+		void enable();
 
 	private:
 		Glib::ustring float_to_fraction(float value);

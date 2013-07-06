@@ -43,6 +43,16 @@ bool LabeledDial::Redraw()
 	return m_dial->Redraw();
 }
 
+void LabeledDial::enable()
+{
+	m_dial->enable();
+}
+
+void LabeledDial::disable()
+{
+	m_dial->disable();
+}
+
 void LabeledDial::value_changed()
 {
 	m_dial->Redraw();

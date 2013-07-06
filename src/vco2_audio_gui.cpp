@@ -32,7 +32,7 @@ Vco2AudioGUI::Vco2AudioGUI(const char* plugin_uri)
 	m_comboWaveForm->append_text("Aux Saw 2");
 	m_comboWaveForm->append_text("Aux Saw 3");
 
-	slot<void> p_slotWaveForm = compose(bind<0> (mem_fun(*this, &Vco2AudioGUI::write_control), p_waveForm), mem_fun(*m_comboWaveForm, &ComboBoxText::get_active_row_number));
+	slot<void> p_slotWaveForm = compose(bind<0> (mem_fun(*this, &Vco2AudioGUI::write_control), p_waveForm), mem_fun(*this, &Vco2AudioGUI::get_waveform));
 	m_comboWaveForm->signal_changed().connect(p_slotWaveForm);
 	p_mainWidget->pack_start(*m_comboWaveForm);
 
@@ -109,6 +109,23 @@ Vco2AudioGUI::Vco2AudioGUI(const char* plugin_uri)
 	Gtk::manage(p_mainWidget);
 }
 
+int Vco2AudioGUI::get_waveform()
+{
+	if(m_comboWaveForm->get_active_row_number() == 2 || m_comboWaveForm->get_active_row_number() == 3)
+	{
+		m_scalePW->enable();
+		m_scalePWGain->enable();
+		m_scaleEdge->enable();
+	}
+	else
+	{
+		m_scalePW->disable();
+		m_scalePWGain->disable();
+		m_scaleEdge->disable();
+	}
+
+	return m_comboWaveForm->get_active_row_number();
+}
 float Vco2AudioGUI::get_octave() 		{ return m_scaleOctave->get_value(); }
 float Vco2AudioGUI::get_tune() 			{ return m_scaleTune->get_value(); }
 float Vco2AudioGUI::get_semitone() 		{ return m_scaleSemitone->get_value(); }
@@ -127,6 +144,18 @@ void Vco2AudioGUI::port_event(uint32_t port, uint32_t buffer_size, uint32_t form
 		if (p_waveFormValue >= 0 && p_waveFormValue <= 6)
 		{
 			m_comboWaveForm->set_active((int) p_waveFormValue);
+			if(p_waveFormValue == 2 || p_waveFormValue == 3)
+			{
+				m_scalePW->enable();
+				m_scalePWGain->enable();
+				m_scaleEdge->enable();
+			}
+			else
+			{
+				m_scalePW->disable();
+				m_scalePWGain->disable();
+				m_scaleEdge->disable();
+			}
 		}
 	}
 	else if (port == p_octave)

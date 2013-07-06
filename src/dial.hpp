@@ -20,6 +20,8 @@ class Dial: public Gtk::DrawingArea
 		void value_changed();
 		float get_value();
 		void set_value(float value);
+		void disable();
+		void enable();
 
 	protected:
 		virtual bool on_expose_event(GdkEventExpose* event);
@@ -33,6 +35,8 @@ class Dial: public Gtk::DrawingArea
 
 		float m_mouseDelta;
 		bool m_mouseDown;
+
+		bool m_enabled;
 
 		DialType m_type;
 		int m_rounder;
