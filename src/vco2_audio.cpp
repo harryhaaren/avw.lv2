@@ -20,7 +20,6 @@ Plugin<Vco2Audio> (p_n_ports)
 
 	semitone = 0;
 	octave = 3;
-	edge = 0.95;
 	phi = 0;
 	waveForm = SINUS;
 
