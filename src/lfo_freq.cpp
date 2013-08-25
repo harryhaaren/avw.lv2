@@ -14,6 +14,7 @@ LfoFreq::LfoFreq(double rate)
 	long tm;
 
 	m_rate = rate;
+	wave_period = rate / (16.0 * 5);
 
 	trigger = false;
 	si = 0;
